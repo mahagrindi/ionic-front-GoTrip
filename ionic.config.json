@@ -1,0 +1,7 @@
+{
+  "name": "projet-DMWM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
