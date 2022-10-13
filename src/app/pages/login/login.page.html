@@ -1,0 +1,50 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title>login</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+    <div class="ion-margin-horizontal">
+        <swiper #swiper [config]="config">
+            <ng-template swiperSlide>
+                <div class="ion-text-center ion-margin-vertical">
+                    <ion-button fill="clear" class="inactiveButton" color="medium" (click)="slideNext()">Sign In</ion-button>
+                    <ion-button fill="clear" class="underlinedButton" color="success" (click)="slidePrev()">Login</ion-button>
+                </div>
+                <h3 color="success">Welcome !</h3>
+                <p>Please sign up and start the adventure 🚀</p>
+                <ion-label position="stacked" class="ion-margin-top">Name</ion-label>
+                <ion-input [(ngModel)]="name" type="text" autofocus="true"></ion-input>
+
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input [(ngModel)]="email" type="text" required></ion-input>
+
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input>
+                    <!-- <input [(ngModel)]="password" class="" type="password" required /> -->
+                </ion-input>
+
+                <ion-label position="stacked">Confirm Password</ion-label>
+                <ion-input [(ngModel)]="confirm_password" class="" type="password" required></ion-input>
+
+                <ion-button class="ion-margin-top" type="submit" expand="block" color="success" (click)="onSubmit()">
+                    Sign Up
+                </ion-button>
+                <p class="ion-text-center ion-margin-top">
+                    Already Have an account?
+                    <a (click)="slideNext()" color="success">Sign In</a>
+                </p>
+                <p class="horizontalLine">
+                    <span> or </span>
+                </p>
+
+                <ion-button expand="block" color="light">
+                    <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>
+                    Continue with google
+                </ion-button>
+            </ng-template>
+            <ng-template swiperSlide> page 2 </ng-template>
+        </swiper>
+    </div>
+</ion-content>

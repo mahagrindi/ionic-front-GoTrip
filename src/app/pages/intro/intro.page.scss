@@ -1,0 +1,21 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.centerPage {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.responsiveImg {
+    max-width: 80%;
+    height: auto;
+}

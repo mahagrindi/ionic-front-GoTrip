@@ -1,0 +1,15 @@
+@import "variables.scss";
+ion-input {
+    border: 1px solid $medium;
+    background-color: #fefefe;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-size: 18px;
+    color: $primary;
+}
+
+ion-label {
+    font-weight: lighter;
+    color: $dark;
+}
