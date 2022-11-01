@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   config: SwiperOptions = {
     slidesPerView: 1, //par défaut 1
     //spaceBetween: 50,
-    pagination: true,
+    pagination: false,
   };
 
   slideNext() {

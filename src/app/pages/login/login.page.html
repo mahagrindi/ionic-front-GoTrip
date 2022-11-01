@@ -7,6 +7,68 @@
 <ion-content>
     <div class="ion-margin-horizontal">
         <swiper #swiper [config]="config">
+            <!---******************************************* partie connexion ********************************************************-->
+            <ng-template swiperSlide>
+                <div class="ion-margin-vertical ion-text-center">
+                    <ion-button fill="clear" class="underlinedButton" color="warning" (click)="slideNext()">Login</ion-button>
+                    <ion-button fill="clear" class="inactiveButton" color="dark" (click)="slidePrev()">Register</ion-button>
+                </div>
+                <h3 color="primary">Welcome Back!</h3>
+                <p>Please sign in and start the adventure 🚀</p>
+                <form [formGroup]="InscriptionForm" (ngSubmit)="onSubmitCnx()" novalidate>
+                    <div class="form-group">
+                        <ion-label position="" class="ion-margin-top">Username</ion-label>
+                        <ion-input formControlName="username" [(ngModel)]="username" type="text" autofocus="true" placeholder="Username" required></ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="loginForm.get('username').hasError(er.type) && (loginForm.get('username').touched || loginForm.get('username').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <ion-label position="">Password</ion-label>
+                        <ion-input formControlName="password" [(ngModel)]="password" class="" type="password" required placeholder="*******" required>
+                        </ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="loginForm.get('password').hasError(er.type) && (loginForm.get('password').touched || loginForm.get('password').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                        <div class="ion-text-right ion-margin-top">
+                            <ion-note color="secondary">
+                                <a [routerLink]="['/forget-password']" href="">
+                  Forgot Password ?</a
+                ></ion-note
+              >
+            </div>
+          </div>
+
+          <ion-button
+            class="ion-margin-top"
+            type="submit"
+            expand="block"
+            color="warning"
+          >
+            Sign Up
+          </ion-button>
+        </form>
+        <p class="ion-text-center ion-margin-top">
+          Already Have an account?
+          <a (click)="slidePrev()" color="warning">Sign Up</a>
+                                </p>
+
+                                <p class="horizontalLine">
+                                    <span> or </span>
+                                </p>
+
+                                <ion-button expand="block" color="light">
+                                    <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>
+                                    Continue with google
+                                </ion-button>
+            </ng-template>
+            <!---******************************************* partie connexion  ********************************************************-->
+
             <!---******************************************* partie inscription ********************************************************-->
             <ng-template swiperSlide>
                 <div class="ion-margin-vertical ion-text-center">
@@ -80,69 +142,8 @@
                     Continue with google
                 </ion-button>
             </ng-template>
+
             <!---******************************************* partie inscription ********************************************************-->
-
-            <!---******************************************* partie connexion ********************************************************-->
-            <ng-template swiperSlide>
-                <div class="ion-margin-vertical ion-text-center">
-                    <ion-button fill="clear" class="underlinedButton" color="warning" (click)="slideNext()">Login</ion-button>
-                    <ion-button fill="clear" class="inactiveButton" color="dark" (click)="slidePrev()">Register</ion-button>
-                </div>
-                <h3 color="primary">Welcome Back!</h3>
-                <p>Please sign in and start the adventure 🚀</p>
-                <form [formGroup]="InscriptionForm" (ngSubmit)="onSubmitCnx()" novalidate>
-                    <div class="form-group">
-                        <ion-label position="" class="ion-margin-top">Username</ion-label>
-                        <ion-input formControlName="username" [(ngModel)]="username" type="text" autofocus="true" placeholder="Username" required></ion-input>
-                        <div *ngFor="let er of errors">
-                            <ng-container *ngIf="loginForm.get('username').hasError(er.type) && (loginForm.get('username').touched || loginForm.get('username').dirty)">
-                                <ion-note color="danger"> {{er.message}} </ion-note>
-                            </ng-container>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <ion-label position="">Password</ion-label>
-                        <ion-input formControlName="password" [(ngModel)]="password" class="" type="password" required placeholder="*******" required>
-                        </ion-input>
-                        <div *ngFor="let er of errors">
-                            <ng-container *ngIf="loginForm.get('password').hasError(er.type) && (loginForm.get('password').touched || loginForm.get('password').dirty)">
-                                <ion-note color="danger"> {{er.message}} </ion-note>
-                            </ng-container>
-                        </div>
-                        <div class="ion-text-right ion-margin-top">
-                            <ion-note color="secondary">
-                                <a [routerLink]="['/forget-password']" href="">
-                  Forgot Password ?</a
-                ></ion-note
-              >
-            </div>
-          </div>
-
-          <ion-button
-            class="ion-margin-top"
-            type="submit"
-            expand="block"
-            color="warning"
-          >
-            Sign Up
-          </ion-button>
-        </form>
-        <p class="ion-text-center ion-margin-top">
-          Already Have an account?
-          <a (click)="slidePrev()" color="warning">Sign Up</a>
-                                </p>
-
-                                <p class="horizontalLine">
-                                    <span> or </span>
-                                </p>
-
-                                <ion-button expand="block" color="light">
-                                    <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>
-                                    Continue with google
-                                </ion-button>
-            </ng-template>
-            <!---******************************************* partie connexion ********************************************************-->
         </swiper>
         </div>
 </ion-content>

@@ -17,6 +17,8 @@ export class IntroPage implements OnInit {
     slidesPerView: 1, //par défaut 1
     //spaceBetween: 50,
     pagination: true,
+    // centeredSlides: true,
+    // centeredSlidesBounds: true,
   };
   constructor() {}
 
