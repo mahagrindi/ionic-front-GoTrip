@@ -12,7 +12,7 @@
                     <ion-button fill="clear" class="inactiveButton" color="medium" (click)="slideNext()">Sign In</ion-button>
                     <ion-button fill="clear" class="underlinedButton" color="success" (click)="slidePrev()">Login</ion-button>
                 </div>
-                <h3 color="success">Welcome !</h3>
+                <h3 color="success"> !</h3>
                 <p>Please sign up and start the adventure 🚀</p>
                 <ion-label position="stacked" class="ion-margin-top">Name</ion-label>
                 <ion-input [(ngModel)]="name" type="text" autofocus="true"></ion-input>
@@ -39,7 +39,7 @@
                     <span> or </span>
                 </p>
 
-                <ion-button expand="block" color="light">
+                <ion-button expand="block" color="light" (click)="login()">
                     <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>
                     Continue with google
                 </ion-button>

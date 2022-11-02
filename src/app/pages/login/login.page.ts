@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
-
+import {HttpClient} from '@angular/common/http';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { isPlatform } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -23,13 +25,20 @@ export class LoginPage implements OnInit {
   slidePrev() {
     this.swiper.swiperRef.slidePrev(100);
   }
-  constructor() {}
-
+  constructor(private http:HttpClient) {
+    if(!isPlatform('capacitor'))
+    {
+      GoogleAuth.initialize();
+    }
+  }
+  user=null;
   name: string = '';
   email: string = '';
-  password: string = '';
+  password: string = '0';
   confirm_password: string = '';
-  ngOnInit() {}
+  ngOnInit(): void {
+    console.log("hello login ");
+  }  
 
   onSubmit() {
     alert(
@@ -41,5 +50,34 @@ export class LoginPage implements OnInit {
         ', ' +
         this.confirm_password
     );
+  }
+ async login()
+  {
+    alert("this.user");
+  
+ 
+   this.user= await GoogleAuth.signIn().catch(error=>{alert(error)});
+  
+   alert(this.user);
+   console.log("eee") 
+   /* let user={
+      password:this.password,
+      nom:this.name,
+      prenom:'achraf',
+      tel:'22261484',
+      sexe:'Homme',
+    }
+    alert("hello login")
+    this.http.post('http://127.0.0.1:3001/users/signup',user).subscribe(res=>{
+      alert(res)
+      console.log(res)
+    },err =>
+    {
+      alert(err.error)
+      console.log(err.error);
+    })
+     */
+
+
   }
 }

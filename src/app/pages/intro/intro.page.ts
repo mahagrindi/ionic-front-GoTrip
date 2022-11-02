@@ -20,5 +20,7 @@ export class IntroPage implements OnInit {
   };
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    console.log("hello ");
+  }  
 }
