@@ -7,44 +7,143 @@
 <ion-content>
     <div class="ion-margin-horizontal">
         <swiper #swiper [config]="config">
+            <!---******************************************* partie connexion ********************************************************-->
             <ng-template swiperSlide>
-                <div class="ion-text-center ion-margin-vertical">
-                    <ion-button fill="clear" class="inactiveButton" color="medium" (click)="slideNext()">Sign In</ion-button>
-                    <ion-button fill="clear" class="underlinedButton" color="success" (click)="slidePrev()">Login</ion-button>
+                <div class="ion-margin-vertical ion-text-center">
+                    <ion-button fill="clear" class="underlinedButton" color="warning" (click)="slidePrev()">Login</ion-button>
+                    <ion-button fill="clear" class="inactiveButton" color="dark" (click)="slideNext()">Register</ion-button>
                 </div>
-                <h3 color="success"> !</h3>
+                <h3 color="primary">Welcome Back!</h3>
+                <p>Please sign in and start the adventure 🚀</p>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmitCnx()" novalidate>
+                    <div class="form-group">
+                        <ion-label position="" class="ion-margin-top">Username</ion-label>
+                        <ion-input formControlName="usernameCnx" [(ngModel)]="usernameCnx" type="text" autofocus="true" placeholder="Username" required></ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="loginForm.get('usernameCnx').hasError(er.type) && (loginForm.get('usernameCnx').touched || loginForm.get('usernameCnx').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <ion-label position="">Password</ion-label>
+                        <ion-input formControlName="passwordCnx" [(ngModel)]="passwordCnx" class="" type="password" required placeholder="*******" required>
+                        </ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="loginForm.get('passwordCnx').hasError(er.type) && (loginForm.get('passwordCnx').touched || loginForm.get('passwordCnx').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                        <div class="ion-text-right ion-margin-top">
+                            <ion-note color="secondary">
+                                <a [routerLink]="['/forget-password']" href="">
+                  Forgot Password ?</a
+                ></ion-note
+              >
+            </div>
+          </div>
+
+          <ion-button
+            class="ion-margin-top"
+            type="submit"
+            expand="block"
+            color="warning"
+          >
+            Sign Up
+          </ion-button>
+        </form>
+        <p class="ion-text-center ion-margin-top">
+          Already Have an account?
+          <a (click)="slidePrev()" color="warning">Connexion</a>
+                                </p>
+
+                                <p class="horizontalLine">
+                                    <span> or </span>
+                                </p>
+
+                                <ion-button expand="block" color="light">
+                                    <ion-icon class="ion-margin-horizontal" name="logo-google" (click)="loginGoogle()"></ion-icon>
+                                    Continue with google
+                                </ion-button>
+            </ng-template>
+            <!---******************************************* partie connexion  ********************************************************-->
+
+            <!---******************************************* partie inscription ********************************************************-->
+            <ng-template swiperSlide>
+                <div class="ion-margin-vertical ion-text-center">
+                    <ion-button fill="clear" class="inactiveButton" color="dark" (click)="slidePrev()">Login</ion-button>
+                    <ion-button fill="clear" class="underlinedButton" color="warning" (click)="slideNext()">Register</ion-button>
+                </div>
+                <h3 color="primary">Welcome !</h3>
                 <p>Please sign up and start the adventure 🚀</p>
-                <ion-label position="stacked" class="ion-margin-top">Name</ion-label>
-                <ion-input [(ngModel)]="name" type="text" autofocus="true"></ion-input>
+                <form [formGroup]="InscriptionForm" (ngSubmit)="onSubmitInscription()" novalidate>
+                    <div class="form-group">
+                        <ion-label position="" class="ion-margin-top">Username</ion-label>
+                        <ion-input formControlName="username" [(ngModel)]="username" type="text" autofocus="true" placeholder="Username"></ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="InscriptionForm.get('username').hasError(er.type) && (InscriptionForm.get('username').touched || InscriptionForm.get('username').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
 
-                <ion-label position="stacked">Email</ion-label>
-                <ion-input [(ngModel)]="email" type="text" required></ion-input>
+                    <div class="form-group">
+                        <ion-label position="" class="ion-margin-top">Email</ion-label>
+                        <ion-input [ngClass]="{'ion-invalid':InscriptionForm.get('email').hasError('required'),'ion-valid':!InscriptionForm.get('email').hasError('required')}" [(ngModel)]="email" type="text" autofocus="true" formControlName="email" placeholder="Email"></ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="InscriptionForm.get('email').hasError(er.type) && (InscriptionForm.get('email').touched || InscriptionForm.get('email').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ion-label position="">Phone Number</ion-label>
+                        <ion-input formControlName="phone" [(ngModel)]="phone" type="number" required placeholder="Phone Number"></ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="InscriptionForm.get('phone').hasError(er.type) && (InscriptionForm.get('phone').touched || InscriptionForm.get('phone').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <ion-radio-group formControlName="sexe" [(ngModel)]="sexe">
+                        <ion-label class="ion-margin-horizontal" color="dark">Male</ion-label>
+                        <ion-radio value="male"></ion-radio>
+                        <ion-label class="ion-margin-horizontal" color="dark">Female</ion-label>
+                        <ion-radio value="female"></ion-radio>
+                    </ion-radio-group>
 
-                <ion-label position="stacked">Password</ion-label>
-                <ion-input>
-                    <!-- <input [(ngModel)]="password" class="" type="password" required /> -->
-                </ion-input>
+                    <div class="form-group">
+                        <ion-label position="">Password</ion-label>
+                        <ion-input formControlName="password" [(ngModel)]="password" class="" type="password" required placeholder="*******">
+                        </ion-input>
+                        <div *ngFor="let er of errors">
+                            <ng-container *ngIf="InscriptionForm.get('password').hasError(er.type) && (InscriptionForm.get('password').touched || InscriptionForm.get('password').dirty)">
+                                <ion-note color="danger"> {{er.message}} </ion-note>
+                            </ng-container>
+                        </div>
+                    </div>
 
-                <ion-label position="stacked">Confirm Password</ion-label>
-                <ion-input [(ngModel)]="confirm_password" class="" type="password" required></ion-input>
-
-                <ion-button class="ion-margin-top" type="submit" expand="block" color="success" (click)="onSubmit()">
-                    Sign Up
-                </ion-button>
+                    <ion-button class="ion-margin-top" type="submit" expand="block" color="warning">
+                        Inscription
+                    </ion-button>
+                </form>
                 <p class="ion-text-center ion-margin-top">
                     Already Have an account?
-                    <a (click)="slideNext()" color="success">Sign In</a>
+                    <a (click)="slideNext()" color="warning">Sign In</a>
                 </p>
+
                 <p class="horizontalLine">
                     <span> or </span>
                 </p>
 
-                <ion-button expand="block" color="light" (click)="login()">
+                <ion-button expand="block" color="light" (click)="loginGoogle()">
                     <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>
                     Continue with google
                 </ion-button>
             </ng-template>
-            <ng-template swiperSlide> page 2 </ng-template>
+
+            <!---******************************************* partie inscription ********************************************************-->
         </swiper>
-    </div>
+        </div>
 </ion-content>

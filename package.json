@@ -28,6 +28,7 @@
     "@codetrix-studio/capacitor-google-auth": "^3.2.0",
     "@ionic/angular": "^6.1.9",
     "ionicons": "^6.0.3",
+    "ng-otp-input": "^1.8.5",
     "rxjs": "~6.6.0",
     "swiper": "^8.4.4",
     "tslib": "^2.2.0",

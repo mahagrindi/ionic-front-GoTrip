@@ -4,6 +4,13 @@ import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
 import {HttpClient} from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { isPlatform } from '@ionic/angular';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,10 +20,14 @@ import { isPlatform } from '@ionic/angular';
 export class LoginPage implements OnInit {
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
+  loginForm: FormGroup;
+  InscriptionForm: FormGroup;
+  
+
   config: SwiperOptions = {
     slidesPerView: 1, //par défaut 1
     //spaceBetween: 50,
-    pagination: true,
+    pagination: false,
   };
 
   slideNext() {
@@ -25,58 +36,121 @@ export class LoginPage implements OnInit {
   slidePrev() {
     this.swiper.swiperRef.slidePrev(100);
   }
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private formBuilder: FormBuilder) {
     if(!isPlatform('capacitor'))
     {
       GoogleAuth.initialize();
     }
   }
   user=null;
-  name: string = '';
   email: string = '';
-  password: string = '0';
-  confirm_password: string = '';
-  ngOnInit(): void {
-    console.log("hello login ");
-  }  
-
-  onSubmit() {
-    alert(
-      this.name +
-        ', ' +
-        this.email +
-        ', ' +
-        this.password +
-        ', ' +
-        this.confirm_password
-    );
-  }
- async login()
-  {
-    alert("this.user");
+  password: string = '';
+  username: string = '';
+  phone: string = '';
+  sexe: string = '';
+  usernameCnx: string = '';
+  passwordCnx: string = '';
+  isSubmitted = false;
   
- 
+  errors = [
+    { type: 'required', message: 'Champ Obligatoire !' },
+    { type: 'pattern', message: 'Vérifier le format du champ' },
+  ];
+  ngOnInit(): void {
+    this.InscriptionForm = this.formBuilder.group({
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
+        ],
+        
+      ],
+      phone: ['', [Validators.required, Validators.pattern('^\\d{8}$')]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'
+          ),
+        ],
+      ],
+      sexe: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+
+    this.loginForm = this.formBuilder.group({
+      usernameCnx: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
+        ],
+      ],
+      passwordCnx: ['', [Validators.required]],
+    });
+  }
+  get errorControl() {
+    return this.loginForm.controls;
+  }
+ async onSubmitCnx() {
+    this.isSubmitted = true;
+    if (!this.loginForm.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+
+      await this.http.get('http://192.168.1.12:3001/users/signin',{
+    headers:
+           {
+            password:this.passwordCnx,
+            username:this.usernameCnx
+          }}
+      ).subscribe(res=>{
+        alert(res);
+        console.log(res)
+      },err =>{
+        alert(err.error)
+        console.log(err.error)
+      })
+      console.log(this.loginForm.value);
+    }
+  }
+
+  async onSubmitInscription() {
+    this.isSubmitted = true;
+    if (!this.InscriptionForm.valid) {
+      console.log('Please provide all the required values!');
+
+      return false;
+    } else {
+      let user={
+        password:this.password,
+        username:this.username,
+        email:this.email,
+        phone:this.phone,
+        sexe:this.sexe,
+      }
+     await this.http.post('http://192.168.1.12:3001/users/signup',user).subscribe(res=>{
+        alert(res)
+        console.log(res)
+      },err =>
+      {
+        alert(err.error)
+        console.log(err.error);
+      })
+     
+      console.log(this.InscriptionForm.value);
+    }
+  }
+ async loginGoogle()
+  {
    this.user= await GoogleAuth.signIn().catch(error=>{alert(error)});
   
    alert(this.user);
-   console.log("eee") 
-   /* let user={
-      password:this.password,
-      nom:this.name,
-      prenom:'achraf',
-      tel:'22261484',
-      sexe:'Homme',
-    }
-    alert("hello login")
-    this.http.post('http://127.0.0.1:3001/users/signup',user).subscribe(res=>{
-      alert(res)
-      console.log(res)
-    },err =>
-    {
-      alert(err.error)
-      console.log(err.error);
-    })
-     */
+   console.log(this.user) 
+  
 
 
   }

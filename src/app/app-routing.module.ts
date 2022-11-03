@@ -28,6 +28,13 @@ const routes: Routes = [
     redirectTo: '/intro',
     pathMatch: 'full',
   },
+  {
+    path: 'forget-password',
+    loadChildren: () =>
+      import('./pages/forget-password/forget-password.module').then(
+        (m) => m.ForgetPasswordPageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [
