@@ -1,0 +1,140 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+ <ion-content class="card-background-page">
+  <h1 class="h1_card">Recommend for you</h1>
+  <!----<swiper>
+
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="../../../assets/images/home/stay-in-tunis-e1555423387390.jpg" class="img-card"/>
+        <div class="card-icon"> <ion-icon name="heart" side="right"></ion-icon></div>
+         <div class="card-title">The medina of Tunis</div>
+
+        <div class="card-subtitle"><ion-icon name="location-outline"></ion-icon> Centre ville </div>
+        <div class="card-starts"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-"></ion-icon></div>
+
+        <div class="card-btn"><ion-button color="warning">Book Now</ion-button></div>
+
+      </ion-card>
+
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="../../../assets/images/home/Sidi-Bou-Said-1.jpg"/>
+        <div class="card-icon-checked"> <ion-icon name="heart" side="right"></ion-icon></div>
+        <div class="card-title">Amsterdam</div>
+        <div class="card-subtitle">64 Listings</div>
+      </ion-card>
+
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="../../../assets/images/home/Sidi-Bou-Said-1.jpg"/>
+        <div class="card-icon-checked"> <ion-icon name="heart" side="right"></ion-icon></div>
+        <div class="card-title">San Francisco</div>
+        <div class="card-subtitle">72 Listings</div>
+        <div class="card-starts"><ion-icon name="star-outline"></ion-icon></div>
+        <div class="card-btn"><ion-button color="warning">Book Now</ion-button></div>
+      </ion-card>
+
+
+    </ng-template>
+
+  </swiper>
+----->
+
+<div>
+
+  <ion-slides [options]="reclider">
+    <ion-slide *ngFor="let item of testData ">
+<ion-card>
+      <img [src]= "item.img"/>
+      <div   class="card-icon-{{item.fev}}"  (click)="favorisrec(item.id)"  > <ion-icon name="heart" side="right"></ion-icon></div>
+      <div class="card-title">{{item.name}}</div>
+      <div class="card-subtitle"><ion-icon name="location-outline"></ion-icon> {{item.locations}}</div>
+      <div class="card-starts"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+      <div class="card-prix"> {{item.price}}</div>
+    </ion-card>
+
+
+    </ion-slide>
+  </ion-slides>
+</div>
+
+<div>
+
+<h1> Last Chance </h1>
+
+ <div class="lastChance">
+<ion-card *ngFor="let item of LastChance">
+
+
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto">
+
+          <img height="100" width="100" [src]= "item.img"/>
+
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <ion-col >
+               <div class="name">{{item.name}}</div>
+            </ion-col>
+            <ion-col>
+              <div class="hert"> <ion-icon (click)="favoris(item.id)"  name="heart{{item.fev}}" side="right"></ion-icon>  </div>
+            </ion-col>
+
+
+          </ion-row>
+          <ion-row>
+            <div class="price" > {{item.price}}</div>
+          </ion-row>
+          <ion-row>
+          <div class="starts"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+
+          </ion-row>
+          <ion-row>
+            <ion-col  size="auto">
+
+            <div class="location"><ion-icon name="location-outline"></ion-icon> {{item.locations}}</div>
+            </ion-col>
+            <ion-col >
+            <div class="place"><ion-icon name="person-circle-outline"></ion-icon> {{item.nbPlace}} Spots left</div>
+
+              </ion-col>
+          </ion-row>
+
+
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
+
+
+
+</ion-card>
+</div>
+<div class="personlistions">
+  <ion-card  >
+
+<h1> Create your event personalize</h1>
+
+ </ion-card>
+</div>
+
+</div>
+</ion-content>

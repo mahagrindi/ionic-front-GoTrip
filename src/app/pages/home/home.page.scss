@@ -1,0 +1,195 @@
+// home.page.scss
+@import '~swiper/scss';
+@import '~@ionic/angular/css/ionic-swiper';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+.card-background-page {
+
+  ion-card {
+
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 10%;
+    font-size: 1.5em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    padding: 20px;
+
+
+  }
+
+  .card-subtitle {
+    font-size: 1.3em;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    color: #fff;
+    text-align: left;
+    padding: 20px;
+
+
+  }
+
+.card-icon-checkednon {
+  position: absolute;
+  top: 6%;
+  left: 40%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-icon-checked {
+  position: absolute;
+  top: 6%;
+  left: 40%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: rgb(237, 58, 58);
+}
+
+.img-card {
+
+  max-height: fit-content;
+  height:  fit-content;
+  filter: blur(50%);
+    display: block; /* remove extra space below image */
+
+}
+
+.card-btn {
+  font-size: 0.5em;
+  position: absolute;
+  bottom: 10%;
+  left:25%;
+
+
+}
+.card-starts {
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 5%;
+  left: 1%;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  color: rgb(240, 191, 76);
+}
+
+.card-prix{
+  font-size: 1.0em;
+  position: absolute;
+  bottom: 15%;
+  text-align: right;
+  right: 5%;
+  padding: 5px;
+  color: rgba(12, 12, 12, 0.981);
+  background-color: rgb(240, 191, 76);
+  border-radius: 10px;
+
+}
+
+h1{
+  font-family: 'Roboto', sans-serif;
+  padding-left: 10px;
+}
+h3{
+  font-family: 'Roboto', sans-serif;
+  padding-right: 10px;
+  color: rgba(110, 110, 110, 0.76);
+}
+
+}
+
+.lastChance {
+
+  img{
+    border-radius: 25%;
+  }
+  ion-card{
+    border-radius: 30px;
+  }
+  .name{
+    font-size: 16px;
+    color: rgb(23, 23, 23);
+    text-align: left;
+    margin: 0;
+  }
+  .price {
+    color: rgb(227, 49, 49);
+    text-align: left;
+    font-size: 14px;
+    margin-left: 5px;
+
+  }
+
+    .starts {
+      text-align: left;
+      margin-left: 5px;
+      color: rgb(240, 191, 76);
+
+    }
+    .location {
+
+      ion-icon{
+        text-align: left;
+        margin-left: 5px;
+        margin-top: 5px;
+        color: rgb(30, 30, 30);
+      }
+    }
+    .place {
+
+      text-align: right;
+      margin-right: 5px;
+
+        margin-top: 5px;
+        color:rgb(227, 49, 49);
+    }
+
+
+    .hert {
+      text-align: right;
+
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color:rgb(227, 49, 49);
+
+
+
+      }
+
+
+}
+
+.personlistions {
+  ion-card {
+
+
+background: linear-gradient(89.94deg, #FFC90F 18.94%, #FE8C8C 91.09%);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 52px; }
+h1{
+
+
+font-family: 'Poppins';
+font-style: normal;
+font-size: 20px;
+/* identical to box height */
+
+
+color: #FAFAFA;
+margin-top: 20px;
+margin-bottom: 20px;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+}
