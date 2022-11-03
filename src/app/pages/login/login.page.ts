@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
-
+import { SwiperOptions } from 'swiper';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FunctionsService } from 'src/app/services/functions.service';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,7 +15,11 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
   InscriptionForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private func: FunctionsService
+  ) {}
 
   config: SwiperOptions = {
     slidesPerView: 1, //par défaut 1
@@ -45,6 +45,8 @@ export class LoginPage implements OnInit {
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
   ngOnInit(): void {
+    console.log('yosra');
+    this.func.presentSplash();
     this.loginForm = this.formBuilder.group({
       username: [
         '',
