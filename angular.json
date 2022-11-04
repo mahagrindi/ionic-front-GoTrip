@@ -136,18 +136,31 @@
             }
         }
     },
+
+
     "cli": {
-        "schematicCollections": ["@ionic/angular-toolkit"],
-        "analytics": false
+        "schematicCollections": [
+            "@ionic/angular-toolkit"
+        ],
+        "analytics": "8379c109-c8b1-4262-9060-c114187b2f14"
     },
-    
     "schematics": {
         "@ionic/angular-toolkit:component": {
             "styleext": "scss"
         },
-        
-        "@ionic/angular-toolkit:page": {
-            "styleext": "scss"
+        "cli": {
+            "schematicCollections": ["@ionic/angular-toolkit"],
+            "analytics": false
+        },
+
+        "schematics": {
+            "@ionic/angular-toolkit:component": {
+                "styleext": "scss"
+            },
+
+            "@ionic/angular-toolkit:page": {
+                "styleext": "scss"
+            }
         }
     }
 }
