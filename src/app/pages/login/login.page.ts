@@ -1,9 +1,18 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FunctionsService } from 'src/app/services/functions.service';
 import { ModalController } from '@ionic/angular';
+import {HttpClient} from '@angular/common/http';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { isPlatform } from '@ionic/angular';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,11 +24,7 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
   InscriptionForm: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private func: FunctionsService
-  ) {}
+  
 
   config: SwiperOptions = {
     slidesPerView: 1, //par défaut 1
@@ -33,27 +38,36 @@ export class LoginPage implements OnInit {
   slidePrev() {
     this.swiper.swiperRef.slidePrev(100);
   }
-
+  constructor(private http:HttpClient,private formBuilder: FormBuilder,private func: FunctionsService) {
+    if(!isPlatform('capacitor'))
+    {
+      GoogleAuth.initialize();
+    }
+  }
+  user=null;
+  email: string = '';
+  password: string = '';
   username: string = '';
   phone: string = '';
-  email: string = '';
   sexe: string = '';
-  password: string = '';
+  usernameCnx: string = '';
+  passwordCnx: string = '';
   isSubmitted = false;
+  
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
   ngOnInit(): void {
-    console.log('yosra');
     this.func.presentSplash();
-    this.loginForm = this.formBuilder.group({
+    this.InscriptionForm = this.formBuilder.group({
       username: [
         '',
         [
           Validators.required,
           Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
         ],
+        
       ],
       phone: ['', [Validators.required, Validators.pattern('^\\d{8}$')]],
       email: [
@@ -69,37 +83,78 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required]],
     });
 
-    this.InscriptionForm = this.formBuilder.group({
-      username: [
+    this.loginForm = this.formBuilder.group({
+      usernameCnx: [
         '',
         [
           Validators.required,
           Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
         ],
       ],
-      password: ['', [Validators.required]],
+      passwordCnx: ['', [Validators.required]],
     });
   }
   get errorControl() {
     return this.loginForm.controls;
   }
-  onSubmitInscription() {
+ async onSubmitCnx() {
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
       console.log('Please provide all the required values!');
       return false;
     } else {
+
+      await this.http.get('http://192.168.1.12:3001/users/signin',{
+    headers:
+           {
+            password:this.passwordCnx,
+            username:this.usernameCnx
+          }}
+      ).subscribe(res=>{
+        alert(res);
+        console.log(res)
+      },err =>{
+        alert(err.error)
+        console.log(err.error)
+      })
       console.log(this.loginForm.value);
     }
   }
 
-  onSubmitCnx() {
+  async onSubmitInscription() {
     this.isSubmitted = true;
     if (!this.InscriptionForm.valid) {
       console.log('Please provide all the required values!');
+
       return false;
     } else {
+      let user={
+        password:this.password,
+        username:this.username,
+        email:this.email,
+        phone:this.phone,
+        sexe:this.sexe,
+      }
+     await this.http.post('http://192.168.1.12:3001/users/signup',user).subscribe(res=>{
+        alert(res)
+        console.log(res)
+      },err =>
+      {
+        alert(err.error)
+        console.log(err.error);
+      })
+     
       console.log(this.InscriptionForm.value);
     }
+  }
+ async loginGoogle()
+  {
+   this.user= await GoogleAuth.signIn().catch(error=>{alert(error)});
+  
+   alert(this.user);
+   console.log(this.user) 
+  
+
+
   }
 }

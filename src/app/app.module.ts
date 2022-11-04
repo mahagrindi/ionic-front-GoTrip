@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ShareModule } from './modules/share/share.module';
 import { SplashComponent } from './components/splash/splash.component';
 import { LottieModule } from 'ngx-lottie';
+import { HttpClientModule } from '@angular/common/http';
 import player from 'lottie-web';
 
 export function playerFactory(): any {
@@ -21,10 +22,10 @@ export function playerFactory(): any {
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     NgOtpInputModule,
     ReactiveFormsModule,
-
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
