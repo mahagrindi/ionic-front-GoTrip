@@ -10,13 +10,14 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-
+const  ip='192.168.1.12';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class LoginPage implements OnInit {
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
@@ -101,9 +102,9 @@ export class LoginPage implements OnInit {
       return false;
     } else {
 
-      await this.http.get('http://192.168.1.12:3001/users/signin',{
+      await this.http.get('http://'+ip+':3001/users/signin',{
     headers:
-           {
+          {
             password:this.passwordCnx,
             username:this.usernameCnx
           }}
@@ -116,7 +117,7 @@ export class LoginPage implements OnInit {
       })
       console.log(this.loginForm.value);
     }
-  }
+        }
 
   async onSubmitInscription() {
     this.isSubmitted = true;
