@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SplashComponent } from 'src/app/components/splash/splash.component';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [NavbarComponent],
   imports: [CommonModule],
-  exports: [],
+  exports: [NavbarComponent],
 })
 export class ShareModule {}

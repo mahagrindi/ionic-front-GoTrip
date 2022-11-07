@@ -1,14 +1,51 @@
+<!-- ********* navbar component****** -->
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Home </ion-title>
-    </ion-toolbar>
-    <ion-toolbar>
-        <ion-searchbar></ion-searchbar>
+    <ion-toolbar class="navb">
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+            <div>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+            </div>
+            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+            <div class="">
+                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg"></ion-icon>
+                <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </div>
+        </ion-row>
     </ion-toolbar>
 </ion-header>
-<ion-content class="card-background-page">
-    <h1 class="h1_card">Recommend for you</h1>
-    <!----<swiper>
+<!-- ********* navbar component****** -->
+
+<ion-content class="card-background-page ion-margin-horizontal">
+    <div class="ion-margin-horizontal">
+        <h4>
+            <ion-text color="primary">Welcome, User_name 👋</ion-text>
+        </h4>
+        <h3>
+            Where do you want <br /> to go ?
+        </h3>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+            <ion-input placeholder="ex: beach, Marsa, ..."></ion-input>
+            <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
+                <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </ion-button>
+        </ion-row>
+        <!--*********** fonction de recherche *************
+        ***************************************************
+    ******************************************************-->
+        <!-- <ion-input [debounce]="1000" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
+        <ion-list>
+            <ion-item *ngFor="let result of results">
+                <ion-label>{{ result }}</ion-label>
+            </ion-item>
+        </ion-list> -->
+
+        <!--*********** fonction de recherche *************
+        ***************************************************
+    ******************************************************-->
+        <h4 class="h1_card">Rcommended for you</h4>
+        <!----<swiper>
 
     <ng-template swiperSlide>
       <ion-card>
@@ -42,95 +79,138 @@
         <div class="card-subtitle">72 Listings</div>
         <div class="card-starts"><ion-icon name="star-outline"></ion-icon></div>
         <div class="card-btn"><ion-button color="warning">Book Now</ion-button></div>
-      </ion-card>
-
-
+     </ion-card>
     </ng-template>
-
   </swiper>
 ----->
-
-    <div>
-        <ion-slides [options]="reclider">
-            <ion-slide *ngFor="let item of testData ">
-                <ion-card>
-                    <img [src]="item.img" />
-                    <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)">
-                        <ion-icon name="heart" side="right"></ion-icon>
-                    </div>
-                    <div class="card-title">{{item.name}}</div>
-                    <div class="card-subtitle">
-                        <ion-icon name="location-outline"></ion-icon> {{item.locations}}
-                    </div>
-                    <div class="card-starts">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                    </div>
-                    <div class="card-prix">{{item.price}}</div>
-                </ion-card>
-            </ion-slide>
-        </ion-slides>
-    </div>
-
-    <div>
-        <h1>Last Chance</h1>
-
-        <div class="lastChance">
-            <ion-card *ngFor="let item of LastChance">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="auto">
-                            <img height="100" width="100" [src]="item.img" />
-                        </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <ion-col>
-                                    <div class="name">{{item.name}}</div>
-                                </ion-col>
-                                <ion-col>
-                                    <div class="hert">
-                                        <ion-icon (click)="favoris(item.id)" name="heart{{item.fev}}" side="right"></ion-icon>
+        <!--************ recommanded section ***********-->
+        <div class="recommended-section">
+            <ion-slides [options]="reclider">
+                <ion-slide *ngFor="let item of testData ">
+                    <ion-card>
+                        <img class="card-img" [src]="item.img" />
+                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)">
+                            <ion-icon name="heart-circle-outline" side="right"></ion-icon>
+                        </div>
+                        <ion-card-header>
+                            <ion-grid>
+                                <ion-row class="ion-align-items-center ion-justify-content-between">
+                                    <ion-card-title color="dark" class="card-title">{{item.name}}</ion-card-title>
+                                    <div class="ion-align-items-center note">
+                                        {{item.note}}
+                                        <ion-icon name="star" color="warning"></ion-icon>
                                     </div>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <div class="price">{{item.price}}</div>
-                            </ion-row>
-                            <ion-row>
-                                <div class="starts">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star-outline"></ion-icon>
-                                </div>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col size="auto">
-                                    <div class="location">
-                                        <ion-icon name="location-outline"></ion-icon>
-                                        {{item.locations}}
-                                    </div>
-                                </ion-col>
-                                <ion-col>
-                                    <div class="place">
-                                        <ion-icon name="person-circle-outline"></ion-icon>
-                                        {{item.nbPlace}} Spots left
-                                    </div>
-                                </ion-col>
-                            </ion-row>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-card>
+                                </ion-row>
+                                <ion-card-subtitle class="card-subtitle">
+                                    <ion-icon name="location-outline"></ion-icon>
+                                    {{item.locations}}</ion-card-subtitle>
+                                <ion-card-subtitle class="card-subtitle">
+                                    <ion-row class="ion-align-items-center ion-justify-content-between">
+                                        <div>
+                                            <span class="card-prix">{{item.price}}</span>/person
+                                        </div>
+                                        <div>
+                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
+                                        </div>
+                                    </ion-row>
+                                </ion-card-subtitle>
+                            </ion-grid>
+                        </ion-card-header>
+
+                        <!-- <ion-card-header>
+                            <ion-card-title class="card-title">{{item.name}}</ion-card-title>
+                            <ion-card-subtitle class="card-subtitle">
+                                <ion-icon name="location-outline"></ion-icon>
+                                {{item.locations}}</ion-card-subtitle>
+                        </ion-card-header> -->
+
+                        <!-- <ion-card-content>
+                            <div class="card-starts">
+                                {{item.note}}
+                                <ion-icon name="star" color="warning"></ion-icon>
+                                <ion-icon name="star-outline"></ion-icon>
+                            </div>
+                            <div class="card-prix">{{item.price}}</div>
+                        </ion-card-content> -->
+
+                        <!-- <div class="card-title">{{item.name}}</div>
+                            <div class="card-subtitle">
+                                <ion-icon name="location-outline"></ion-icon> {{item.locations}}
+                            </div>
+                            <div class="card-starts">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star-outline"></ion-icon>
+                            </div>
+                            <div class="card-prix">{{item.price}}</div> -->
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
         </div>
-        <div class="personlistions">
-            <ion-card>
+        <!--************ recommanded section***********-->
+
+        <div>
+            <h4>Last Chance</h4>
+
+            <div class="lastChance">
+                <ion-card *ngFor="let item of LastChance">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="auto">
+                                <img height="100" width="100" [src]="item.img" />
+                            </ion-col>
+                            <ion-col>
+                                <ion-row>
+                                    <ion-col>
+                                        <div class="name">{{item.name}}</div>
+                                    </ion-col>
+                                    <ion-col>
+                                        <div class="hert">
+                                            <ion-icon (click)="favoris(item.id)" name="heart{{item.fev}}" side="right"></ion-icon>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <div><span class="price">{{item.price}}</span>/person</div>
+                                </ion-row>
+                                <ion-row>
+                                    <div class="starts">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star-outline"></ion-icon>
+                                    </div>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="auto">
+                                        <div class="location">
+                                            <ion-icon name="location-outline"></ion-icon>
+                                            {{item.locations}}
+                                        </div>
+                                    </ion-col>
+                                    <ion-col>
+                                        <div class="place">
+                                            <ion-icon name="person-circle-outline"></ion-icon>
+                                            {{item.nbPlace}} Spots left
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card>
+            </div>
+            <div class="personlistions ion-text-center">
+                <ion-button class="ion-margin-top" type="submit" color="light" expand="" color="warning">
+                    Create your trip
+                </ion-button>
+                <!-- <ion-card>
                 <h1>Create your event personalize</h1>
-            </ion-card>
+            </ion-card> -->
+            </div>
         </div>
     </div>
 </ion-content>

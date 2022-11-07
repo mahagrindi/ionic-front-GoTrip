@@ -10,6 +10,7 @@ import { ShareModule } from './modules/share/share.module';
 import { SplashComponent } from './components/splash/splash.component';
 import { LottieModule } from 'ngx-lottie';
 import { HttpClientModule } from '@angular/common/http';
+// import { NavbarComponent } from './components/navbar/navbar.component';
 import player from 'lottie-web';
 
 export function playerFactory(): any {
@@ -26,6 +27,7 @@ export function playerFactory(): any {
     FormsModule,
     NgOtpInputModule,
     ReactiveFormsModule,
+    ShareModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

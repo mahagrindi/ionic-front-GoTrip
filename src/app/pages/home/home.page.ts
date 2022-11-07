@@ -28,6 +28,7 @@ export class HomePage {
         nbreStarts: 4,
         locations: 'saw',
         name: 'Prithivi',
+        note: 4.8,
       },
       {
         id: 3,
@@ -37,6 +38,7 @@ export class HomePage {
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
+        note: 4.8,
       },
       {
         id: 3,
@@ -46,6 +48,7 @@ export class HomePage {
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
+        note: 4.8,
       },
       {
         id: 3,
@@ -55,6 +58,7 @@ export class HomePage {
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Neethi',
+        note: 4.8,
       },
       {
         id: 3,
@@ -64,6 +68,7 @@ export class HomePage {
         nbreStarts: 5,
         locations: 'saw2',
         name: 'abirami1',
+        note: 4.8,
       },
     ];
 
@@ -77,6 +82,7 @@ export class HomePage {
         nbreStarts: 4,
         locations: 'saw',
         name: 'Prithivi',
+        note: 4.8,
       },
       {
         id: 3,
@@ -87,6 +93,7 @@ export class HomePage {
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
+        note: 4.8,
       },
       {
         id: 4,
@@ -97,6 +104,7 @@ export class HomePage {
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
+        note: 4.8,
       },
     ];
   }
@@ -114,6 +122,32 @@ export class HomePage {
       }
     }
   }
+
+  //   *********** fonction de recherche *************
+  //   ***************************************************
+  // ******************************************************
+  // public data = [
+  //   'Amsterdam',
+  //   'Buenos Aires',
+  //   'Cairo',
+  //   'Geneva',
+  //   'Hong Kong',
+  //   'Istanbul',
+  //   'London',
+  //   'Madrid',
+  //   'New York',
+  //   'Panama City',
+  // ];
+  // public results = [...this.data];
+
+  // handleChange(event) {
+  //   const query = event.target.value.toLowerCase();
+  //   this.results = this.data.filter((d) => d.toLowerCase().indexOf(query) > -1);
+  // }
+
+  // *********** fonction de recherche *************
+  //   ***************************************************
+  // ******************************************************
 
   favorisrec(id) {
     for (let i = 0; i <= this.testData.length - 1; i++) {
