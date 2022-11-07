@@ -1,0 +1,15 @@
+<div class="spalsh-animation">
+    <div class="splash-video">
+        <div class="lottie-animation mt-10">
+            <ion-grid class="centerPage">
+                <ion-row class="ion-justify-content-center ion-margin-vertical">
+                    <img class="image" src="assets/logo/logo.svg" alt="" />
+                </ion-row>
+                <ion-row class="ion-justify-content-center ion-margin-vertical">
+                    <ng-lottie class="video" [options]="options" (animationCreated)="onAnimate($event)">
+                    </ng-lottie>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</div>

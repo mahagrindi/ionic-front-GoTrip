@@ -26,17 +26,26 @@ export class ForgetPasswordPage implements OnInit {
       height: '50px',
     },
   };
+  password: string = '';
+  phone: string = '';
+  isSubmitted = false;
+  EnterNumber: FormGroup;
+  NewPassword: FormGroup;
+  errors = [
+    { type: 'required', message: 'Champ Obligatoire !' },
+    { type: 'pattern', message: 'Vérifier le format du champ' },
+    { type: 'minLength', message: 'password must have at least 6 characters ' },
+  ];
   //afficher la valeur des input du code dans le console
-  //vérifier le code et revenir à la page connexion
+  //vérifier le code et aller à la page new password
   valueChange(ev) {
     console.log(ev.length);
     if (ev.length == 4) {
-      this.router.navigate(['/login']);
+      this.slideNext();
+      //this.router.navigate(['/login']);
     }
   }
 
-  isSubmitted = false;
-  EnterNumber: FormGroup;
   //config swiper
   config: SwiperOptions = {
     slidesPerView: 1, //par défaut 1
@@ -51,12 +60,6 @@ export class ForgetPasswordPage implements OnInit {
     this.swiper.swiperRef.slidePrev(100);
   }
 
-  phone: string = '';
-
-  errors = [
-    { type: 'required', message: 'Champ Obligatoire !' },
-    { type: 'pattern', message: 'Saisir votre numéro de 8 chiffres' },
-  ];
   get errorControl() {
     return this.EnterNumber.controls;
   }
@@ -73,7 +76,12 @@ export class ForgetPasswordPage implements OnInit {
         ],
       ],
     });
+
+    this.NewPassword = this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
+  //on submit phone
   onSubmit() {
     this.isSubmitted = true;
     if (!this.EnterNumber.valid) {
@@ -85,6 +93,19 @@ export class ForgetPasswordPage implements OnInit {
       this.slideNext();
       this.config.enabled = true;
       console.log(this.config);
+    }
+  }
+
+  onSubmitPassword() {
+    this.isSubmitted = true;
+    if (!this.NewPassword.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      console.log(this.password);
+      if (this.password.length > 6) {
+        this.router.navigate(['/login']);
+      }
     }
   }
 }

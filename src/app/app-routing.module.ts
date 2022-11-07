@@ -15,7 +15,8 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-    canLoad: [AuthGuard],
+
+    // canLoad: [AuthGuard],
   },
   {
     path: 'intro',
@@ -23,6 +24,11 @@ const routes: Routes = [
       import('./pages/intro/intro.module').then((m) => m.IntroPageModule),
   },
 
+  // {
+  //   path: '',
+  //   redirectTo: '/tabs/home',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
     redirectTo: '/intro',
@@ -34,6 +40,11 @@ const routes: Routes = [
       import('./pages/forget-password/forget-password.module').then(
         (m) => m.ForgetPasswordPageModule
       ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
 ];
 @NgModule({

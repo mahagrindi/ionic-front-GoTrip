@@ -3,11 +3,11 @@
         <ion-title>login</ion-title>
     </ion-toolbar>
 </ion-header> -->
-
 <ion-content>
     <div class="ion-margin-horizontal">
         <swiper #swiper [config]="config">
             <!---******************************************* partie connexion ********************************************************-->
+
             <ng-template swiperSlide>
                 <div class="ion-margin-vertical ion-text-center">
                     <ion-button fill="clear" class="underlinedButton" color="warning" (click)="slidePrev()">Login</ion-button>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="form-group">
                         <ion-label position="">Phone Number</ion-label>
-                        <ion-input formControlName="phone" [(ngModel)]="phone" type="number" required placeholder="Phone Number"></ion-input>
+                        <ion-input formControlName="phone" [(ngModel)]="phone" type="tel" required placeholder="Phone Number" [maxlength]="8"></ion-input>
                         <div *ngFor="let er of errors">
                             <ng-container *ngIf="InscriptionForm.get('phone').hasError(er.type) && (InscriptionForm.get('phone').touched || InscriptionForm.get('phone').dirty)">
                                 <ion-note color="danger"> {{er.message}} </ion-note>

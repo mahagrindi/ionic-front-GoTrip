@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
+import { SwiperOptions } from 'swiper';
+import { FunctionsService } from 'src/app/services/functions.service';
 import {HttpClient} from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { isPlatform } from '@ionic/angular';
@@ -17,7 +18,6 @@ const  ip='192.168.1.12';
   styleUrls: ['./login.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-
 export class LoginPage implements OnInit {
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
@@ -37,12 +37,14 @@ export class LoginPage implements OnInit {
   slidePrev() {
     this.swiper.swiperRef.slidePrev(100);
   }
-  constructor(private http:HttpClient,private formBuilder: FormBuilder) {
+  constructor(private http:HttpClient,private formBuilder: FormBuilder,private func: FunctionsService) {
     if(!isPlatform('capacitor'))
     {
       GoogleAuth.initialize();
     }
+    
   }
+
   user=null;
   email: string = '';
   password: string = '';
@@ -57,7 +59,12 @@ export class LoginPage implements OnInit {
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
+
+  
   ngOnInit(): void {
+
+    this.func.presentSplash();
+    
     this.InscriptionForm = this.formBuilder.group({
       username: [
         '',
@@ -133,7 +140,7 @@ export class LoginPage implements OnInit {
         phone:this.phone,
         sexe:this.sexe,
       }
-     await this.http.post('http://192.168.1.12:3001/users/signup',user).subscribe(res=>{
+     await this.http.post('http://'+ip+':3001/users/signup',user).subscribe(res=>{
         alert(res)
         console.log(res)
       },err =>
@@ -148,9 +155,9 @@ export class LoginPage implements OnInit {
  async loginGoogle()
   {
    this.user= await GoogleAuth.signIn().catch(error=>{alert(error)});
-  
+  console.log(this.user);
    alert(this.user);
-   console.log(this.user) 
+  
   
 
 

@@ -7,6 +7,9 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShareModule } from 'src/app/modules/share/share.module';
+
+
 
 @NgModule({
   imports: [
@@ -16,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     LoginPageRoutingModule,
     SwiperModule,
+    
   ],
   declarations: [LoginPage],
 })
