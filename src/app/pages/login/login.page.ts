@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
   ngOnInit(): void {
-    const num = this.Actroute.snapshot.paramMap.get('num');
+    const num = this.route.getCurrentNavigation().extras.state.num;
     console.log('phone' + num);
     // this.func.presentSplash();
     this.InscriptionForm = this.formBuilder.group({

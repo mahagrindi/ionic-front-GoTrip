@@ -24,11 +24,11 @@ const routes: Routes = [
       import('./pages/intro/intro.module').then((m) => m.IntroPageModule),
   },
 
-  // {
-  //   path: '',
-  //   redirectTo: '/tabs/home',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: '/tabs/home',
+    pathMatch: 'full',
+  },
   {
     path: '',
     redirectTo: '/intro',

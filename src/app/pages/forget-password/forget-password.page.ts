@@ -83,9 +83,7 @@ export class ForgetPasswordPage implements OnInit {
         num: this.EnterNumber.value,
       },
     };
-    this.router.navigate(['/login'], {
-      state: { navigationExtras },
-    });
+    this.router.navigateByUrl('/login', navigationExtras);
   }
   //on submit phone
   onSubmit() {
