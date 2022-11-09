@@ -1,0 +1,12 @@
+<!--*************** Modal qui montre que le num n'existe pas *************-->
+<ion-content class="ion-padding center">
+    <div class="ion-margin-top ion-text-center">
+        <ion-label>This phone number does not existe </ion-label>
+        <h6>Do you want to register ?</h6>
+    </div>
+    <div class="ion-margin-top ion-text-center">
+        <ion-button (click)="goToLogin()" routerLink="/login" [state]="" type="" color="warning">Register</ion-button>
+        <ion-button (click)="cancel()" type="" color="light">Cancel</ion-button>
+    </div>
+</ion-content>
+<!--*************** Modal qui montre que le num n'existe pas *************-->

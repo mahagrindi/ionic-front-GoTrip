@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
+import { SwiperOptions } from 'swiper';
 import { NavigationExtras, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from './modal/modal.component';
+import { CodeModalComponent } from './code-modal/code-modal.component';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -31,12 +34,6 @@ export class ForgetPasswordPage implements OnInit {
   ];
   //afficher la valeur des input du code dans le console
   //vérifier le code et aller à la page new password
-  valueChange(ev) {
-    console.log(ev.length);
-    if (ev.length == 4) {
-      this.router.navigate(['/change-password']);
-    }
-  }
 
   //config swiper
   config: SwiperOptions = {
@@ -55,7 +52,12 @@ export class ForgetPasswordPage implements OnInit {
   get errorControl() {
     return this.EnterNumber.controls;
   }
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private modalCtrl: ModalController,
+    private CodemodalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
     this.EnterNumber = this.formBuilder.group({
@@ -69,22 +71,46 @@ export class ForgetPasswordPage implements OnInit {
       ],
     });
   }
+  message = 'test';
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalComponent,
+      componentProps: {
+        number: this.EnterNumber.value['phone'],
+      },
+    });
+    modal.present();
+  }
+
+  async openCodeModal() {
+    const modal = await this.CodemodalCtrl.create({
+      component: CodeModalComponent,
+    });
+    modal.present();
+  }
 
   verifNum() {
-    if (this.EnterNumber.value == 12345678) {
-      console.log(this.EnterNumber.value);
+    if (this.EnterNumber.value['phone'] == 12345678) {
+      this.openCodeModal();
+      console.log('part1');
     } else {
+      console.log('part2');
+      this.openModal();
     }
   }
 
-  goToLogin() {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        num: this.EnterNumber.value,
-      },
-    };
-    this.router.navigateByUrl('/login', navigationExtras);
-  }
+  // goToLogin() {
+  //   const navigationExtras: NavigationExtras = {
+  //     state: {
+  //       user: {
+  //         id: 42,
+  //         name: 'yos',
+  //       },
+  //     },
+  //   };
+  //   this.router.navigateByUrl('/login', navigationExtras);
+  // }
+
   //on submit phone
   onSubmit() {
     this.isSubmitted = true;
@@ -94,9 +120,6 @@ export class ForgetPasswordPage implements OnInit {
       return false;
     } else {
       this.verifNum();
-      // this.slideNext();
-      // this.config.enabled = true;
-      // console.log(this.config);
     }
   }
 }
