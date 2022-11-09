@@ -12,13 +12,14 @@ import { LottieModule } from 'ngx-lottie';
 import { HttpClientModule } from '@angular/common/http';
 // import { NavbarComponent } from './components/navbar/navbar.component';
 import player from 'lottie-web';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
 }
 
 @NgModule({
-  declarations: [AppComponent, SplashComponent],
+  declarations: [AppComponent, SplashComponent, NavbarComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -27,7 +28,7 @@ export function playerFactory(): any {
     FormsModule,
     NgOtpInputModule,
     ReactiveFormsModule,
-    ShareModule,
+    //ShareModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

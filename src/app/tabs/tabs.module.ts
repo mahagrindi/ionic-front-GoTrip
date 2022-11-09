@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 import { ShareModule } from '../modules/share/share.module';
 import { TabsPage } from './tabs.page';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { TabsPage } from './tabs.page';
     TabsPageRoutingModule,
     ShareModule,
   ],
-  declarations: [TabsPage],
+  declarations: [TabsPage, ContainerComponent],
 })
 export class TabsPageModule {}

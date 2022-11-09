@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContainerComponent } from './container/container.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: TabsPage,
+    component: ContainerComponent,
     children: [
       {
         path: 'home',
@@ -31,11 +32,11 @@ const routes: Routes = [
       },
     ],
   },
-  {
+  /*{
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full',
-  },
+  },*/
 ];
 
 @NgModule({

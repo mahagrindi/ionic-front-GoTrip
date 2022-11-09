@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
-import { Router } from '@angular/router';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -26,7 +21,6 @@ export class ForgetPasswordPage implements OnInit {
       height: '50px',
     },
   };
-  password: string = '';
   phone: string = '';
   isSubmitted = false;
   EnterNumber: FormGroup;
@@ -34,15 +28,13 @@ export class ForgetPasswordPage implements OnInit {
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
-    { type: 'minLength', message: 'password must have at least 6 characters ' },
   ];
   //afficher la valeur des input du code dans le console
   //vérifier le code et aller à la page new password
   valueChange(ev) {
     console.log(ev.length);
     if (ev.length == 4) {
-      this.slideNext();
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/change-password']);
     }
   }
 
@@ -76,9 +68,23 @@ export class ForgetPasswordPage implements OnInit {
         ],
       ],
     });
+  }
 
-    this.NewPassword = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  verifNum() {
+    if (this.EnterNumber.value == 12345678) {
+      console.log(this.EnterNumber.value);
+    } else {
+    }
+  }
+
+  goToLogin() {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        num: this.EnterNumber.value,
+      },
+    };
+    this.router.navigate(['/login'], {
+      state: { navigationExtras },
     });
   }
   //on submit phone
@@ -89,23 +95,10 @@ export class ForgetPasswordPage implements OnInit {
       console.log(this.config);
       return false;
     } else {
-      console.log(this.EnterNumber.value);
-      this.slideNext();
-      this.config.enabled = true;
-      console.log(this.config);
-    }
-  }
-
-  onSubmitPassword() {
-    this.isSubmitted = true;
-    if (!this.NewPassword.valid) {
-      console.log('Please provide all the required values!');
-      return false;
-    } else {
-      console.log(this.password);
-      if (this.password.length > 6) {
-        this.router.navigate(['/login']);
-      }
+      this.verifNum();
+      // this.slideNext();
+      // this.config.enabled = true;
+      // console.log(this.config);
     }
   }
 }
