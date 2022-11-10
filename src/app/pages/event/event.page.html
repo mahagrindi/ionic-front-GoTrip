@@ -40,7 +40,7 @@
         <h4 style="margin-left : 10px"> what's included ?</h4>
       </ion-row>
       <ion-row>
-        <swiper [slidesPerView]="2.5" [spaceBetween]="10" [centeredSlides]="true"  [loop]="true">
+        <swiper [slidesPerView]= '2.5' [spaceBetween]="8" [centeredSlides]="true"  [loop]="true">
           <ng-template swiperSlide *ngFor="let catg of item.catgrs ">
             <div class="activite_card">
 
@@ -121,12 +121,78 @@
                           </ion-row>
                       </ion-col>
                   </ion-row>
+
               </ion-grid>
           </ion-card>
       </div>
       </ion-row>
   </div>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto"><div class="PRIX"> <p> 35 DT <samp> /person</samp> </p> </div> </ion-col>
+      <ion-col>
+        <ion-button lass="ion-margin-top" type="submit" expand="block" color="warning" (click)="setOpen(true)">Booking</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+
+</ion-grid>
+
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-grid>
+          <ion-row>
+            <h1> Choose the date for the reservation</h1>
+          </ion-row>
+          <ion-row>
+                <ion-datetime  [(ngModel)]="mydate" display-format="MMM DD, YYYY" (ionChange)="showdate()" ></ion-datetime>
+          </ion-row>
+          <ion-row>
+            <h1>Select the number of people</h1>
+          </ion-row>
+          <ion-row>
+
+              <div class="counter__section">
+              <ion-button  color="warning" (click)="decrement()">-</ion-button>
+              <p >{{count }}</p>
+              <ion-button color="warning" (click)="increment()">+</ion-button>
+            </div>
+
+          </ion-row>
+          <ion-row>
+
+
+              <div class="facteur">
+                <ion-card>
+                  <ion-card-header>
+
+                    <ion-row> <ion-col><h4>price of person {{this.testData[0].price}}</h4></ion-col> </ion-row>
+                    <ion-row>  <ion-col><h4>nomber of popele  {{count }}</h4></ion-col>  </ion-row>
+                    <ion-row>  <ion-col><h4>Total price    {{total_price}}</h4></ion-col>   </ion-row>
+                  </ion-card-header>
+
+
+                </ion-card>
+
+              </div>
+
+          </ion-row>
+        </ion-grid>
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
       <!-----<div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div> --->
 </ion-content>

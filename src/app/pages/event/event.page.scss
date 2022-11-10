@@ -30,3 +30,37 @@
     margin-right: 20px;
   }
 
+  .PRIX{
+    P{
+        // font-size: 14px;
+        margin-left: 5px;
+        font-size: 1.2em;
+        color: $secondary;
+    }
+    samp{
+
+      font-size: 1em;
+      color: $primary;
+    }
+  }
+  .counter__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 30%;
+
+    ion-button {
+      box-shadow: $shadow;
+    }
+
+    p{
+      padding: 20px;
+    }
+  }
+
+
+  .facteur {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: $shadow;
+  }

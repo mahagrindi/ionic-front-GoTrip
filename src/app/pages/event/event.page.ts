@@ -6,13 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
-  testData: any;
-  review: any;
-  constructor() {
-    this.testData = [
+
+  isModalOpen = false;
+  prix: any;
+  count = 0 ;
+  total_price = 0 ;
+
+  public mydate ;
+
+
+  constructor() {}
+ testData = [
       {
         id: 1,
-        price: '35 DT ',
+        price: 35 ,
         fev: 'checked',
         img: '../../../assets/images/home/Sidi-Bou-Said-1.jpg',
         nbreStarts: 4,
@@ -21,9 +28,9 @@ export class EventPage implements OnInit {
         note: 4.8,
         catgrs :[ 'Food' ,'Shoping' , 'Shooting'],
         imgs :['image1.jpg' ,'image2.jpg','image3.jpg']
-      },
+      }
     ];
-    this.review = [
+  review = [
       {
         id: 1,
         name: 'Yelena Belove',
@@ -39,11 +46,28 @@ export class EventPage implements OnInit {
         date: '15/11/2022',
         comnt: 'prety nice place',
         img : 'profile2.jpg',
-      },
+      }
     ];
- }
+
 
   ngOnInit() {
+  }
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  increment() {
+    this.count++;
+    this.total_price += this.testData[0].price ;
+
+  }
+
+  decrement() {
+    this.count--;
+    this.total_price -= this.testData[0].price ;
+  }
+  showdate(){
+    console.log(this.mydate);
   }
 
 }
