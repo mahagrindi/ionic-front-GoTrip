@@ -1,0 +1,15 @@
+@import "variables.scss";
+
+.image{
+  border-radius: 15px;
+    box-shadow: $shadow;
+    border: 0px;
+    width: 90%;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: cover;
+
+}

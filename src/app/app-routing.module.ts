@@ -15,7 +15,8 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-    canLoad: [AuthGuard],
+
+    // canLoad: [AuthGuard],
   },
   {
     path: 'intro',
@@ -23,11 +24,33 @@ const routes: Routes = [
       import('./pages/intro/intro.module').then((m) => m.IntroPageModule),
   },
 
+  // {
+  //   path: '',
+  //   redirectTo: '/tabs/home',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
     redirectTo: '/intro',
     pathMatch: 'full',
   },
+  {
+    path: 'forget-password',
+    loadChildren: () =>
+      import('./pages/forget-password/forget-password.module').then(
+        (m) => m.ForgetPasswordPageModule
+      ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
+  },  {
+    path: 'event',
+    loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
+  },
+
+
 ];
 @NgModule({
   imports: [

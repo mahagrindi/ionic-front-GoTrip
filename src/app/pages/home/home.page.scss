@@ -1,0 +1,249 @@
+// home.page.scss
+@import "~swiper/scss";
+@import "~@ionic/angular/css/ionic-swiper";
+@import "../../../theme/input.scss";
+@import "../../../theme/card.scss";
+//@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.recommended-section {
+
+  .swiper .swiper-slide img {
+    border-radius: 10px;
+    width: 90%;
+    height: 80%;
+    margin-top: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+    ion-card {
+        position: relative;
+        // border: 0px;
+    }
+    .note {
+        font-weight: 500;
+    }
+  /*   .card-img {
+        border-radius: 10px;
+        width: 90%;
+        height: 80%;
+        margin-top: 8px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    } */
+    .card-title {
+        // position: absolute;
+        // top: 10%;
+        // font-size: 0.5em;
+        // width: 100%;
+        font-weight: bold;
+        //color: $light;
+        text-align: left;
+        // padding: 20px;
+    }
+    .card-subtitle {
+        // font-size: 1.3em;
+        // position: absolute;
+        // top: 30%;
+        // width: 100%;
+        // color: $light;
+        margin-top: 5px;
+        text-align: left;
+        // padding: 20px;
+    }
+
+    .card-icon {
+        position: absolute;
+        top: 6%;
+        left: 38%;
+        font-size: 2em;
+        width: 100%;
+        font-weight: bold;
+        color: $warning;
+    }
+    .img-card {
+        max-height: fit-content;
+        height: fit-content;
+        filter: blur(50%);
+        display: block;
+        /* remove extra space below image */
+    }
+    .card-btn {
+        font-size: 0.5em;
+        position: absolute;
+        bottom: 10%;
+        left: 25%;
+    }
+    .card-starts {
+        font-size: 1.2em;
+        position: absolute;
+        bottom: 5%;
+        left: 1%;
+        width: 100%;
+        text-align: left;
+        padding: 20px;
+        // color: $warning;
+    }
+    .card-prix {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: $primary;
+        // position: absolute;
+        // bottom: 15%;
+        // text-align: right;
+        // right: 5%;
+        // padding: 5px;
+        // color: $dark;
+        // background-color: $warning;
+        // border-radius: 10px;
+    }
+}
+
+// .card-background-page {
+//     .card-title {
+//         position: absolute;
+//         top: 10%;
+//         font-size: 1.5em;
+//         width: 100%;
+//         font-weight: bold;
+//         color: $light;
+//         text-align: left;
+//         padding: 20px;
+//     }
+//     .card-subtitle {
+//         font-size: 1.3em;
+//         position: absolute;
+//         top: 30%;
+//         width: 100%;
+//         color: $light;
+//         text-align: left;
+//         padding: 20px;
+//     }
+//     .card-icon-checkednon {
+//         position: absolute;
+//         top: 6%;
+//         left: 40%;
+//         font-size: 2em;
+//         width: 100%;
+//         font-weight: bold;
+//         color: $light;
+//     }
+//     .card-icon-checked {
+//         position: absolute;
+//         top: 6%;
+//         left: 40%;
+//         font-size: 2em;
+//         width: 100%;
+//         font-weight: bold;
+//         color: $danger;
+//     }
+//     .img-card {
+//         max-height: fit-content;
+//         height: fit-content;
+//         filter: blur(50%);
+//         display: block;
+//         /* remove extra space below image */
+//     }
+//     .card-btn {
+//         font-size: 0.5em;
+//         position: absolute;
+//         bottom: 10%;
+//         left: 25%;
+//     }
+//     .card-starts {
+//         font-size: 1.2em;
+//         position: absolute;
+//         bottom: 5%;
+//         left: 1%;
+//         width: 100%;
+//         text-align: left;
+//         padding: 20px;
+//         color: $warning;
+//     }
+//     .card-prix {
+//         font-size: 1em;
+//         position: absolute;
+//         bottom: 15%;
+//         text-align: right;
+//         right: 5%;
+//         padding: 5px;
+//         color: $dark;
+//         background-color: $warning;
+//         border-radius: 10px;
+//     }
+//     // h1 {
+//     //     font-family: "Roboto", sans-serif;
+//     //     padding-left: 10px;
+//     // }
+//     // h3 {
+//     //     font-family: "Roboto", sans-serif;
+//     //     padding-right: 10px;
+//     //     color: $secondary;
+//     // }
+// }
+.lastChance {
+    img {
+        border-radius: 10px;
+    }
+    // ion-card {
+    //     border-radius: 30px;
+    // }
+    .name {
+        font-size: 16px;
+        color: $dark;
+        text-align: left;
+        margin: 0;
+        font-weight: bold;
+    }
+    .price {
+        text-align: left;
+        // font-size: 14px;
+        margin-left: 5px;
+        font-weight: 400;
+        font-size: 1.2em;
+        font-weight: 500;
+        color: $secondary;
+    }
+    .starts {
+        text-align: left;
+        margin-left: 5px;
+        color: $warning;
+    }
+    .location {
+        ion-icon {
+            text-align: left;
+            margin-left: 5px;
+            margin-top: 5px;
+            color: $dark;
+        }
+    }
+    .place {
+        text-align: right;
+        margin-right: 5px;
+        margin-top: 5px;
+        color: $danger;
+    }
+    .hert {
+        text-align: right;
+        font-size: 2em;
+        width: 100%;
+        font-weight: bold;
+        // color: $danger;
+    }
+}
+
+// .personlistions {
+//     ion-card {
+//         background: linear-gradient(89.94deg, $warning 18.94%, #fe8c8c 91.09%);
+//         // box-shadow: 0px 4px 4px $medium;
+//         border-radius: 52px;
+//     }
+//     h1 {
+//         font-family: "Poppins";
+//         font-style: normal;
+//         font-size: 20px;
+//         /* identical to box height */
+//         color: $medium;
+//         margin-top: 20px;
+//         margin-bottom: 20px;
+//         text-shadow: 0px 4px 4px $medium;
+//     }
+// }
+

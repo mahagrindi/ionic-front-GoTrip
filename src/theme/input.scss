@@ -1,15 +1,45 @@
 @import "variables.scss";
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+ion-search,
 ion-input {
-    border: 1px solid $medium;
-    background-color: #fefefe;
-    border-radius: 10px;
-    margin-bottom: 24px;
-    font-weight: 400;
-    font-size: 18px;
-    color: $primary;
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 17px 20px;
+    gap: 10px;
+     /* position: absolute;
+    // width: 315px;
+    // height: 50px;
+    // left: 0px;
+    // top: 10px; */
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 15px;
+}
+
+.has-focus {
+    border: 1px solid $warning !important;
 }
 
 ion-label {
-    font-weight: lighter;
-    color: $dark;
+    width: 30px;
+    height: 25px;
+    /* Headline/100 */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 25px;
+    /* identical to box height, or 208% */
+    letter-spacing: 0.01em;
+    /* Primary/Black/300 */
+    color: #bababa;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }

@@ -1,11 +1,11 @@
 @import "../../../theme/input.scss";
 .underlinedButton {
-    border-bottom: 2px solid $success;
+    border-bottom: 2px solid $warning;
     font-weight: 300;
 }
 
 .inactiveButton {
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .horizontalLine {
@@ -17,6 +17,11 @@
 }
 
 .horizontalLine span {
-    background: #fff;
+    // background: #fff;
     padding: 0 10px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
 }
