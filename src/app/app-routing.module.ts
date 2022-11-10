@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/intro',
+    redirectTo: '/intrests',
     pathMatch: 'full',
   },
   {
@@ -47,10 +47,10 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
-    path: 'change-password',
+    path: 'intrests',
     loadChildren: () =>
-      import('./pages/change-password/change-password.module').then(
-        (m) => m.ChangePasswordPageModule
+      import('./pages/intrests/intrests.module').then(
+        (m) => m.IntrestsPageModule
       ),
   },
 ];
