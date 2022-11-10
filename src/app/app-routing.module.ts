@@ -31,7 +31,7 @@ const routes: Routes = [
   // },
   {
     path: '',
-    redirectTo: '/intro',
+    redirectTo: '/intrests',
     pathMatch: 'full',
   },
   {
@@ -45,6 +45,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
+  },
+  {
+    path: 'intrests',
+    loadChildren: () => import('./pages/intrests/intrests.module').then( m => m.IntrestsPageModule)
   },
 ];
 @NgModule({

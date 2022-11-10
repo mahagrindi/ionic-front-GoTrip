@@ -19,7 +19,6 @@ import { ShareModule } from 'src/app/modules/share/share.module';
     IonicModule,
     LoginPageRoutingModule,
     SwiperModule,
-    
   ],
   declarations: [LoginPage],
 })
