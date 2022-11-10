@@ -58,14 +58,13 @@ export class LoginPage implements OnInit {
   usernameCnx: string = '';
   passwordCnx: string = '';
   isSubmitted = false;
+  numero: any;
 
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
   ngOnInit(): void {
-    const num = this.route.getCurrentNavigation().extras.state.num;
-    console.log('phone' + num);
     // this.func.presentSplash();
     this.InscriptionForm = this.formBuilder.group({
       username: [
@@ -100,11 +99,26 @@ export class LoginPage implements OnInit {
       passwordCnx: ['', [Validators.required]],
     });
   }
+
+  ionViewDidEnter(): void {
+    if (history.state.num) {
+      this.swiper.swiperRef.slideNext(0);
+      this.phone = history.state.num;
+      this.email = '';
+      this.password = '';
+      this.username = '';
+      this.phone = '';
+      this.sexe = '';
+      this.usernameCnx = '';
+      this.passwordCnx = '';
+      this.isSubmitted = false;
+    }
+  }
+
   get errorControl() {
     return this.loginForm.controls;
   }
   async onSubmitCnx() {
-    this.route.navigate(['/tabs']);
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
       console.log('Please provide all the required values!');
@@ -151,8 +165,9 @@ export class LoginPage implements OnInit {
         .post('http://192.168.1.12:3001/users/signup', user)
         .subscribe(
           (res) => {
-            alert(res);
+            // alert(res);
             console.log(res);
+            this.route.navigate(['/tabs']);
           },
           (err) => {
             alert(err.error);

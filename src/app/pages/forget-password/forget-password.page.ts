@@ -76,7 +76,7 @@ export class ForgetPasswordPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ModalComponent,
       componentProps: {
-        number: this.EnterNumber.value['phone'],
+        num: this.EnterNumber.value['phone'],
       },
     });
     modal.present();

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -10,9 +10,7 @@ import { ModalController } from '@ionic/angular';
 export class ModalComponent implements OnInit {
   constructor(private router: Router, private modalCtrl: ModalController) {}
   num: number;
-  ngOnInit() {
-    console.log('nuuum', this.num);
-  }
+  ngOnInit() {}
 
   goToLogin() {
     const navigationExtras: NavigationExtras = {
@@ -20,6 +18,7 @@ export class ModalComponent implements OnInit {
         num: this.num,
       },
     };
+
     this.router.navigateByUrl('/login', navigationExtras);
     return this.modalCtrl.dismiss(navigationExtras, 'confirm');
   }
