@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from './modal/modal.component';
 import { CodeModalComponent } from './code-modal/code-modal.component';
+import { HttpClient } from '@angular/common/http';
+const ip = '192.168.246.203';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -53,11 +55,15 @@ export class ForgetPasswordPage implements OnInit {
     return this.EnterNumber.controls;
   }
   constructor(
+    private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
     private modalCtrl: ModalController,
     private CodemodalCtrl: ModalController
   ) {}
+
+  code: number;
+  num: number;
 
   ngOnInit() {
     this.EnterNumber = this.formBuilder.group({
@@ -85,18 +91,52 @@ export class ForgetPasswordPage implements OnInit {
   async openCodeModal() {
     const modal = await this.CodemodalCtrl.create({
       component: CodeModalComponent,
+      componentProps: {
+        code: this.code,
+        num: this.EnterNumber.value['phone'],
+      },
     });
     modal.present();
   }
 
+  sendSMS() {
+    return this.http.get('http://' + ip + ':3001/verifications/sendsms', {
+      headers: { phone: this.EnterNumber.value['phone'] },
+    });
+  }
+
   verifNum() {
-    if (this.EnterNumber.value['phone'] == 12345678) {
-      this.openCodeModal();
-      console.log('part1');
-    } else {
-      console.log('part2');
-      this.openModal();
-    }
+    this.http
+      .get('http://' + ip + ':3001/verifications/verificationphone', {
+        headers: { phone: this.EnterNumber.value['phone'] },
+      })
+      .subscribe(
+        (res) => {
+          this.sendSMS().subscribe(
+            async (res) => {
+              this.code = await res['random'];
+              this.openCodeModal();
+              console.log('part1');
+            },
+            (err) => {
+              console.log(err.error);
+            }
+          );
+        },
+        (err) => {
+          console.log('part2');
+          this.openModal();
+          console.log(err.error.msg);
+        }
+      );
+
+    // if (verif) {
+    //   this.openCodeModal();
+    //   console.log('part1');
+    // } else {
+    //   console.log('part2');
+    //   this.openModal();
+    // }
   }
 
   // goToLogin() {

@@ -26,7 +26,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/intro',
     pathMatch: 'full',
   },
   {
@@ -45,6 +45,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
+  },
+  {
+    path: 'change-password',
+    loadChildren: () =>
+      import('./pages/change-password/change-password.module').then(
+        (m) => m.ChangePasswordPageModule
+      ),
   },
   {
     path: 'intrests',

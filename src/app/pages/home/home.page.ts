@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { FunctionsService } from 'src/app/services/functions.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./home.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomePage {
+export class HomePage implements OnInit {
   reclider = {
     freeMode: true,
     slidesPerView: 1.3,
@@ -18,7 +19,7 @@ export class HomePage {
   testData: any;
   LastChance: any;
 
-  constructor() {
+  constructor(private func: FunctionsService) {
     this.testData = [
       {
         id: 1,
@@ -107,6 +108,10 @@ export class HomePage {
         note: 4.8,
       },
     ];
+  }
+  ngOnInit(): void {
+    this.func.presentSplash();
+    throw new Error('Method not implemented.');
   }
 
   favoris(id) {

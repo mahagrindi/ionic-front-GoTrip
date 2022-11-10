@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-const ip = ' 192.168.30.167';
+const ip = '192.168.246.203';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -103,13 +103,13 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidEnter(): void {
+    console.log('history', history.state.num);
     if (history.state.num) {
       this.swiper.swiperRef.slideNext(0);
       this.phone = history.state.num;
       this.email = '';
       this.password = '';
       this.username = '';
-      this.phone = '';
       this.sexe = '';
       this.usernameCnx = '';
       this.passwordCnx = '';
@@ -135,12 +135,10 @@ export class LoginPage implements OnInit {
         })
         .subscribe(
           (res) => {
-            alert(res);
             this.route.navigate(['/tabs']);
             console.log(res);
           },
           (err) => {
-            alert(err.error);
             console.log(err.error);
           }
         );
@@ -166,12 +164,10 @@ export class LoginPage implements OnInit {
         .post('http://' + ip + ':3001/users/signup', user)
         .subscribe(
           (res) => {
-            alert(res);
             this.route.navigate(['/tabs']);
             console.log(res);
           },
           (err) => {
-            alert(err.error);
             console.log(err.error);
           }
         );
@@ -180,13 +176,9 @@ export class LoginPage implements OnInit {
     }
   }
   async loginGoogle() {
-    this.user = await GoogleAuth.signIn().catch((error) => {
-      alert(error);
-    });
+    this.user = await GoogleAuth.signIn().catch((error) => {});
     console.log(this.user);
-    alert(this.user);
 
-    alert(this.user);
     console.log(this.user);
   }
 }
