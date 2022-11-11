@@ -10,6 +10,10 @@ ion-item {
     margin-right: 24px;
 }
 
+ion-header {
+    padding: 5px;
+}
+
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -17,6 +21,7 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+$shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 $secondary: #1668ff;
 $primary: #041c7a;
 $tertiary: #1b1b1b;

@@ -1,15 +1,18 @@
-
-
+@import "../../theme/variables.scss";
+@import "../../theme/input.scss";
 ion-tab-bar {
     bottom: 20px;
     position: relative;
     border-radius: 16px;
     width: 92%;
     margin: 0 auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
 .selectedIcon {
     display: none;
 }
+
 ion-tab-button {
     --color: var(--ion-color-medium);
     --color-selected: var(--ion-color-primary);

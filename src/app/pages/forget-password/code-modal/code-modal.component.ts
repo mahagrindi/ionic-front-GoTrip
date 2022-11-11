@@ -27,6 +27,7 @@ export class CodeModalComponent implements OnInit {
   valueChange(ev) {
     console.log(ev.length);
     if (ev.length == 4) {
+      console.log('yess 4');
       this.router.navigate(['/change-password']);
     }
   }

@@ -3,6 +3,7 @@
     margin-bottom: 1.5rem;
 }
 
+ion-search,
 ion-input {
     box-sizing: border-box;
     /* Auto layout */
@@ -21,12 +22,6 @@ ion-input {
     border-radius: 15px;
 }
 
-// .ion-invalid {
-//     border: 1px solid $danger;
-// }
-// .ion-valid {
-//     border: 1px solid $success;
-// }
 .has-focus {
     border: 1px solid $warning !important;
 }

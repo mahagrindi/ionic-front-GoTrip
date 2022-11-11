@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
-import { Router } from '@angular/router';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { SwiperOptions } from 'swiper';
+import { NavigationExtras, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from './modal/modal.component';
+import { CodeModalComponent } from './code-modal/code-modal.component';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -26,7 +24,6 @@ export class ForgetPasswordPage implements OnInit {
       height: '50px',
     },
   };
-  password: string = '';
   phone: string = '';
   isSubmitted = false;
   EnterNumber: FormGroup;
@@ -34,17 +31,9 @@ export class ForgetPasswordPage implements OnInit {
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
-    { type: 'minLength', message: 'password must have at least 6 characters ' },
   ];
   //afficher la valeur des input du code dans le console
   //vérifier le code et aller à la page new password
-  valueChange(ev) {
-    console.log(ev.length);
-    if (ev.length == 4) {
-      this.slideNext();
-      //this.router.navigate(['/login']);
-    }
-  }
 
   //config swiper
   config: SwiperOptions = {
@@ -63,7 +52,12 @@ export class ForgetPasswordPage implements OnInit {
   get errorControl() {
     return this.EnterNumber.controls;
   }
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private modalCtrl: ModalController,
+    private CodemodalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
     this.EnterNumber = this.formBuilder.group({
@@ -76,11 +70,47 @@ export class ForgetPasswordPage implements OnInit {
         ],
       ],
     });
-
-    this.NewPassword = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
   }
+  message = 'test';
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalComponent,
+      componentProps: {
+        num: this.EnterNumber.value['phone'],
+      },
+    });
+    modal.present();
+  }
+
+  async openCodeModal() {
+    const modal = await this.CodemodalCtrl.create({
+      component: CodeModalComponent,
+    });
+    modal.present();
+  }
+
+  verifNum() {
+    if (this.EnterNumber.value['phone'] == 12345678) {
+      this.openCodeModal();
+      console.log('part1');
+    } else {
+      console.log('part2');
+      this.openModal();
+    }
+  }
+
+  // goToLogin() {
+  //   const navigationExtras: NavigationExtras = {
+  //     state: {
+  //       user: {
+  //         id: 42,
+  //         name: 'yos',
+  //       },
+  //     },
+  //   };
+  //   this.router.navigateByUrl('/login', navigationExtras);
+  // }
+
   //on submit phone
   onSubmit() {
     this.isSubmitted = true;
@@ -89,23 +119,7 @@ export class ForgetPasswordPage implements OnInit {
       console.log(this.config);
       return false;
     } else {
-      console.log(this.EnterNumber.value);
-      this.slideNext();
-      this.config.enabled = true;
-      console.log(this.config);
-    }
-  }
-
-  onSubmitPassword() {
-    this.isSubmitted = true;
-    if (!this.NewPassword.valid) {
-      console.log('Please provide all the required values!');
-      return false;
-    } else {
-      console.log(this.password);
-      if (this.password.length > 6) {
-        this.router.navigate(['/login']);
-      }
+      this.verifNum();
     }
   }
 }

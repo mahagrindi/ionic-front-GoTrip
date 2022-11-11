@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import { FunctionsService } from 'src/app/services/functions.service';
-import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { isPlatform } from '@ionic/angular';
@@ -14,6 +13,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+const ip = ' 192.168.30.167';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -107,7 +107,6 @@ export class LoginPage implements OnInit {
       this.email = '';
       this.password = '';
       this.username = '';
-      this.phone = '';
       this.sexe = '';
       this.usernameCnx = '';
       this.passwordCnx = '';
@@ -125,7 +124,7 @@ export class LoginPage implements OnInit {
       return false;
     } else {
       await this.http
-        .get('http://192.168.30.112:3001/users/signin', {
+        .get('http://' + ip + ':3001/users/signin', {
           headers: {
             password: this.passwordCnx,
             username: this.usernameCnx,
@@ -134,9 +133,8 @@ export class LoginPage implements OnInit {
         .subscribe(
           (res) => {
             alert(res);
-            console.log(res);
-            // redirect to route
             this.route.navigate(['/tabs']);
+            console.log(res);
           },
           (err) => {
             alert(err.error);
@@ -162,12 +160,12 @@ export class LoginPage implements OnInit {
         sexe: this.sexe,
       };
       await this.http
-        .post('http://192.168.30.112:3001/users/signup', user)
+        .post('http://' + ip + ':3001/users/signup', user)
         .subscribe(
           (res) => {
-            // alert(res);
-            console.log(res);
+            alert(res);
             this.route.navigate(['/tabs']);
+            console.log(res);
           },
           (err) => {
             alert(err.error);
@@ -182,6 +180,7 @@ export class LoginPage implements OnInit {
     this.user = await GoogleAuth.signIn().catch((error) => {
       alert(error);
     });
+
 
     alert(this.user);
     console.log(this.user);
