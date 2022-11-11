@@ -60,6 +60,11 @@ const routes: Routes = [
         (m) => m.IntrestsPageModule
       ),
   },
+  {
+    path: 'event',
+    loadChildren: () =>
+      import('./pages/event/event.module').then((m) => m.EventPageModule),
+  },
 ];
 @NgModule({
   imports: [

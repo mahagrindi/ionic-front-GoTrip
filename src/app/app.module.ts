@@ -38,8 +38,6 @@ export function playerFactory(): any {
     ReactiveFormsModule,
     //ShareModule,
     LottieModule.forRoot({ player: playerFactory }),
-    
-
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

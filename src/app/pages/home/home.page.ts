@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { FunctionsService } from 'src/app/services/functions.service';
 
 @Component({
@@ -8,24 +9,17 @@ import { FunctionsService } from 'src/app/services/functions.service';
   styleUrls: ['./home.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomePage implements OnInit {
-  reclider = {
-    freeMode: true,
-    slidesPerView: 1.3,
-    slidesOffsetBefore: 11,
-    spaceBetween: 10,
-  };
-
+export class HomePage {
   testData: any;
   LastChance: any;
 
-  constructor(private func: FunctionsService) {
+  constructor(private func: FunctionsService, private route: Router) {
     this.testData = [
       {
         id: 1,
         price: '35 DT ',
         fev: 'checked',
-        img: '../../../assets/images/home/img1.jpg',
+        img: 'img1.jpg',
         nbreStarts: 4,
         locations: 'saw',
         name: 'Prithivi',
@@ -34,8 +28,8 @@ export class HomePage implements OnInit {
       {
         id: 3,
         price: '35 DT ',
-        fev: 'checkednon',
-        img: '../../../assets/images/home/stay-in-tunis-e1555423387390.jpg',
+        fev: 'not_checked',
+        img: 'stay-in-tunis-e1555423387390.jpg',
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
@@ -45,7 +39,7 @@ export class HomePage implements OnInit {
         id: 3,
         price: '35 DT ',
         fev: 'checked',
-        img: '../../../assets/images/home/img1.jpg',
+        img: 'img1.jpg',
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
@@ -54,8 +48,8 @@ export class HomePage implements OnInit {
       {
         id: 3,
         price: '35 DT ',
-        fev: 'checkednon',
-        img: '../../../assets/images/home/stay-in-tunis-e1555423387390.jpg',
+        fev: 'not_checked',
+        img: 'stay-in-tunis-e1555423387390.jpg',
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Neethi',
@@ -65,7 +59,7 @@ export class HomePage implements OnInit {
         id: 3,
         price: '35 DT ',
         fev: 'checked',
-        img: '../../../assets/images/home/stay-in-tunis-e1555423387390.jpg',
+        img: 'stay-in-tunis-e1555423387390.jpg',
         nbreStarts: 5,
         locations: 'saw2',
         name: 'abirami1',
@@ -77,9 +71,9 @@ export class HomePage implements OnInit {
       {
         id: 1,
         nbPlace: 5,
-        fev: '',
+        fev: 'checked',
         price: '35 DT ',
-        img: '../../../assets/images/home/lastChance/image1.jpg',
+        img: 'image1.jpg',
         nbreStarts: 4,
         locations: 'saw',
         name: 'Prithivi',
@@ -88,9 +82,9 @@ export class HomePage implements OnInit {
       {
         id: 3,
         nbPlace: 5,
-        fev: '-outline',
+        fev: 'not_checked',
         price: '35 DT ',
-        img: '../../../assets/images/home/lastChance/image2.jpg',
+        img: 'image2.jpg',
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
@@ -99,9 +93,9 @@ export class HomePage implements OnInit {
       {
         id: 4,
         nbPlace: 5,
-        fev: '',
+        fev: 'checked',
         price: '35 DT ',
-        img: '../../../assets/images/home/lastChance/image3.jpg',
+        img: 'image3.jpg',
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
@@ -119,13 +113,16 @@ export class HomePage implements OnInit {
       console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
         console.log(this.LastChance[i].fev);
-        if ('-outline' === this.LastChance[i].fev) {
-          this.LastChance[i].fev = '';
+        if ('checked' === this.LastChance[i].fev) {
+          this.LastChance[i].fev = 'not_checked';
         } else {
-          this.LastChance[i].fev = '-outline';
+          this.LastChance[i].fev = 'checked';
         }
       }
     }
+  }
+  showDetails() {
+    this.route.navigate(['/login']);
   }
 
   //   *********** fonction de recherche *************
@@ -160,7 +157,7 @@ export class HomePage implements OnInit {
       if (id === this.testData[i].id) {
         console.log(this.testData[i].fev);
         if ('checked' === this.testData[i].fev) {
-          this.testData[i].fev = 'checkednon';
+          this.testData[i].fev = 'not_checked';
         } else {
           this.testData[i].fev = 'checked';
         }

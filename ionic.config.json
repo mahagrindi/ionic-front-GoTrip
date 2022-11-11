@@ -1,10 +1,10 @@
 {
-  "name": "projet-DMWM",
-  "integrations": {
-    "capacitor": {
-      "enabled": false
+    "name": "projet-DMWM",
+    "integrations": {
+        "capacitor": {
+            "enabled": false
+        },
+        "cordova": {}
     },
-    "cordova": {}
-  },
-  "type": "angular"
+    "type": "angular"
 }
