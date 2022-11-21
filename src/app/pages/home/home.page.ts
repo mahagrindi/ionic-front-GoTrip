@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/services/functions.service';
   styleUrls: ['./home.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomePage {
+export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
 
@@ -105,7 +105,7 @@ export class HomePage {
   }
   ngOnInit(): void {
     this.func.presentSplash();
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   favoris(id) {
@@ -122,7 +122,7 @@ export class HomePage {
     }
   }
   showDetails() {
-    this.route.navigate(['/login']);
+    this.route.navigate(['/event']);
   }
 
   //   *********** fonction de recherche *************

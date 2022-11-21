@@ -29,11 +29,7 @@ const routes: Routes = [
     redirectTo: '/intro',
     pathMatch: 'full',
   },
-  {
-    path: '',
-    redirectTo: '/intrests',
-    pathMatch: 'full',
-  },
+
   {
     path: 'forget-password',
     loadChildren: () =>

@@ -58,9 +58,13 @@
           <a (click)="slidePrev()" color="warning">Connexion</a>
                                 </p>
 
-                                <p class="horizontalLine">
-                                    <span> or </span>
-                                </p>
+                                <ion-grid class="centerPage">
+                                    <ion-row class="ion-justify-content-center ion-margin-vertical">
+                                        <hr style="width: 45%" />
+                                        <span> or </span>
+                                        <hr style="width: 45%" />
+                                    </ion-row>
+                                </ion-grid>
 
                                 <ion-button expand="block" color="light">
                                     <ion-icon class="ion-margin-horizontal" name="logo-google" (click)="loginGoogle()"></ion-icon>
@@ -133,9 +137,13 @@
                     <a (click)="slideNext()" color="warning">Sign In</a>
                 </p>
 
-                <p class="horizontalLine">
-                    <span> or </span>
-                </p>
+                <ion-grid class="centerPage">
+                    <ion-row class="ion-justify-content-center ion-margin-vertical">
+                        <hr style="width: 45%" />
+                        <span> or </span>
+                        <hr style="width: 45%" />
+                    </ion-row>
+                </ion-grid>
 
                 <ion-button expand="block" color="light" (click)="loginGoogle()">
                     <ion-icon class="ion-margin-horizontal" name="logo-google"></ion-icon>

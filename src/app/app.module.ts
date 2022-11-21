@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './pages/forget-password/modal/modal.component';
 import { CodeModalComponent } from './pages/forget-password/code-modal/code-modal.component';
 // import { NavbarComponent } from './components/navbar/navbar.component';
-import player from 'lottie-web';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 export function playerFactory(): any {

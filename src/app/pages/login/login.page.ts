@@ -4,7 +4,7 @@ import { SwiperOptions } from 'swiper';
 import { FunctionsService } from 'src/app/services/functions.service';
 import { HttpClient } from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { isPlatform } from '@ionic/angular';
+import { AlertController, isPlatform } from '@ionic/angular';
 import {
   FormGroup,
   FormControl,
@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-const ip = '192.168.246.203';
+const ip = 'localhost';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -43,7 +43,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private func: FunctionsService,
     private route: Router,
-    private Actroute: ActivatedRoute
+    private Actroute: ActivatedRoute,
+    private alertController: AlertController
   ) {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
@@ -120,10 +121,26 @@ export class LoginPage implements OnInit {
   get errorControl() {
     return this.loginForm.controls;
   }
+  // alertMessage: String;
+  async presentAlert(alertHeader, alertMessage) {
+    const alert = await this.alertController.create({
+      header: alertHeader,
+      subHeader: '',
+      message: alertMessage,
+      buttons: [{ text: 'OK', cssClass: 'alert-button-confirm' }],
+      animated: true,
+    });
+
+    await alert.present();
+  }
+
   async onSubmitCnx() {
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
-      console.log('Please provide all the required values!');
+      const alertMessage = 'Please provide all the required values!';
+      const alertHeader = 'Missing Informations!';
+      this.presentAlert(alertHeader, alertMessage);
+      // console.log('Please provide all the required values!');
       return false;
     } else {
       await this.http
@@ -139,6 +156,7 @@ export class LoginPage implements OnInit {
             console.log(res);
           },
           (err) => {
+            this.presentAlert(err.error, 'please check your information');
             console.log(err.error);
           }
         );
@@ -149,7 +167,9 @@ export class LoginPage implements OnInit {
   async onSubmitInscription() {
     this.isSubmitted = true;
     if (!this.InscriptionForm.valid) {
-      console.log('Please provide all the required values!');
+      const alertMessage = 'Please provide all the required values!';
+      const alertHeader = 'Missing Informations!';
+      this.presentAlert(alertHeader, alertMessage);
 
       return false;
     } else {

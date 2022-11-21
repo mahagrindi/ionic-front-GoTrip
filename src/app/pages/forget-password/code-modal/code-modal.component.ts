@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
-const ip = '192.168.246.203';
+const ip = 'localhost';
 @Component({
   selector: 'app-code-modal',
   templateUrl: './code-modal.component.html',

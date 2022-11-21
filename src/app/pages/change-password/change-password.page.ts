@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-const ip = '192.168.246.203';
+const ip = 'localhost';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.page.html',

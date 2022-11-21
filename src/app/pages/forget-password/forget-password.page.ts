@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalComponent } from './modal/modal.component';
 import { CodeModalComponent } from './code-modal/code-modal.component';
 import { HttpClient } from '@angular/common/http';
-const ip = '192.168.246.203';
+const ip = 'localhost';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
