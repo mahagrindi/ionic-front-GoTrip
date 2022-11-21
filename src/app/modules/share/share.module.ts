@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [],
   imports: [CommonModule],
-  exports: [NavbarComponent],
+  exports: [],
 })
 export class ShareModule {}

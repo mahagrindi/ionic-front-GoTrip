@@ -1,0 +1,128 @@
+<ion-header>
+    <ion-toolbar class="navb">
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+            <div>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+            </div>
+            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+            <div class="">
+                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg"></ion-icon>
+                <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </div>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <div *ngFor="let item of testData, let i=index">
+            <ion-row>
+                <img class="image" src="../../../assets/images/home/stay-in-tunis-e1555423387390.jpg" />
+            </ion-row>
+            <ion-row>
+                <h3 style="margin-left: 10px">{{item.name}}</h3>
+            </ion-row>
+            <ion-row>
+                <div class="starts" style="margin-left: 10px">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                </div>
+            </ion-row>
+
+            <ion-row>
+                <h4 style="margin-left: 10px">what's included ?</h4>
+            </ion-row>
+            <ion-row>
+                <swiper [slidesPerView]="3" [spaceBetween]="10" [centeredSlides]="true" [loop]="true">
+                    <ng-template swiperSlide *ngFor="let catg of item.catgrs ">
+                        <div class="activite_card">
+                            <h6 class="h6">
+                                <ion-icon src="../../../assets/icon/{{catg}}.svg" side="right">
+                                </ion-icon>{{catg}}
+                            </h6>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </ion-row>
+            <ion-row>
+                <h4 style="margin-left: 10px">About Trip</h4>
+            </ion-row>
+            <ion-row>
+                <p style="margin-left: 10px; margin-right: 10px" class="p">
+                    Yield farming, Elon-led fearless Martian Pioneer. SPAC leading Testflight user. Alexis Ohanian-tweeted overhyped ed-Tech series D. Tech-loving Tradwife.
+                </p>
+            </ion-row>
+            <ion-row>
+                <h4 style="margin-left: 10px">Gallery Photo</h4>
+            </ion-row>
+            <ion-row>
+                <swiper [slidesPerView]="3" [spaceBetween]="10" [centeredSlides]="true" [loop]="true">
+                    <ng-template swiperSlide *ngFor="let img of item.imgs ">
+                        <img class="gallery image" src="../../../assets/images/lastChance/{{img}}" />
+                    </ng-template>
+                </swiper>
+            </ion-row>
+            <ion-row>
+                <h4 class="h4" style="margin-left: 10px">Location</h4>
+            </ion-row>
+            <ion-row>
+                <img class="map" src="../../../assets/images/map.png" />
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <h4 style="margin-left: 10px">Review</h4>
+                </ion-col>
+                <ion-col>
+                    <h4 class="note">
+                        {{item.note}}
+                        <ion-icon name="star" color="warning"></ion-icon>
+                    </h4>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <div class="review_card">
+                    <ion-card *ngFor="let item of review">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="auto">
+                                    <img height="100" width="100" src="../../../assets/images/reviwe/{{item.img}}" />
+                                </ion-col>
+                                <ion-col>
+                                    <ion-row>
+                                        <ion-col>
+                                            <h6>{{item.name}}</h6>
+                                        </ion-col>
+                                        <ion-col>
+                                            <h6>{{item.date}}</h6>
+                                        </ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <div class="starts">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                        </div>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <p>{{item.comnt}}</p>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card>
+                </div>
+            </ion-row>
+        </div>
+    </ion-grid>
+    <!-----<div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div> --->
+</ion-content>

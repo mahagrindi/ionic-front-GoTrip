@@ -1,19 +1,15 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { FunctionsService } from 'src/app/services/functions.service';
-import { HttpClient } from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { isPlatform } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import {
   FormGroup,
-  FormControl,
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
-const ip = ' 192.168.30.167';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,6 +28,7 @@ export class LoginPage implements OnInit {
     pagination: false,
   };
 
+
   slideNext() {
     this.swiper.swiperRef.slideNext(100);
   }
@@ -39,11 +36,9 @@ export class LoginPage implements OnInit {
     this.swiper.swiperRef.slidePrev(100);
   }
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private func: FunctionsService,
     private route: Router,
-    private Actroute: ActivatedRoute
+    private authservice:AuthService
   ) {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
@@ -59,13 +54,13 @@ export class LoginPage implements OnInit {
   passwordCnx: string = '';
   isSubmitted = false;
   numero: any;
-
+  credentials: { passwordCnx: string; usernameCnx: string; };
+ 
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
   ngOnInit(): void {
-    // this.func.presentSplash();
     this.InscriptionForm = this.formBuilder.group({
       username: [
         '',
@@ -101,6 +96,7 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidEnter(): void {
+    console.log('history', history.state.num);
     if (history.state.num) {
       this.swiper.swiperRef.slideNext(0);
       this.phone = history.state.num;
@@ -117,31 +113,25 @@ export class LoginPage implements OnInit {
   get errorControl() {
     return this.loginForm.controls;
   }
-  async onSubmitCnx() {
+   onSubmitCnx() {
+    this.credentials ={passwordCnx:this.passwordCnx,usernameCnx:this.usernameCnx};
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
       console.log('Please provide all the required values!');
       return false;
     } else {
-      await this.http
-        .get('http://' + ip + ':3001/users/signin', {
-          headers: {
-            password: this.passwordCnx,
-            username: this.usernameCnx,
-          },
-        })
+     
+       this.authservice.conxGet(this.credentials)
         .subscribe(
           (res) => {
-            alert(res);
             this.route.navigate(['/tabs']);
             console.log(res);
           },
           (err) => {
-            alert(err.error);
-            console.log(err.error);
+            console.log("err login page",err);
           }
         );
-      console.log(this.loginForm.value);
+     
     }
   }
 
@@ -159,16 +149,13 @@ export class LoginPage implements OnInit {
         phone: this.phone,
         sexe: this.sexe,
       };
-      await this.http
-        .post('http://' + ip + ':3001/users/signup', user)
+      await this.authservice.inscriPost(user)
         .subscribe(
           (res) => {
-            alert(res);
             this.route.navigate(['/tabs']);
             console.log(res);
           },
           (err) => {
-            alert(err.error);
             console.log(err.error);
           }
         );
@@ -177,12 +164,9 @@ export class LoginPage implements OnInit {
     }
   }
   async loginGoogle() {
-    this.user = await GoogleAuth.signIn().catch((error) => {
-      alert(error);
-    });
+    this.user = await GoogleAuth.signIn().catch((error) => {});
+    console.log(this.user);
 
-
-    alert(this.user);
     console.log(this.user);
   }
 }

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { IntrestsPageRoutingModule } from './intrests-routing.module';
 
 import { IntrestsPage } from './intrests.page';
-
+import { SwiperModule } from 'swiper/angular';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IntrestsPageRoutingModule
+    IntrestsPageRoutingModule,
+    SwiperModule
+   
   ],
   declarations: [IntrestsPage]
 })

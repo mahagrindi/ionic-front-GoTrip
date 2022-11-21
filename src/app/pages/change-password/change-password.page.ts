@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ChangePasswordService } from 'src/app/services/change-password.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,11 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./change-password.page.scss'],
 })
 export class ChangePasswordPage implements OnInit {
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private changePasswordservice:ChangePasswordService,
+    private route:Router
+  ) {}
 
   isSubmitted = false;
   passwd = '';
   ChangePassword: FormGroup;
+
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
@@ -28,14 +34,19 @@ export class ChangePasswordPage implements OnInit {
   get errorControl() {
     return this.ChangePassword.controls;
   }
-  onSubmitPassword() {
+ async onSubmitPassword() {
     this.isSubmitted = true;
     if (!this.ChangePassword.valid) {
       console.log('Please provide all the required values!');
-
       return false;
     } else {
-      console.log(this.passwd);
+      console.log('new password', this.passwd);
+      console.log('history num', history.state.num);
+      this.changePasswordservice.modify(history.state.num,this.passwd.trim())
+        .subscribe(
+          (res) =>   this.route.navigate(['/tabs']),
+          (err) => console.log(err)
+        );
     }
   }
 }

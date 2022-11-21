@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { NavigationExtras, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-import { ModalComponent } from './modal/modal.component';
-import { CodeModalComponent } from './code-modal/code-modal.component';
+import { VerificationService } from 'src/app/services/verification.service';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -54,10 +52,11 @@ export class ForgetPasswordPage implements OnInit {
   }
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private modalCtrl: ModalController,
-    private CodemodalCtrl: ModalController
+    private Verificationservice:VerificationService,
+    private router: Router
   ) {}
+  num: number;
+  
 
   ngOnInit() {
     this.EnterNumber = this.formBuilder.group({
@@ -72,44 +71,42 @@ export class ForgetPasswordPage implements OnInit {
     });
   }
   message = 'test';
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ModalComponent,
-      componentProps: {
-        num: this.EnterNumber.value['phone'],
-      },
-    });
-    modal.present();
-  }
+  
+  
+ 
 
-  async openCodeModal() {
-    const modal = await this.CodemodalCtrl.create({
-      component: CodeModalComponent,
-    });
-    modal.present();
-  }
-
+ 
+ 
   verifNum() {
-    if (this.EnterNumber.value['phone'] == 12345678) {
-      this.openCodeModal();
-      console.log('part1');
-    } else {
-      console.log('part2');
-      this.openModal();
-    }
+
+  this.Verificationservice.verificationphone(this.EnterNumber.value['phone'])
+     .subscribe(
+      async (res) => {
+         const navigationExtras: NavigationExtras = {
+          state: {
+            num: this.EnterNumber.value['phone'],
+          },
+        };
+        await this.router.navigate(['/codeModal'], navigationExtras);
+     
+
+       },
+      async (err) => {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            num: this.EnterNumber.value['phone'],
+          },
+        };
+        await this.router.navigate(['/errorModal'], navigationExtras);
+      
+       }
+     );
+    
+     
+
   }
 
-  // goToLogin() {
-  //   const navigationExtras: NavigationExtras = {
-  //     state: {
-  //       user: {
-  //         id: 42,
-  //         name: 'yos',
-  //       },
-  //     },
-  //   };
-  //   this.router.navigateByUrl('/login', navigationExtras);
-  // }
+  
 
   //on submit phone
   onSubmit() {

@@ -1,15 +1,15 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "projet-DMWM",
-	"webDir": "www",
-	"bundledWebRuntime": false,
-	"plugins":{
-		"GoogleAuth": {
-			"scopes": ["profile", "email"],
-			"serverClientId": "113970463108-eb7tkqidusi7p6a90ns0h0ea0qf3p7td.apps.googleusercontent.com",
-			"androidClientId": "113970463108-dia076ktf2f0iqajp5pa85k7idqibskn.apps.googleusercontent.com",
-			"forceCodeForRefreshToken": true
-		  }	
+    "appId": "io.ionic.starter",
+    "appName": "projet-DMWM",
+    "webDir": "www",
+    "bundledWebRuntime": false,
+    "plugins": {
+        "GoogleAuth": {
+            "scopes": ["profile", "email"],
+            "serverClientId": "113970463108-eb7tkqidusi7p6a90ns0h0ea0qf3p7td.apps.googleusercontent.com",
+            "androidClientId": "113970463108-dia076ktf2f0iqajp5pa85k7idqibskn.apps.googleusercontent.com",
+            "forceCodeForRefreshToken": true
+        }
 
-	}
+    }
 }
