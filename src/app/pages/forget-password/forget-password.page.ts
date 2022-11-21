@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from './modal/modal.component';
 import { CodeModalComponent } from './code-modal/code-modal.component';
 import { HttpClient } from '@angular/common/http';
+import { VerificationService } from 'src/app/services/verification.service';
+import { NavigationExtras, Router } from '@angular/router';
 const ip = 'localhost';
 @Component({
   selector: 'app-forget-password',
@@ -55,14 +56,10 @@ export class ForgetPasswordPage implements OnInit {
     return this.EnterNumber.controls;
   }
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private modalCtrl: ModalController,
-    private CodemodalCtrl: ModalController
+    private Verificationservice: VerificationService,
+    private router: Router
   ) {}
-
-  code: number;
   num: number;
 
   ngOnInit() {
@@ -78,78 +75,29 @@ export class ForgetPasswordPage implements OnInit {
     });
   }
   message = 'test';
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ModalComponent,
-      componentProps: {
-        num: this.EnterNumber.value['phone'],
-      },
-    });
-    modal.present();
-  }
-
-  async openCodeModal() {
-    const modal = await this.CodemodalCtrl.create({
-      component: CodeModalComponent,
-      componentProps: {
-        code: this.code,
-        num: this.EnterNumber.value['phone'],
-      },
-    });
-    modal.present();
-  }
-
-  sendSMS() {
-    return this.http.get('http://' + ip + ':3001/verifications/sendsms', {
-      headers: { phone: this.EnterNumber.value['phone'] },
-    });
-  }
 
   verifNum() {
-    this.http
-      .get('http://' + ip + ':3001/verifications/verificationphone', {
-        headers: { phone: this.EnterNumber.value['phone'] },
-      })
-      .subscribe(
-        (res) => {
-          this.sendSMS().subscribe(
-            async (res) => {
-              this.code = await res['random'];
-              this.openCodeModal();
-              console.log('part1');
-            },
-            (err) => {
-              console.log(err.error);
-            }
-          );
-        },
-        (err) => {
-          console.log('part2');
-          this.openModal();
-          console.log(err.error.msg);
-        }
-      );
-
-    // if (verif) {
-    //   this.openCodeModal();
-    //   console.log('part1');
-    // } else {
-    //   console.log('part2');
-    //   this.openModal();
-    // }
+    this.Verificationservice.verificationphone(
+      this.EnterNumber.value['phone']
+    ).subscribe(
+      async (res) => {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            num: this.EnterNumber.value['phone'],
+          },
+        };
+        await this.router.navigate(['/codeModal'], navigationExtras);
+      },
+      async (err) => {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            num: this.EnterNumber.value['phone'],
+          },
+        };
+        await this.router.navigate(['/errorModal'], navigationExtras);
+      }
+    );
   }
-
-  // goToLogin() {
-  //   const navigationExtras: NavigationExtras = {
-  //     state: {
-  //       user: {
-  //         id: 42,
-  //         name: 'yos',
-  //       },
-  //     },
-  //   };
-  //   this.router.navigateByUrl('/login', navigationExtras);
-  // }
 
   //on submit phone
   onSubmit() {

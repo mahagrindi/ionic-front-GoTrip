@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',

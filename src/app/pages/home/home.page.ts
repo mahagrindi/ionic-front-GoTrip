@@ -104,7 +104,7 @@ export class HomePage implements OnInit {
     ];
   }
   ngOnInit(): void {
-    this.func.presentSplash();
+    // this.func.presentSplash();
     // throw new Error('Method not implemented.');
   }
 

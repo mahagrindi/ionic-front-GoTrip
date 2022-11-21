@@ -1,16 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
-import { FunctionsService } from 'src/app/services/functions.service';
-import { HttpClient } from '@angular/common/http';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { AlertController, isPlatform } from '@ionic/angular';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 const ip = 'localhost';
@@ -39,18 +33,15 @@ export class LoginPage implements OnInit {
     this.swiper.swiperRef.slidePrev(100);
   }
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private func: FunctionsService,
     private route: Router,
-    private Actroute: ActivatedRoute,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private authservice: AuthService
   ) {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
     }
   }
-
   user = null;
   email: string = '';
   password: string = '';
@@ -61,14 +52,13 @@ export class LoginPage implements OnInit {
   passwordCnx: string = '';
   isSubmitted = false;
   numero: any;
+  credentials: { passwordCnx: string; usernameCnx: string };
 
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
   ];
-
   ngOnInit(): void {
-    // this.func.presentSplash();
     this.InscriptionForm = this.formBuilder.group({
       username: [
         '',
@@ -134,7 +124,11 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  async onSubmitCnx() {
+  onSubmitCnx() {
+    this.credentials = {
+      passwordCnx: this.passwordCnx,
+      usernameCnx: this.usernameCnx,
+    };
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
       const alertMessage = 'Please provide all the required values!';
@@ -143,24 +137,16 @@ export class LoginPage implements OnInit {
       // console.log('Please provide all the required values!');
       return false;
     } else {
-      await this.http
-        .get('http://' + ip + ':3001/users/signin', {
-          headers: {
-            password: this.passwordCnx,
-            username: this.usernameCnx,
-          },
-        })
-        .subscribe(
-          (res) => {
-            this.route.navigate(['/tabs']);
-            console.log(res);
-          },
-          (err) => {
-            this.presentAlert(err.error, 'please check your information');
-            console.log(err.error);
-          }
-        );
-      console.log(this.loginForm.value);
+      this.authservice.conxGet(this.credentials).subscribe(
+        (res) => {
+          this.route.navigate(['/tabs']);
+          console.log(res);
+        },
+        (err) => {
+          this.presentAlert(err.error, 'please check your information');
+          console.log('err login page', err);
+        }
+      );
     }
   }
 
@@ -180,17 +166,15 @@ export class LoginPage implements OnInit {
         phone: this.phone,
         sexe: this.sexe,
       };
-      await this.http
-        .post('http://' + ip + ':3001/users/signup', user)
-        .subscribe(
-          (res) => {
-            this.route.navigate(['/tabs']);
-            console.log(res);
-          },
-          (err) => {
-            console.log(err.error);
-          }
-        );
+      await this.authservice.inscriPost(user).subscribe(
+        (res) => {
+          this.route.navigate(['/tabs']);
+          console.log(res);
+        },
+        (err) => {
+          console.log(err.error);
+        }
+      );
 
       console.log(this.InscriptionForm.value);
     }

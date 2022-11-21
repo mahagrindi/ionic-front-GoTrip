@@ -22,14 +22,14 @@ const routes: Routes = [
     path: 'intro',
     loadChildren: () =>
       import('./pages/intro/intro.module').then((m) => m.IntroPageModule),
+    canActivate: [AuthGuard],
   },
 
   {
     path: '',
-    redirectTo: '/intro',
+    redirectTo: '/intrests',
     pathMatch: 'full',
   },
-
   {
     path: 'forget-password',
     loadChildren: () =>
@@ -60,6 +60,20 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () =>
       import('./pages/event/event.module').then((m) => m.EventPageModule),
+  },
+  {
+    path: 'codeModal',
+    loadChildren: () =>
+      import('./pages/code-modal/code-modal.module').then(
+        (m) => m.CodeModalPageModule
+      ),
+  },
+  {
+    path: 'errorModal',
+    loadChildren: () =>
+      import('./pages/error-modal/error-modal.module').then(
+        (m) => m.ErrorModalPageModule
+      ),
   },
 ];
 @NgModule({

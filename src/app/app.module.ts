@@ -6,15 +6,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AppComponent } from './app.component';
-import { ShareModule } from './modules/share/share.module';
 import { SplashComponent } from './components/splash/splash.component';
 import { LottieModule } from 'ngx-lottie';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './httpConfig.interceptor';
 import { ModalComponent } from './pages/forget-password/modal/modal.component';
 import { CodeModalComponent } from './pages/forget-password/code-modal/code-modal.component';
-// import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { IonicStorageModule } from '@ionic/storage-angular';
 export function playerFactory(): any {
   return import('lottie-web');
 }
@@ -35,10 +34,17 @@ export function playerFactory(): any {
     FormsModule,
     NgOtpInputModule,
     ReactiveFormsModule,
-    //ShareModule,
     LottieModule.forRoot({ player: playerFactory }),
+    IonicStorageModule.forRoot(),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 const ip = 'localhost';
+import { ChangePasswordService } from 'src/app/services/change-password.service';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.page.html',
@@ -11,8 +12,8 @@ const ip = 'localhost';
 export class ChangePasswordPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private http: HttpClient
+    private changePasswordservice: ChangePasswordService,
+    private route: Router
   ) {}
 
   isSubmitted = false;
@@ -34,7 +35,7 @@ export class ChangePasswordPage implements OnInit {
   get errorControl() {
     return this.ChangePassword.controls;
   }
-  onSubmitPassword() {
+  async onSubmitPassword() {
     this.isSubmitted = true;
     if (!this.ChangePassword.valid) {
       console.log('Please provide all the required values!');
@@ -42,20 +43,11 @@ export class ChangePasswordPage implements OnInit {
     } else {
       console.log('new password', this.passwd);
       console.log('history num', history.state.num);
-      console.log('history token', history.state.token);
-      const headers = new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${history.state.token}`,
-        password: `${this.passwd}`,
-      });
-      this.http
-        .patch(`http://${ip}:3001/verifications/${history.state.num}`, {
-          headers: headers,
-        })
+      this.changePasswordservice
+        .modify(history.state.num, this.passwd.trim())
         .subscribe(
-          (res) => console.log('sucess update'),
-          (err) => console.log('error update')
+          (res) => this.route.navigate(['/tabs']),
+          (err) => console.log(err)
         );
     }
   }

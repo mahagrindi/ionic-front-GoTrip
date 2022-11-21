@@ -15,14 +15,12 @@ export class SplashComponent implements OnInit {
   };
 
   onAnimate(animationItem: AnimationItem): void {
-    console.log(animationItem);
-  }
-
-  ionViewDidEnter() {
-    setTimeout(() => {
-      this.modalController.dismiss();
-    }, 2000);
+    console.log("hello splash");
   }
 
   ngOnInit() {}
+ async dismissComponent()
+  {
+  return await this.modalController.dismiss();
+  }
 }

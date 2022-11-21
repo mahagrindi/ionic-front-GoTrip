@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { VerificationService } from 'src/app/services/verification.service';
 
 const ip = 'localhost';
 @Component({
@@ -12,11 +12,11 @@ const ip = 'localhost';
 export class CodeModalComponent implements OnInit {
   constructor(
     private router: Router,
-    private http: HttpClient,
+    private verificationService: VerificationService,
     private modalCtrl: ModalController
   ) {}
   code: number;
-  num: number;
+  num: any;
   token: string;
   // configuration des inputs du code
   configInput = {
@@ -24,23 +24,31 @@ export class CodeModalComponent implements OnInit {
     placeholder: '#',
     allowNumbersOnly: true,
     inputStyles: {
-      width: '51px',
+      width: '50px',
       height: '50px',
     },
   };
-
+  sendSMS() {
+    return this.verificationService.sendSMS(this.num);
+  }
   ngOnInit() {
-    console.log('num fel code ', this.num);
-    console.log(this.code);
+    this.sendSMS().subscribe(
+      async (res) => {
+        this.code = await res['random'];
+        console.log('num fel code ', this.num);
+        console.log(this.code);
+      },
+      (err) => {
+        console.log(err.error);
+      }
+    );
   }
 
   //afficher la valeur des input du code dans le console
   //vérifier le code et aller à la page new password
-  valueChange(ev) {
-    console.log(ev);
+  valueChange(ev: any) {
     if (ev == this.code) {
-      console.log('yess 4');
-      this.http.get(`http://${ip}:3001/verifications/${this.num}`).subscribe(
+      this.verificationService.returnToken(this.num).subscribe(
         async (res) => {
           this.token = await res['token'];
           console.log(this.token);

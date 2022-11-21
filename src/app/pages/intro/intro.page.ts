@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Swiper, SwiperOptions, Virtual, Pagination } from 'swiper';
 import { FunctionsService } from 'src/app/services/functions.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 SwiperCore.use([Virtual, Pagination]);
 
 @Component({
@@ -21,7 +21,7 @@ export class IntroPage implements OnInit {
     // centeredSlides: true,
     // centeredSlidesBounds: true,
   };
-  constructor(private func: FunctionsService) {}
+  constructor(private func: FunctionsService,private authservice:AuthService) {}
 
   ngOnInit() {
     this.func.presentSplash();
