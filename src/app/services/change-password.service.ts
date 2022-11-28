@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { from } from 'rxjs';
-import { Platform } from '@ionic/angular';
-import { map, switchMap, take } from 'rxjs/operators';
-import { Storage } from '@ionic/storage-angular';
+import { HttpClient} from '@angular/common/http';
+import { IpService } from './ip.service';
 
-const TOKEN_KEY ="token-key";
 @Injectable({
   providedIn: 'root'
 })
 export class ChangePasswordService {
-  ip = '192.168.1.12';
-
-  constructor(private http: HttpClient,private plt:Platform,private storage:Storage) 
+  constructor(private http: HttpClient,private ipservice:IpService) 
   {}
-  token:any;
   modify(num:any,password:any)
   {
     return this.http
-    .patch(`http://${this.ip}:3001/verifications/${num}`,{ password:`${password}` });
+    .patch(`http://${this.ipservice.ip}:3001/verifications/${num}`,{ password:`${password}` });
 
   }
 }

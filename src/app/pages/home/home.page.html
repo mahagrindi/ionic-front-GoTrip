@@ -24,7 +24,7 @@
 <ion-content class="card-background-page ion-margin-horizontal">
     <div class="ion-margin-horizontal">
         <h4>
-            <ion-text color="primary">Welcome, User_name 👋</ion-text>
+            <ion-text color="primary" *ngIf="verifUser()">Welcome, {{this.user['username']}} 👋</ion-text>
         </h4>
         <h3>
             Where do you want <br /> to go ?

@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { IntroGuard } from './guards/intro.guard';
-
+import { HomeGuard } from './guards/home.guard';
 const routes: Routes = [
   {
     path: 'login',
@@ -16,8 +16,7 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-
-    // canLoad: [AuthGuard],
+      canActivate:[HomeGuard]
   },
   {
     path: 'intro',
@@ -28,7 +27,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/intrests',
+    redirectTo: '/intro',
     pathMatch: 'full',
   },  
   {
@@ -37,11 +36,6 @@ const routes: Routes = [
       import('./pages/forget-password/forget-password.module').then(
         (m) => m.ForgetPasswordPageModule
       ),
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'change-password',
@@ -56,6 +50,7 @@ const routes: Routes = [
       import('./pages/intrests/intrests.module').then(
         (m) => m.IntrestsPageModule
       ),
+      canActivate:[HomeGuard]
   },
   {
     path: 'event',
@@ -69,6 +64,10 @@ const routes: Routes = [
   {
     path: 'errorModal',
     loadChildren: () => import('./pages/error-modal/error-modal.module').then( m => m.ErrorModalPageModule)
+  },
+  {
+    path: 'form-guide',
+    loadChildren: () => import('./pages/form-guide/form-guide.module').then( m => m.FormGuidePageModule)
   },
 ];
 @NgModule({

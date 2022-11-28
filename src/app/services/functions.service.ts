@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SplashComponent } from '../components/splash/splash.component';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +19,9 @@ export class FunctionsService {
 
   async dismissSplash(){
     setTimeout(() => {
-      this.modalController.dismiss();
-    },3000);
-   
+      this.modalController.dismiss().catch(err=>console.log(err)
+      );
+    },2000) 
   }
 }
 

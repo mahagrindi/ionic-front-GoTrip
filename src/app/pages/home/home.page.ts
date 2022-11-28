@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { FunctionsService } from 'src/app/services/functions.service';
-
+import {Router} from '@angular/router';
+import { HomeServiceService} from 'src/app/services/home-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -12,8 +11,8 @@ import { FunctionsService } from 'src/app/services/functions.service';
 export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
-
-  constructor(private func: FunctionsService, private route: Router) {
+  user:any;
+  constructor(private route: Router,private home:HomeServiceService) {
     this.testData = [
       {
         id: 1,
@@ -66,7 +65,6 @@ export class HomePage implements OnInit {
         note: 4.8,
       },
     ];
-
     this.LastChance = [
       {
         id: 1,
@@ -77,7 +75,7 @@ export class HomePage implements OnInit {
         nbreStarts: 4,
         locations: 'saw',
         name: 'Prithivi',
-        note: 4.8,
+        note: 3,
       },
       {
         id: 3,
@@ -103,10 +101,21 @@ export class HomePage implements OnInit {
       },
     ];
   }
-  ngOnInit(): void {
-  
+  ngOnInit() 
+ {
+  this.home.getUser().subscribe( res=>{
+    this.user= res;
+   },err=>{
+    console.log(err);  
+   });
+ }
+verifUser(){
+  if(this.user)
+  {
+    return true
   }
-
+  return false;
+}
   favoris(id) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
       console.log(this.LastChance[i].id);
@@ -121,6 +130,7 @@ export class HomePage implements OnInit {
     }
   }
   showDetails() {
+  
     this.route.navigate(['/login']);
   }
 
@@ -150,7 +160,7 @@ export class HomePage implements OnInit {
   //   ***************************************************
   // ******************************************************
 
-  favorisrec(id) {
+  favorisrec(id:any) {
     for (let i = 0; i <= this.testData.length - 1; i++) {
       console.log(this.testData[i].id);
       if (id === this.testData[i].id) {

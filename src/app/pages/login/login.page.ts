@@ -4,11 +4,7 @@ import { SwiperOptions } from 'swiper';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { isPlatform } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import {FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -135,7 +131,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async onSubmitInscription() {
+   onSubmitInscription() {
     this.isSubmitted = true;
     if (!this.InscriptionForm.valid) {
       console.log('Please provide all the required values!');
@@ -149,10 +145,10 @@ export class LoginPage implements OnInit {
         phone: this.phone,
         sexe: this.sexe,
       };
-      await this.authservice.inscriPost(user)
+       this.authservice.inscriPost(user)
         .subscribe(
           (res) => {
-            this.route.navigate(['/tabs']);
+            this.route.navigate(['/intrests']);
             console.log(res);
           },
           (err) => {
