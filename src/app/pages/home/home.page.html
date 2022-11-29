@@ -1,5 +1,5 @@
 <!-- ********* navbar component****** -->
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar class="navb">
         <ion-row class="ion-align-items-center ion-justify-content-between">
             <div>
@@ -14,17 +14,17 @@
             </div>
         </ion-row>
     </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <!-- ********* navbar component****** -->
-<br /><br />
+<br /><br /><br /><br />
 
 <!-- ********* navbar component****** -->
 
 <ion-content class="card-background-page ion-margin-horizontal">
     <div class="ion-margin-horizontal">
         <h4>
-            <ion-text color="primary">Welcome, User_name 👋</ion-text>
+            <ion-text color="primary" *ngIf="verifUser()">Welcome, {{this.user['username']}} 👋</ion-text>
         </h4>
         <h3>
             Where do you want <br /> to go ?

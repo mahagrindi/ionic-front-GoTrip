@@ -5,9 +5,7 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { AlertController, isPlatform } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
-const ip = 'localhost';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -150,7 +148,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async onSubmitInscription() {
+  onSubmitInscription() {
     this.isSubmitted = true;
     if (!this.InscriptionForm.valid) {
       const alertMessage = 'Please provide all the required values!';
@@ -166,9 +164,9 @@ export class LoginPage implements OnInit {
         phone: this.phone,
         sexe: this.sexe,
       };
-      await this.authservice.inscriPost(user).subscribe(
+      this.authservice.inscriPost(user).subscribe(
         (res) => {
-          this.route.navigate(['/tabs']);
+          this.route.navigate(['/intrests']);
           console.log(res);
         },
         (err) => {

@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { FormGuidePageRoutingModule } from './form-guide-routing.module';
 
-import { HomePage } from './home.page';
-import { SwiperModule } from 'swiper/angular';
+import { FormGuidePage } from './form-guide.page';
 
 @NgModule({
-  declarations: [HomePage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
-    SwiperModule,
+    FormGuidePageRoutingModule
   ],
+  declarations: [FormGuidePage]
 })
-export class HomePageModule {}
+export class FormGuidePageModule {}

@@ -1,85 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
-
+import { IntrestsService } from 'src/app/services/intrests.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intrests',
   templateUrl: './intrests.page.html',
   styleUrls: ['./intrests.page.scss'],
-  
 })
 export class IntrestsPage implements OnInit {
 
-  constructor(localStorage:Storage) {
-    this.testData = [
-      {
-        id: 1,
-        price: '35 DT ',
-        fev: 'checked',
-        img: 'img1.jpg',
-        nbreStarts: 4,
-        locations: 'saw',
-        name: 'Prithivi',
-        note: 4.8,
-      },
-      {
-        id: 3,
-        price: '35 DT ',
-        fev: 'not_checked',
-        img: 'stay-in-tunis-e1555423387390.jpg',
-        nbreStarts: 5,
-        locations: 'saw2',
-        name: 'malliga',
-        note: 4.8,
-      },
-      {
-        id: 3,
-        price: '35 DT ',
-        fev: 'checked',
-        img: 'img1.jpg',
-        nbreStarts: 2,
-        locations: 'saw2',
-        name: 'Gowdaman',
-        note: 4.8,
-      },
-      {
-        id: 3,
-        price: '35 DT ',
-        fev: 'not_checked',
-        img: 'stay-in-tunis-e1555423387390.jpg',
-        nbreStarts: 2,
-        locations: 'saw2',
-        name: 'Neethi',
-        note: 4.8,
-      },
-      {
-        id: 3,
-        price: '35 DT ',
-        fev: 'checked',
-        img: 'stay-in-tunis-e1555423387390.jpg',
-        nbreStarts: 5,
-        locations: 'saw2',
-        name: 'abirami1',
-        note: 4.8,
-      },
-    ];
-
-   
-  }
+  constructor(private intrestsService:IntrestsService,private route:Router) {}
 entry:any;
 entry1:any;
 entry2:any;
 entry3:any;
 entry4:any;
 entry5:any;
-entry6:any;
-entry7:any;
-testData:any
-
-  ngOnInit() {
-   
-    
-  }
+  ngOnInit() {}
   interpress()
   {
    
@@ -119,18 +56,26 @@ testData:any
    this.entry5= !this.entry5;
 
   }
-  interpress6()
-  {
-   
-  
-   this.entry6= !this.entry6;
- 
-  }
-  interpress7()
-  {
-   
-  
-   this.entry7= !this.entry7;
+  createTableCategorie(){
+   let TableCategorie=new Array();
+   this.entry ? TableCategorie.push("categorie1"):null
+   this.entry1? TableCategorie.push("categorie2"):null
+   this.entry2? TableCategorie.push("categorie3"):null 
+   this.entry3? TableCategorie.push("categorie4"):null 
+   this.entry4? TableCategorie.push("categorie5"):null 
+   this.entry5? TableCategorie.push("categorie6"):null
+   console.log(TableCategorie);
+   return TableCategorie;
   }
 
+  updateRecomended()
+  {this.intrestsService.updateRecomemnd(this.createTableCategorie()).subscribe(res=>
+    {
+      console.log(res);
+      this.route.navigate(['/tabs']);
+    },
+    err=>
+    {
+      console.log(err);
+    })}
 }

@@ -23,14 +23,14 @@ import {
   
 
 
-    this.modalController.getTop().then(hasLoading =>{
+   /* this.modalController.getTop().then(hasLoading =>{
         if(!hasLoading){
             this.modalController.create({
                 component: SplashComponent,
                 cssClass: 'my-custom-class', 
             }).then(loading => loading.present());
         }
-      });
+      });*/
 
       return from(this.storage.get(TOKEN_KEY))
       .pipe(
@@ -52,7 +52,7 @@ import {
                         switch((<HttpErrorResponse>err).status)
                         {
                             case 401:
-                                this.modalController.dismiss();
+                               // this.modalController.dismiss();
                             default:
                                 return throwError(err);
 
@@ -62,16 +62,13 @@ import {
                     }
                 }),
                 map((event: HttpEvent<any>) => {    
-                  if (event instanceof HttpResponse) {
-                    console.log('event--->>>', event);
-                    this.modalController.dismiss();
-                  }          
+                         
                   return event;
                 })
                  
                 ,catchError( err =>{
                  
-                    this.modalController.dismiss();
+                   // this.modalController.dismiss();
                     return throwError(err);
                 })
             );

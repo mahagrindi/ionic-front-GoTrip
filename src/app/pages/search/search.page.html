@@ -1,0 +1,92 @@
+<!-- Back button with a default href -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-margin-horizontal">
+        <h3>Where do you want to go ?</h3>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+            <ion-input [debounce]="500" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
+
+            <!-- <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
+                <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </ion-button> -->
+        </ion-row>
+    </div>
+
+    <ion-list>
+        <div class="lastChance">
+            <ion-card *ngFor="let result of results">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="auto">
+                            <img height="100" width="100" src="../../../assets/images/lastChance/{{result.img}}" />
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <ion-col>
+                                    <div class="name">{{result.name}}</div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="hert">
+                                        <!-- <ion-icon (click)="favoris(result.id)" src="../../../assets/icon/heart-{{result.fev}}.svg" side="right"></ion-icon> -->
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <div><span class="price">{{result.price}}</span>/person</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="starts">
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star-outline"></ion-icon>
+                                </div>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="auto">
+                                    <div class="location">
+                                        <ion-icon name="location-outline"></ion-icon>
+                                        {{result.locations}}
+                                    </div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="place">
+                                        <ion-icon name="person-circle-outline"></ion-icon>
+                                        {{result.nbPlace}} Spots left
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
+            <div *ngIf="(results | json) == '[]'">
+                <ion-row class="ion-justify-content-center">
+                    <img style="width: 60%" alt="404 not found" src="../../../assets/images/intro/Bad-news.png" />
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                    <h3 color="primary">We are Sorry 😔</h3>
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                    <ion-text class="ion-text-center">We didn't finde your destination. <br /> Create your own trip
+                    </ion-text>
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                    <ion-button [routerLink]="['/event']" class="ion-margin-top" type="submit" color="light" expand="" color="warning">
+                        Create your trip
+                    </ion-button>
+                </ion-row>
+            </div>
+        </div>
+        <!-- 
+            <ion-label>{{ result }}</ion-label> -->
+    </ion-list>
+</ion-content>
