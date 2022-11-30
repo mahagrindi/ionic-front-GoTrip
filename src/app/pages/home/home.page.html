@@ -15,6 +15,10 @@
         </ion-row>
     </ion-toolbar>
 </ion-header>
+
+<!-- ********* navbar component****** -->
+<br /><br />
+
 <!-- ********* navbar component****** -->
 
 <ion-content class="card-background-page ion-margin-horizontal">
@@ -48,17 +52,15 @@
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section">
-            <swiper  [config]="{ slidesPerView: 1.3 , loop: true }" >
+            <swiper [config]="{ slidesPerView: 2 , loop: true }">
                 <ng-template swiperSlide *ngFor="let item of testData ">
                     <ion-card>
                         <img class="card-img" src="../../../assets/images/home/{{item.img}}" />
 
-                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)">
-
-                        </div>
+                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)"></div>
 
                         <div class="card-icon">
-                          <ion-icon (click)="favorisrec(item.id)" src="../../../assets/icon/heart-{{item.fev}}-2.svg"  side="right"></ion-icon>
+                            <ion-icon (click)="favorisrec(item.id)" src="../../../assets/icon/heart-{{item.fev}}-2.svg" side="right"></ion-icon>
                         </div>
                         <ion-card-header>
                             <ion-grid>
@@ -78,7 +80,7 @@
                                             <span class="card-prix">{{item.price}}</span>/person
                                         </div>
                                         <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" [routerLink]="['/event']"></ion-icon>
+                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetails()"></ion-icon>
                                         </div>
                                     </ion-row>
                                 </ion-card-subtitle>
@@ -136,7 +138,7 @@
                                     </ion-col>
                                     <ion-col>
                                         <div class="hert">
-                                            <ion-icon (click)="favoris(item.id)" src="../../../assets/icon/heart-{{item.fev}}.svg"  side="right"></ion-icon>
+                                            <ion-icon (click)="favoris(item.id)" src="../../../assets/icon/heart-{{item.fev}}.svg" side="right"></ion-icon>
                                         </div>
                                     </ion-col>
                                 </ion-row>
@@ -182,3 +184,4 @@
         </div>
     </div>
 </ion-content>
+<br /><br />

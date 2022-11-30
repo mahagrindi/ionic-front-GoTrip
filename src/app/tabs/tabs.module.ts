@@ -9,13 +9,7 @@ import { ShareModule } from '../modules/share/share.module';
 import { TabsPage } from './tabs.page';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    TabsPageRoutingModule,
-    ShareModule,
-  ],
+  imports: [IonicModule, CommonModule, FormsModule, TabsPageRoutingModule],
   declarations: [TabsPage],
 })
 export class TabsPageModule {}

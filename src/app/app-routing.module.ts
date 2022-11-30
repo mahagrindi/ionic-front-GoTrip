@@ -22,16 +22,12 @@ const routes: Routes = [
     path: 'intro',
     loadChildren: () =>
       import('./pages/intro/intro.module').then((m) => m.IntroPageModule),
+    canActivate: [AuthGuard],
   },
 
-  // {
-  //   path: '',
-  //   redirectTo: '/tabs/home',
-  //   pathMatch: 'full',
-  // },
   {
     path: '',
-    redirectTo: '/intro',
+    redirectTo: '/intrests',
     pathMatch: 'full',
   },
   {
@@ -45,12 +41,40 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
-  },  {
-    path: 'event',
-    loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
-
-
+  {
+    path: 'change-password',
+    loadChildren: () =>
+      import('./pages/change-password/change-password.module').then(
+        (m) => m.ChangePasswordPageModule
+      ),
+  },
+  {
+    path: 'intrests',
+    loadChildren: () =>
+      import('./pages/intrests/intrests.module').then(
+        (m) => m.IntrestsPageModule
+      ),
+  },
+  {
+    path: 'event',
+    loadChildren: () =>
+      import('./pages/event/event.module').then((m) => m.EventPageModule),
+  },
+  {
+    path: 'codeModal',
+    loadChildren: () =>
+      import('./pages/code-modal/code-modal.module').then(
+        (m) => m.CodeModalPageModule
+      ),
+  },
+  {
+    path: 'errorModal',
+    loadChildren: () =>
+      import('./pages/error-modal/error-modal.module').then(
+        (m) => m.ErrorModalPageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [

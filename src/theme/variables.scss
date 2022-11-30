@@ -1,5 +1,6 @@
- /*// Ionic Variables and Theming. For more info, please see:
+/*// Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/ */
+
 @import "font.scss";
 @import "button.scss";
 
@@ -21,6 +22,15 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.navb {
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 10%;
+    }
+}
+
 $shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 $secondary: #1668ff;
 $primary: #041c7a;
@@ -31,6 +41,10 @@ $danger: #fd5b1f;
 $dark: #1b1b1b;
 $medium: #bababa;
 $light: #f3f3f3;
+.starts {
+    color: $warning;
+}
+
 :root {
     --ion-color-primary: #041c7a;
     --ion-color-primary-rgb: 4, 28, 122;
@@ -80,19 +94,6 @@ $light: #f3f3f3;
     --ion-color-light-contrast-rgb: 0, 0, 0;
     --ion-color-light-shade: #d6d6d6;
     --ion-color-light-tint: #f4f4f4;
-}
-.starts {
-
-  color: $warning;
-}
-
-.navb {
-  img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 10%;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

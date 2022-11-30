@@ -1,0 +1,27 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+<!---**********Enter code*************-->
+
+<ion-content class="ion-padding center">
+  <ion-grid class="centerPage">
+      <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <h4 class="">Verification Code</h4>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <img src="assets/images/intro/forgot-password.svg" class="responsiveImg ion-margin-horizontal" alt="" />
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <p class="ion-text-center">Please enter the verification code</p>
+      </ion-row>
+      <ng-otp-input (onInputChange)="valueChange($event)" [config]="configInput"></ng-otp-input>
+      <br />
+      <!-- <ion-button class="ion-margin-top" (click)="navig()" type="submit" expand="block" color="warning">
+          Send
+      </ion-button> -->
+  </ion-grid>
+</ion-content>
+<!---**********Enter code*************-->
+</ion-content>

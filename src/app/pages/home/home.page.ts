@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { FunctionsService } from 'src/app/services/functions.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,11 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./home.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomePage {
-
-
+export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
 
-  constructor() {
+  constructor(private func: FunctionsService, private route: Router) {
     this.testData = [
       {
         id: 1,
@@ -103,6 +103,10 @@ export class HomePage {
       },
     ];
   }
+  ngOnInit(): void {
+    // this.func.presentSplash();
+    // throw new Error('Method not implemented.');
+  }
 
   favoris(id) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
@@ -116,6 +120,9 @@ export class HomePage {
         }
       }
     }
+  }
+  showDetails() {
+    this.route.navigate(['/event']);
   }
 
   //   *********** fonction de recherche *************

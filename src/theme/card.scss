@@ -1,33 +1,31 @@
 @import "variables.scss";
 ion-card {
-     /*// border: 1px solid $medium; */
+    /*// border: 1px solid $medium; */
     border-radius: 15px;
     box-shadow: $shadow;
     border: 0px;
 }
 
 .activite_card {
-  //box-shadow: $shadow;
-  border:  $warning ;
-  border-style: solid;
-  border-width: 0.5px ;
-  margin: 10px ;
-  border-radius: 20px;
-  padding: 10px 15px;
-  ion-icon{
-    margin-right: 10px;
-  }
+    //box-shadow: $shadow;
+    border: $warning;
+    border-style: solid;
+    border-width: 0.5px;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    ion-icon {
+        margin-right: 10px;
+    }
 }
 
-
 .review_card {
-  width: 100%;
-    img{
-      border-radius: 50%;
-      object-fit: cover;
-      width: 50px;
-      height: 50px;
+    width: 100%;
+    img {
+        border-radius: 50%;
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
     }
-    color: $dark ;
-
+    color: $dark;
 }

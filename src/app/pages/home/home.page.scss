@@ -1,19 +1,15 @@
 // home.page.scss
-@import "~swiper/scss";
-@import "~@ionic/angular/css/ionic-swiper";
 @import "../../../theme/input.scss";
 @import "../../../theme/card.scss";
 //@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 .recommended-section {
-
-  .swiper .swiper-slide img {
-    border-radius: 10px;
-    width: 90%;
-    height: 80%;
-    margin-top: 8px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
+    .swiper .swiper-slide img {
+        border-radius: 10px;
+        width: 90%;
+        height: 80%;
+        margin-top: 8px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
     ion-card {
         position: relative;
         // border: 0px;
@@ -21,7 +17,7 @@
     .note {
         font-weight: 500;
     }
-  /*   .card-img {
+    /*   .card-img {
         border-radius: 10px;
         width: 90%;
         height: 80%;
@@ -48,7 +44,6 @@
         text-align: left;
         // padding: 20px;
     }
-
     .card-icon {
         position: absolute;
         top: 6%;
@@ -246,4 +241,3 @@
 //         text-shadow: 0px 4px 4px $medium;
 //     }
 // }
-
