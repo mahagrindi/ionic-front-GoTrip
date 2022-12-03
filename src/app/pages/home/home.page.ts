@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { HomeServiceService } from 'src/app/services/home-service.service';
+import { Route, Router } from '@angular/router';
+import { FunctionsService } from 'src/app/services/functions.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -156,7 +158,8 @@ export class HomePage implements OnInit {
     }
   }
   showDetails() {
-    this.route.navigate(['/login']);
+    // this.route.navigate(['/login']);
+    this.route.navigate(['/event']);
   }
 
   //   *********** fonction de recherche *************

@@ -12,16 +12,13 @@ export class FunctionsService {
       component: SplashComponent,
       cssClass: 'my-custom-class',
     });
-    
+
     return await modal.present();
   }
 
-
-  async dismissSplash(){
+  async dismissSplash() {
     setTimeout(() => {
-      this.modalController.dismiss().catch(err=>console.log(err)
-      );
-    },2000) 
+      this.modalController.dismiss().catch((err) => console.log(err));
+    }, 2000);
   }
 }
-
