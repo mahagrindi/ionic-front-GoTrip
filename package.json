@@ -31,6 +31,7 @@
         "@ionic/storage": "^3.0.6",
         "@ionic/storage-angular": "^3.0.6",
         "ionicons": "^6.0.3",
+        "local-storage": "^2.0.0",
         "lottie-web": "^5.9.6",
         "ng-otp-input": "^1.8.5",
         "ngx-lottie": "^9.1.0",
