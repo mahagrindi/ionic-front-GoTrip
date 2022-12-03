@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
   user: any;
+
   constructor(private route: Router, private home: HomeServiceService) {
     this.testData = [
       {
@@ -110,6 +111,30 @@ export class HomePage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  async getUser() {
+    this.home.getUser().subscribe(
+      (res) => {
+        this.user = res;
+        console.log(this.user);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  verifGuide() {
+    if (this.user) {
+      if (this.user['guide'] === true) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+  switchGuide() {
+    this.route.navigate(['/form-guide']);
   }
   verifUser() {
     if (this.user) {

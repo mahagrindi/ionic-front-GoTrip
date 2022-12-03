@@ -9,26 +9,25 @@
         <ion-button (click)="switchGuide()" *ngIf="verifGuide()">switch to guide account</ion-button>
     </ion-content>
 </ion-menu>
-<div class="ion-page" id="main-content">
-    <ion-header>
-        <ion-toolbar class="navb">
-            <ion-row class="ion-align-items-center ion-justify-content-between">
+<ion-header>
+    <ion-toolbar class="navb">
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+            <div class="ion-page" id="main-content">
                 <div>
                     <ion-buttons slot="start">
                         <ion-menu-button></ion-menu-button>
                     </ion-buttons>
                 </div>
-
-                <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-                <div class="">
-                    <ion-icon [routerLink]="['/search']" class="ion-margin-end" src="../../../assets/icon/add-square.svg">
-                    </ion-icon>
-                    <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
-                </div>
-            </ion-row>
-        </ion-toolbar>
-    </ion-header>
-</div>
+            </div>
+            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+            <div class="">
+                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg">
+                </ion-icon>
+                <ion-icon [routerLink]="['/search']" class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </div>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
 
 <ion-tabs>
     <ion-tab-bar slot="bottom">
