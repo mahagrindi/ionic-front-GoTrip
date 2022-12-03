@@ -98,7 +98,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/intrests',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
   {

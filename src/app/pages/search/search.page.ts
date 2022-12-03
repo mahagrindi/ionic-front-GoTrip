@@ -46,7 +46,7 @@ export class SearchPage implements OnInit {
 
   public results = [...this.data];
 
-  handleChange(event) {
+  search(event) {
     const query = event.target.value.toLowerCase();
     this.results = this.data.filter(
       (d) => d.name.toLowerCase().indexOf(query) > -1

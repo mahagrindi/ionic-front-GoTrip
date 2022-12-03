@@ -11,7 +11,7 @@
     <div class="ion-margin-horizontal">
         <h3>Where do you want to go ?</h3>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-input [debounce]="500" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
+            <ion-input [debounce]="500" (ionChange)="search($event)" placeholder="ex: Tunis, Marsa, ..."></ion-input>
 
             <!-- <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
                 <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
