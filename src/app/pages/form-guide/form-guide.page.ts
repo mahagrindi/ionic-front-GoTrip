@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-form-guide',
@@ -12,12 +14,14 @@ export class FormGuidePage implements OnInit {
   guidForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private route: Router,
     private alertController: AlertController
   ) {}
 
   adresse: String = '';
+  nom: String = '';
+  prenom: String = '';
   isSubmitted = false;
+  image: any;
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
@@ -31,8 +35,23 @@ export class FormGuidePage implements OnInit {
           // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
         ],
       ],
+      nom: [
+        '',
+        [
+          Validators.required,
+          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
+        ],
+      ],
+      prenom: [
+        '',
+        [
+          Validators.required,
+          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
+        ],
+      ],
     });
   }
+
   SubmitRequest() {
     this.isSubmitted = true;
     if (!this.guidForm.valid) {

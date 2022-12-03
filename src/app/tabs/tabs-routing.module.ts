@@ -25,6 +25,18 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'event',
+        loadChildren: () =>
+          import('../pages/event/event.module').then((m) => m.EventPageModule),
+      },
+      {
+        path: 'form-guide',
+        loadChildren: () =>
+          import('../pages/form-guide/form-guide.module').then(
+            (m) => m.FormGuidePageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',

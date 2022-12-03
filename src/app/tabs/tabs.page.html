@@ -1,12 +1,19 @@
 <ion-menu contentId="main-content">
-    <ion-header>
+    <!-- <ion-header>
         <ion-toolbar>
             <ion-title>Menu List</ion-title>
         </ion-toolbar>
-    </ion-header>
+    </ion-header> -->
 
     <ion-content class="ion-padding">
-        <ion-button (click)="switchGuide()" *ngIf="verifGuide()">switch to guide account</ion-button>
+        <div *ngIf="!verifGuide()" class="checkbox-wrapper-34">
+            <label style="font-size: 10px">Vous etes en mode :</label>
+            <input (change)="switchMode($event)" [(ngModel)]="isGuide" [checked]="true" class="tgl tgl-ios" id="toggle-34" type="checkbox" />
+            <label class="tgl-btn" for="toggle-34"></label>
+        </div>
+        <ion-menu-toggle>
+            <ion-button *ngIf="verifGuide()" (click)="switchGuide()">switch to guide account</ion-button>
+        </ion-menu-toggle>
     </ion-content>
 </ion-menu>
 <ion-header>
@@ -54,11 +61,17 @@
             <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
             <ion-label>profile</ion-label>
         </ion-tab-button>
-
+        <!-- event hidden pour que tabs et le menu soient toujours accessibles -->
         <ion-tab-button tab="event" hidden>
             <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
             <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
             <ion-label>event</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="form-guide" hidden>
+            <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
+            <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
+            <ion-label>form guide</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
 </ion-tabs>
