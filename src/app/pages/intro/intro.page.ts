@@ -25,5 +25,6 @@ export class IntroPage implements OnInit {
 
   ngOnInit() {
     this.func.presentSplash();
+    this.func.dismissSplash();
   }
 }
