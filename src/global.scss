@@ -33,3 +33,9 @@
 @import "swiper/scss/pagination";
 @import "@ionic/angular/css/ionic-swiper";
 @import 'swiper/scss/effect-fade';
+
+
+
+.alert-modal {
+  --background:  rgba(122, 122, 122, 0.666)   !important;
+}

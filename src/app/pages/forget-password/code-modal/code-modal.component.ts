@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { VerificationService } from 'src/app/services/verification.service';
+
+const ip = 'localhost';
 @Component({
   selector: 'app-code-modal',
   templateUrl: './code-modal.component.html',
@@ -32,9 +34,9 @@ export class CodeModalComponent implements OnInit {
   ngOnInit() {
     this.sendSMS().subscribe(
       async (res) => {
-        this.code = await res['random'];   
+        this.code = await res['random'];
         console.log('num fel code ', this.num);
-        console.log(this.code);   
+        console.log(this.code);
       },
       (err) => {
         console.log(err.error);
@@ -44,7 +46,7 @@ export class CodeModalComponent implements OnInit {
 
   //afficher la valeur des input du code dans le console
   //vérifier le code et aller à la page new password
-  valueChange(ev:any) {
+  valueChange(ev: any) {
     if (ev == this.code) {
       this.verificationService.returnToken(this.num).subscribe(
         async (res) => {

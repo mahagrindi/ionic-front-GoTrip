@@ -21,7 +21,10 @@ export class IntroPage implements OnInit {
     // centeredSlides: true,
     // centeredSlidesBounds: true,
   };
-  constructor(private func: FunctionsService,private authservice:AuthService) {}
+  constructor(
+    private func: FunctionsService,
+    private authservice: AuthService
+  ) {}
 
   ngOnInit() {
     this.func.presentSplash();

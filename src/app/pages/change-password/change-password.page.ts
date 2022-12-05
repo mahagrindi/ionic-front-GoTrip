@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+const ip = 'localhost';
 import { ChangePasswordService } from 'src/app/services/change-password.service';
 
 @Component({
@@ -11,8 +12,8 @@ import { ChangePasswordService } from 'src/app/services/change-password.service'
 export class ChangePasswordPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private changePasswordservice:ChangePasswordService,
-    private route:Router
+    private changePasswordservice: ChangePasswordService,
+    private route: Router
   ) {}
 
   isSubmitted = false;
@@ -34,7 +35,7 @@ export class ChangePasswordPage implements OnInit {
   get errorControl() {
     return this.ChangePassword.controls;
   }
- async onSubmitPassword() {
+  async onSubmitPassword() {
     this.isSubmitted = true;
     if (!this.ChangePassword.valid) {
       console.log('Please provide all the required values!');
@@ -42,9 +43,10 @@ export class ChangePasswordPage implements OnInit {
     } else {
       console.log('new password', this.passwd);
       console.log('history num', history.state.num);
-      this.changePasswordservice.modify(history.state.num,this.passwd.trim())
+      this.changePasswordservice
+        .modify(history.state.num, this.passwd.trim())
         .subscribe(
-          (res) =>   this.route.navigate(['/tabs']),
+          (res) => this.route.navigate(['/tabs']),
           (err) => console.log(err)
         );
     }

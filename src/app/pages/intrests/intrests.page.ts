@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IntrestsService } from 'src/app/services/intrests.service';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+
 @Component({
   selector: 'app-intrests',
   templateUrl: './intrests.page.html',

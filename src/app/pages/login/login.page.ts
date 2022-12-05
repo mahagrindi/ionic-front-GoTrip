@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { isPlatform } from '@ionic/angular';
+import { AlertController, isPlatform } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import {FormGroup,FormBuilder,Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -24,7 +24,6 @@ export class LoginPage implements OnInit {
     pagination: false,
   };
 
-
   slideNext() {
     this.swiper.swiperRef.slideNext(100);
   }
@@ -34,7 +33,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
-    private authservice:AuthService
+    private alertController: AlertController,
+    private authservice: AuthService
   ) {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
@@ -50,8 +50,8 @@ export class LoginPage implements OnInit {
   passwordCnx: string = '';
   isSubmitted = false;
   numero: any;
-  credentials: { passwordCnx: string; usernameCnx: string; };
- 
+  credentials: { passwordCnx: string; usernameCnx: string };
+
   errors = [
     { type: 'required', message: 'Champ Obligatoire !' },
     { type: 'pattern', message: 'Vérifier le format du champ' },
@@ -109,32 +109,51 @@ export class LoginPage implements OnInit {
   get errorControl() {
     return this.loginForm.controls;
   }
-   onSubmitCnx() {
-    this.credentials ={passwordCnx:this.passwordCnx,usernameCnx:this.usernameCnx};
+  // alertMessage: String;
+  async presentAlert(alertHeader, alertMessage) {
+    const alert = await this.alertController.create({
+      header: alertHeader,
+      subHeader: '',
+      message: alertMessage,
+      buttons: [{ text: 'OK', cssClass: 'alert-button-confirm' }],
+      animated: true,
+    });
+
+    await alert.present();
+  }
+
+  onSubmitCnx() {
+    this.credentials = {
+      passwordCnx: this.passwordCnx,
+      usernameCnx: this.usernameCnx,
+    };
     this.isSubmitted = true;
     if (!this.loginForm.valid) {
-      console.log('Please provide all the required values!');
+      const alertMessage = 'Please provide all the required values!';
+      const alertHeader = 'Missing Informations!';
+      this.presentAlert(alertHeader, alertMessage);
+      // console.log('Please provide all the required values!');
       return false;
     } else {
-     
-       this.authservice.conxGet(this.credentials)
-        .subscribe(
-          (res) => {
-            this.route.navigate(['/tabs']);
-            console.log(res);
-          },
-          (err) => {
-            console.log("err login page",err);
-          }
-        );
-     
+      this.authservice.conxGet(this.credentials).subscribe(
+        (res) => {
+          this.route.navigate(['/tabs']);
+          console.log(res);
+        },
+        (err) => {
+          this.presentAlert(err.error, 'please check your information');
+          console.log('err login page', err);
+        }
+      );
     }
   }
 
-   onSubmitInscription() {
+  onSubmitInscription() {
     this.isSubmitted = true;
     if (!this.InscriptionForm.valid) {
-      console.log('Please provide all the required values!');
+      const alertMessage = 'Please provide all the required values!';
+      const alertHeader = 'Missing Informations!';
+      this.presentAlert(alertHeader, alertMessage);
 
       return false;
     } else {
@@ -145,16 +164,15 @@ export class LoginPage implements OnInit {
         phone: this.phone,
         sexe: this.sexe,
       };
-       this.authservice.inscriPost(user)
-        .subscribe(
-          (res) => {
-            this.route.navigate(['/intrests']);
-            console.log(res);
-          },
-          (err) => {
-            console.log(err.error);
-          }
-        );
+      this.authservice.inscriPost(user).subscribe(
+        (res) => {
+          this.route.navigate(['/intrests']);
+          console.log(res);
+        },
+        (err) => {
+          console.log(err.error);
+        }
+      );
 
       console.log(this.InscriptionForm.value);
     }

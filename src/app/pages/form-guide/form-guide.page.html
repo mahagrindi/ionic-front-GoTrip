@@ -4,6 +4,74 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-button (click)="SubmitRequest()">submit request</ion-button>
+<ion-content class="ion-padding-horizontal">
+  <h3 class="ion-text-center" color="primary">Welcome Back!</h3>
+  <p class="ion-text-center">Join our guide community🚀</p>
+
+  <form [formGroup]="guidForm" (ngSubmit)="inscriGuide()" novalidate>
+    <div class="form-group">
+      <ion-label position="" class="ion-margin-top">Nom</ion-label>
+      <ion-input
+        formControlName="nom"
+        [(ngModel)]="nom"
+        type="text"
+        autofocus="true"
+        placeholder="Nom"
+        required
+      ></ion-input>
+      <div *ngFor="let er of errors">
+        <ng-container
+          *ngIf="guidForm.get('nom').hasError(er.type) && (guidForm.get('nom').touched || guidForm.get('nom').dirty)"
+        >
+          <ion-note color="danger"> {{er.message}} </ion-note>
+        </ng-container>
+      </div>
+
+      <ion-label position="" class="ion-margin-top">Prenom</ion-label>
+      <ion-input
+        formControlName="prenom"
+        [(ngModel)]="prenom"
+        type="text"
+        autofocus="true"
+        placeholder="Prenom"
+        required
+      ></ion-input>
+      <div *ngFor="let er of errors">
+        <ng-container
+          *ngIf="guidForm.get('prenom').hasError(er.type) && (guidForm.get('prenom').touched || guidForm.get('prenom').dirty)"
+        >
+          <ion-note color="danger"> {{er.message}} </ion-note>
+        </ng-container>
+      </div>
+
+      <ion-label position="" class="ion-margin-top">Adresse</ion-label>
+      <ion-input
+        formControlName="adresse"
+        [(ngModel)]="adresse"
+        type="text"
+        autofocus="true"
+        placeholder="Adresse"
+        required
+      ></ion-input>
+      <div *ngFor="let er of errors">
+        <ng-container
+          *ngIf="guidForm.get('adresse').hasError(er.type) && (guidForm.get('adresse').touched || guidForm.get('adresse').dirty)"
+        >
+          <ion-note color="danger"> {{er.message}} </ion-note>
+        </ng-container>
+      </div>
+    </div>
+    <div class="ion-text-center">
+      <ion-button class="ion-margin-top" type="submit" color="warning"
+        >submit request</ion-button
+      >
+      <ion-button
+        class="ion-margin-top"
+        [routerLink]="['/tabs']"
+        type="cancel"
+        color="light"
+        >cancel</ion-button
+      >
+    </div>
+  </form>
 </ion-content>

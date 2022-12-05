@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { FormGuidePageRoutingModule } from './form-guide-routing.module';
@@ -13,8 +12,9 @@ import { FormGuidePage } from './form-guide.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FormGuidePageRoutingModule
+    FormGuidePageRoutingModule,
+    ReactiveFormsModule,
   ],
-  declarations: [FormGuidePage]
+  declarations: [FormGuidePage],
 })
 export class FormGuidePageModule {}

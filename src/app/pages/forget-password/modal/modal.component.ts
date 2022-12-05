@@ -27,6 +27,10 @@ export class ModalComponent implements OnInit {
     return this.modalCtrl.dismiss();
   }
 
+  goToHome() {
+    this.router.navigate(['/tabs/home']);
+    return this.modalCtrl.dismiss();
+  }
   // confirm() {
   //   return this.modalCtrl.dismiss(this.name, 'confirm');
   // }

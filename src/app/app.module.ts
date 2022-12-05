@@ -8,7 +8,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { AppComponent } from './app.component';
 import { SplashComponent } from './components/splash/splash.component';
 import { LottieModule } from 'ngx-lottie';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './httpConfig.interceptor';
 import { ModalComponent } from './pages/forget-password/modal/modal.component';
 import { CodeModalComponent } from './pages/forget-password/code-modal/code-modal.component';
@@ -36,13 +36,15 @@ export function playerFactory(): any {
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
     IonicStorageModule.forRoot(),
-    
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpConfigInterceptor,
-    multi: true
-  }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

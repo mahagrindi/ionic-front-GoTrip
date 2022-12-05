@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import {Router} from '@angular/router';
-import { HomeServiceService} from 'src/app/services/home-service.service';
+import { HomeServiceService } from 'src/app/services/home-service.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -11,8 +12,9 @@ import { HomeServiceService} from 'src/app/services/home-service.service';
 export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
-  user:any;
-  constructor(private route: Router,private home:HomeServiceService) {
+  user: any;
+
+  constructor(private route: Router, private home: HomeServiceService) {
     this.testData = [
       {
         id: 1,
@@ -101,22 +103,36 @@ export class HomePage implements OnInit {
       },
     ];
   }
-  ngOnInit() 
- {
-  this.home.getUser().subscribe( res=>{
-    this.user= res;
-   },err=>{
-    console.log(err);  
-   });
- }
-verifUser(){
-  if(this.user)
-  {
-    return true
+  ngOnInit() {
+    this.home.getUser().subscribe(
+      (res) => {
+        this.user = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-  return false;
-}
-  favoris(id) {
+
+  verifGuide() {
+    if (this.user) {
+      if (this.user['guide'] === true) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+  switchGuide() {
+    this.route.navigate(['/form-guide']);
+  }
+  verifUser() {
+    if (this.user) {
+      return true;
+    }
+    return false;
+  }
+  favoris(id:any) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
       console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
@@ -130,8 +146,8 @@ verifUser(){
     }
   }
   showDetails() {
-  
-    this.route.navigate(['/login']);
+    // this.route.navigate(['/login']);
+    this.route.navigate(['/event']);
   }
 
   //   *********** fonction de recherche *************
@@ -160,7 +176,7 @@ verifUser(){
   //   ***************************************************
   // ******************************************************
 
-  favorisrec(id:any) {
+  favorisrec(id: any) {
     for (let i = 0; i <= this.testData.length - 1; i++) {
       console.log(this.testData[i].id);
       if (id === this.testData[i].id) {

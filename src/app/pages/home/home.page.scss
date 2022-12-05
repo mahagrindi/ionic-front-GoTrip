@@ -224,6 +224,13 @@
     }
 }
 
+.wrap-text {
+    white-space: nowrap;
+    width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 // .personlistions {
 //     ion-card {
 //         background: linear-gradient(89.94deg, $warning 18.94%, #fe8c8c 91.09%);

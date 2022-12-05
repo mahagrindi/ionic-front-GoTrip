@@ -2,8 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from './modal/modal.component';
+import { CodeModalComponent } from './code-modal/code-modal.component';
+import { HttpClient } from '@angular/common/http';
 import { VerificationService } from 'src/app/services/verification.service';
 import { NavigationExtras, Router } from '@angular/router';
+const ip = 'localhost';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',
@@ -52,11 +57,10 @@ export class ForgetPasswordPage implements OnInit {
   }
   constructor(
     private formBuilder: FormBuilder,
-    private Verificationservice:VerificationService,
+    private Verificationservice: VerificationService,
     private router: Router
   ) {}
   num: number;
-  
 
   ngOnInit() {
     this.EnterNumber = this.formBuilder.group({
@@ -71,26 +75,19 @@ export class ForgetPasswordPage implements OnInit {
     });
   }
   message = 'test';
-  
-  
- 
 
- 
- 
   verifNum() {
-
-  this.Verificationservice.verificationphone(this.EnterNumber.value['phone'])
-     .subscribe(
+    this.Verificationservice.verificationphone(
+      this.EnterNumber.value['phone']
+    ).subscribe(
       async (res) => {
-         const navigationExtras: NavigationExtras = {
+        const navigationExtras: NavigationExtras = {
           state: {
             num: this.EnterNumber.value['phone'],
           },
         };
         await this.router.navigate(['/codeModal'], navigationExtras);
-     
-
-       },
+      },
       async (err) => {
         const navigationExtras: NavigationExtras = {
           state: {
@@ -98,15 +95,9 @@ export class ForgetPasswordPage implements OnInit {
           },
         };
         await this.router.navigate(['/errorModal'], navigationExtras);
-      
-       }
-     );
-    
-     
-
+      }
+    );
   }
-
-  
 
   //on submit phone
   onSubmit() {
