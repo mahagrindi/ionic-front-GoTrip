@@ -3,7 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, Platform } from '@ionic/angular';
+import {
+  AlertController,
+  LoadingController,
+  NavController,
+  Platform,
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-form-guide',
@@ -11,10 +16,14 @@ import { AlertController, LoadingController, Platform } from '@ionic/angular';
   styleUrls: ['./form-guide.page.scss'],
 })
 export class FormGuidePage implements OnInit {
+  processing: boolean;
+
   guidForm: FormGroup;
+  uploadImage: String;
   constructor(
     private formBuilder: FormBuilder,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public navCtrl: NavController
   ) {}
 
   adresse: String = '';
