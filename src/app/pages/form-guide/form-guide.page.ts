@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+// import { Filesystem, Directory } from '@capacitor/filesystem';
+// import { HttpClient } from '@angular/common/http';
+// import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FormGuideService } from 'src/app/services/form-guide.service';
 import { TokenService } from 'src/app/services/token.service';

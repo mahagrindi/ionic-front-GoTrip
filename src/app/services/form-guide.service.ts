@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
-import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { BehaviorSubject, from, Observable } from 'rxjs';
+import { from } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { IpService } from './ip.service';
-const helper = new JwtHelperService();
 const TOKEN_KEY = 'token-key-guide';
+const MODE_KEY = 'mode-key';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +21,6 @@ export class FormGuideService {
     private http: HttpClient,
     private ipservice:IpService,
     private storage: Storage,
-    private plt: Platform
     ) {     this.storage.create();    }
     conxGet() {
       return this.http
@@ -38,6 +36,7 @@ export class FormGuideService {
           }),
           switchMap((token) => {
             let storageObs = from(this.storage.set(TOKEN_KEY, token));
+            from(this.storage.set(MODE_KEY, true));
             return storageObs;
           })
         );
@@ -52,6 +51,7 @@ export class FormGuideService {
           }),
           switchMap((token) => {
             let storageObs = from(this.storage.set(TOKEN_KEY, token));
+            from(this.storage.set(MODE_KEY, true));
             return storageObs;
           })
         );
