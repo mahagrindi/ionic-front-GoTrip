@@ -7,7 +7,7 @@
 <ion-content class="card-background-page ion-margin-horizontal">
 
   <h3>create your personelle trip </h3>
-  <form  novalidate>
+  <form  [formGroup]="create" (ngSubmit)="onSubmitcreate()" novalidate>
         <div class="form-group">
 
           <ion-grid>
@@ -15,15 +15,22 @@
               <h5>Please enter the location </h5>
             </ion-row>
             <ion-row>
-              <ion-input formControlName="identity"  class="" type="text" required placeholder="Location" required>
+              <ion-input formControlName="Location" [(ngModel)]="Location" class="" type="text"  placeholder="Location" required>
               </ion-input>
+            </ion-row>
+            <ion-row>
+              <div *ngFor="let er of errors">
+                <ng-container *ngIf="create.get('Location').hasError(er.type) && (create.get('Location').touched || create.get('Location').dirty)">
+                    <ion-note color="danger"> {{er.message}} </ion-note>
+                </ng-container>
+            </div>
             </ion-row>
             <ion-row>
               <ion-list>
                 <h5>Select the activite you wanted to be include</h5>
 
-                <ion-item>
-                  <ion-select multiple="true" >
+                <ion-item >
+                  <ion-select  multiple="true" >
                     <ion-select-option *ngFor="let activit of activits">{{activit.name }}</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -31,11 +38,27 @@
 
               </ion-list>
             </ion-row>
+            <ion-row>
+              <h5>Please enter number of places  </h5>
+            </ion-row>
+            <ion-row>
+              <ion-input formControlName="nbrplace" [(ngModel)]="nbrplace"  class="" type="text"  placeholder="Number osf place" required>
+              </ion-input>
+            </ion-row>
+            <ion-row>
+              <div *ngFor="let er of errors">
+                <ng-container *ngIf="create.get('nbrplace').hasError(er.type) && (create.get('nbrplace').touched || create.get('nbrplace').dirty)">
+                    <ion-note color="danger"> {{er.message}} </ion-note>
+                </ng-container>
+            </div>
+            </ion-row>
 
-
+<br />
+<br />
+<br />
           <ion-row>
             <ion-col>
-            <ion-button lass="ion-margin-top" type="submit" expand="block"  (click)="setOpen(true)"  color="warning" >Next</ion-button>
+            <ion-button lass="ion-margin-top" type="submit" expand="block"    color="warning" >Next</ion-button>
             </ion-col>
           </ion-row>
     </ion-grid>
@@ -56,6 +79,7 @@
           </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
+
           <ion-grid>
             <ion-row>
               <h5>schoose the date </h5>
@@ -65,7 +89,7 @@
             </ion-row>
             <ion-row>
               <ion-col>
-              <ion-button lass="ion-margin-top" type="submit" expand="block"  (click)="setOpen2(true)"  color="warning" >Next</ion-button>
+              <ion-button lass="ion-margin-top" type="submit" expand="block"  (click)="sub()"  color="warning" >Next</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>

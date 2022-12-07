@@ -19,11 +19,11 @@ export class EventPage implements OnInit {
   public mydate ;
   identity:String ="";
   nbP: Number = this.count ;
-   date : string ="";
+   date : Date ;
     time :String ="";
     eventid : String ="";
 
-  reservation: {  identity:String , nbP: Number , date : string ,  time :String ,  eventid : String };
+  reservation: {  identity:String , nbP: Number , date : Date ,  eventid : String };
   isSubmitted = false;
  minDate:String ="";
   startDate:String ="";
@@ -149,8 +149,7 @@ export class EventPage implements OnInit {
     this.reservation = {
       identity: this.identity ,
       nbP: this.nbP,
-      date : this.date  ,
-      time : this.time ,
+      date : this.mydate  ,
       eventid : this.eventid ,
     };
 
