@@ -146,6 +146,13 @@ const routes: Routes = [
         (m) => m.ErrorModalPageModule
       ),
   },
+  {
+    path: 'createevent',
+    loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)
+  },
+
+
+
 ];
 @NgModule({
   imports: [

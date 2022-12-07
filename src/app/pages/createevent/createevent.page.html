@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>createevent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page ion-margin-horizontal">
+
+  <h3>create your personelle trip </h3>
+  <form  novalidate>
+        <div class="form-group">
+
+          <ion-grid>
+            <ion-row>
+              <h5>Please enter the location </h5>
+            </ion-row>
+            <ion-row>
+              <ion-input formControlName="identity"  class="" type="text" required placeholder="Location" required>
+              </ion-input>
+            </ion-row>
+            <ion-row>
+              <ion-list>
+                <h5>Select the activite you wanted to be include</h5>
+
+                <ion-item>
+                  <ion-select multiple="true" >
+                    <ion-select-option *ngFor="let activit of activits">{{activit.name }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+
+              </ion-list>
+            </ion-row>
+
+
+          <ion-row>
+            <ion-col>
+            <ion-button lass="ion-margin-top" type="submit" expand="block"  (click)="setOpen(true)"  color="warning" >Next</ion-button>
+            </ion-col>
+          </ion-row>
+    </ion-grid>
+
+    </div>
+
+
+
+</form>
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+      <ion-header>
+          <ion-toolbar>
+              <ion-title>Reservation</ion-title>
+              <ion-buttons slot="end">
+                  <ion-button  (click)="setOpen(false)" >Close</ion-button>
+              </ion-buttons>
+          </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+          <ion-grid>
+            <ion-row>
+              <h5>schoose the date </h5>
+            </ion-row>
+            <ion-row>
+              <ion-datetime [(ngModel)]="mydate" display-format="MMM DD, YYYY" [min]="minDate" [(ngModel)]="startDate" (ionChange)="showdate()"></ion-datetime>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <ion-button lass="ion-margin-top" type="submit" expand="block"  (click)="setOpen2(true)"  color="warning" >Next</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<ion-modal [isOpen]="isModalOpen2">
+  <ng-template>
+      <ion-header>
+          <ion-toolbar>
+              <ion-title>Schoose the guide </ion-title>
+              <ion-buttons slot="end">
+                  <ion-button  (click)="setOpen2(false)" >Close</ion-button>
+              </ion-buttons>
+          </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+          <ion-grid>
+
+            <ion-row>
+
+                <div class="review_card" >
+              <ion-card  *ngFor="let guide of guides" >
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="auto">
+                            <img style="height: 100px; width: 100px; margin-right: 10px" src="../../../assets/images/reviwe/{{guide.img}}" />
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <ion-col>
+                                    <h6 style="margin: 0; margin-bottom: 5px">{{guide.name}}</h6>
+                                </ion-col>
+                            </ion-row>
+
+
+
+                            <ion-row>
+                                <p style="margin: 0; margin-top: 5px">Age : {{guide.age}}</p>
+                            </ion-row>
+                            <ion-row>
+                                <p style="margin: 0">Location :{{guide.locations}}</p>
+                            </ion-row>
+                            <ion-row>
+                              <p style="margin: 0">price :{{guide.price}}</p>
+                          </ion-row>
+                            <ion-row>
+                                <div>
+                                    <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
+                                </div>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
+
+          </div>
+
+            </ion-row>
+            <ion-row>
+              <ion-col>
+              <ion-button lass="ion-margin-top" type="submit" expand="block"  color="warning" >Submit</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-content>
+  </ng-template>
+</ion-modal>
+
+</ion-content>
