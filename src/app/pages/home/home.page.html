@@ -29,10 +29,10 @@
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section">
-            <swiper [config]="{ slidesPerView: 1.5 ,loop: true,freeMode:true }">
+            <swiper [config]="{ slidesPerView: 1.4 , loop: true }">
                 <ng-template swiperSlide *ngFor="let item of testData ">
                     <ion-card>
-                        <img class="card-img" src="../../../assets/images/home/{{item.img}}" />
+                        <img class="card-img" (click)="showDetails()" src="../../../assets/images/home/{{item.img}}" />
 
                         <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)"></div>
 
@@ -42,7 +42,9 @@
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title">{{item.name}}</ion-card-title>
+                                    <ion-card-title color="dark" class="card-title" (click)="showDetails()">
+                                        {{item.name.length >9 ? item.name.substring(0 , 9) +'...' : item.name.substring(0, 9) }}
+                                    </ion-card-title>
                                     <div class="ion-align-items-center note">
                                         {{item.note}}
                                         <ion-icon name="star" color="warning"></ion-icon>
@@ -106,12 +108,14 @@
                     <ion-grid>
                         <ion-row>
                             <ion-col size="auto">
-                                <img height="100" class="image" width="100" src="../../../assets/images/lastChance/{{item.img}}" />
+                                <img height="100" (click)="showDetails()" class="image" width="100" src="../../../assets/images/lastChance/{{item.img}}" />
                             </ion-col>
                             <ion-col>
                                 <ion-row>
                                     <ion-col>
-                                        <div class="wrap-text">{{item.name}}</div>
+                                        <div class="wrap-text" (click)="showDetails()">
+                                            {{item.name}}
+                                        </div>
                                     </ion-col>
                                     <ion-col>
                                         <div class="hert">
@@ -151,7 +155,7 @@
                 </ion-card>
             </div>
             <div class="personlistions ion-text-center">
-                <ion-button class="ion-margin-top" type="submit" color="light" expand="" color="warning">
+                <ion-button class="ion-margin-top" (click)="creatTrip()" type="submit" color="light" expand="" color="warning">
                     Create your trip
                 </ion-button>
                 <!-- <ion-card>

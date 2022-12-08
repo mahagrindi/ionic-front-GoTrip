@@ -150,6 +150,10 @@ export class HomePage implements OnInit {
     this.route.navigate(['/event']);
   }
 
+  creatTrip() {
+    this.route.navigate(['/createevent']);
+  }
+
   //   *********** fonction de recherche *************
   //   ***************************************************
   // ******************************************************
