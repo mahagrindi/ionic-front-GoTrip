@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeServiceService } from '../services/home-service.service';
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -8,7 +9,7 @@ import { HomeServiceService } from '../services/home-service.service';
 })
 export class TabsPage {
   user: any;
-  constructor(private route: Router, private home: HomeServiceService) {
+  constructor(private route: Router, private home: HomeServiceService,private token:TokenService) {
     this.getUser();
   }
 
@@ -36,10 +37,15 @@ export class TabsPage {
     this.route.navigate(['/tabs/form-guide']);
   }
 
-  
-  switchMode(event:any) {
+  isGuide:boolean=this.token.modeData;
+  switchMode(event:any) { 
     if (event.target.checked) {
       console.log('guide');
-    } else console.log('tourist');
+      this.token.updateMode();
+    } else
+    {
+      this.token.updateMode();
+      console.log('tourist');
+    } 
   }
 }
