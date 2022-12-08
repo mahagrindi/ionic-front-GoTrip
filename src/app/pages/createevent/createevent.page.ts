@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController, isPlatform, ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
-import { IntrestsService } from 'src/app/services/intrests.service';
 
 @Component({
   selector: 'app-createevent',
@@ -12,8 +11,8 @@ import { IntrestsService } from 'src/app/services/intrests.service';
 export class CreateeventPage implements OnInit {
   activitselect = [];
 
-  public mydate ;
-  public myValue : boolean = false ;
+  mydate:any ;
+  myValue : boolean = false ;
   minDate:String ="";
   startDate:String ="";
   isModalOpen = false;
@@ -31,7 +30,6 @@ export class CreateeventPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private modalController : ModalController,
-    private intrestsService: IntrestsService,
 
 
   ) {
@@ -102,18 +100,17 @@ export class CreateeventPage implements OnInit {
     {
       id: 1,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw',
       name: 'Prithivi',
       note: 3,
-
-      entry : false  , },
+      entry : false, },
     {
       id: 2,
       age : '26',
-            fev: 'not_checked',
+      fev: 'not_checked',
       price: '35 DT/houre ',
       img: 'profile2.jpg',
       locations: 'saw2',
@@ -124,7 +121,7 @@ export class CreateeventPage implements OnInit {
     {
       id: 3,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw2',
@@ -135,7 +132,7 @@ export class CreateeventPage implements OnInit {
     {
       id: 4,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw2',
@@ -247,7 +244,7 @@ export class CreateeventPage implements OnInit {
   // ------------ pour sech guide
   public results = [...this.guides];
 
-  search(event) {
+  search(event:any) {
     const query = event.target.value.toLowerCase();
     this.results = this.guides.filter(
       (d) => d.name.toLowerCase().indexOf(query) > -1
@@ -290,7 +287,6 @@ submitfinle (){
       date : this.mydate   ,
       guiedIs : this.createTableCategorie() ,
     };
-
     if (this.creation.guiedIs.length < 1 ){
       const alertMessage = 'Please select one guide at lest!';
       const alertHeader = 'Missing Informations!';
@@ -310,8 +306,6 @@ submitfinle (){
       const alertMessage = 'thank you for your resrvation';
         const alertHeader = '';
         this.presentAlert(alertHeader, alertMessage);
-     // this.showModale();
-     // this.setOpen2(true);
     }
 
 
