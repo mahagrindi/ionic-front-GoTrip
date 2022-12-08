@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { IntroGuard } from './guards/intro.guard';
 import { HomeGuard } from './guards/home.guard';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -26,7 +27,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/intro',
     pathMatch: 'full',
   },
   {

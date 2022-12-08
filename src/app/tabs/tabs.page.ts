@@ -36,8 +36,8 @@ export class TabsPage {
     this.route.navigate(['/tabs/form-guide']);
   }
 
-  isGuide = false;
-  switchMode(event) {
+  
+  switchMode(event:any) {
     if (event.target.checked) {
       console.log('guide');
     } else console.log('tourist');

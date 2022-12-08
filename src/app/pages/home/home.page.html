@@ -1,40 +1,4 @@
-<!-- ********* navbar component****** -->
-<!-- <ion-menu contentId="main-content">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Menu </ion-title>
-        </ion-toolbar>
-    </ion-header>
-
-    <ion-content class="ion-padding">
-        <ion-button (click)="switchGuide()" *ngIf="verifGuide()">switch to guide account</ion-button>
-    </ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-    <ion-header>
-        <ion-toolbar class="navb">
-            <ion-row class="ion-align-items-center ion-justify-content-between">
-                <div>
-                    <ion-buttons slot="start">
-                        <ion-menu-button></ion-menu-button>
-                    </ion-buttons>
-                </div>
-
-                <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-                <div class="">
-                    <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg">
-                    </ion-icon>
-                    <ion-icon [routerLink]="['/search']" class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
-                </div>
-            </ion-row>
-        </ion-toolbar>
-    </ion-header>
-</div> -->
-
-<!-- ********* navbar component****** -->
 <br /><br /><br /><br />
-
-<!-- ********* navbar component****** -->
 
 <ion-content class="card-background-page ion-margin-horizontal">
     <div class="ion-margin-horizontal">
@@ -65,7 +29,7 @@
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section">
-            <swiper [config]="{ slidesPerView: 2 , loop: true }">
+            <swiper [config]="{ slidesPerView: 1.5 ,loop: true,freeMode:true }">
                 <ng-template swiperSlide *ngFor="let item of testData ">
                     <ion-card>
                         <img class="card-img" src="../../../assets/images/home/{{item.img}}" />

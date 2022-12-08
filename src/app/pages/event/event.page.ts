@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, isPlatform, ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';

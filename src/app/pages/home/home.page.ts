@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { HomeServiceService } from 'src/app/services/home-service.service';
-import { Route, Router } from '@angular/router';
-import { FunctionsService } from 'src/app/services/functions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -115,17 +114,6 @@ export class HomePage implements OnInit {
     );
   }
 
-  async getUser() {
-    this.home.getUser().subscribe(
-      (res) => {
-        this.user = res;
-        console.log(this.user);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
   verifGuide() {
     if (this.user) {
       if (this.user['guide'] === true) {
@@ -144,7 +132,7 @@ export class HomePage implements OnInit {
     }
     return false;
   }
-  favoris(id) {
+  favoris(id:any) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
       console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
