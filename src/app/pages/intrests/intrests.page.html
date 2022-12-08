@@ -15,15 +15,12 @@
       <ion-row>
         <ion-col size="6" *ngFor="let item of categorie ">
           <div
-            class="checkbox-wrapper-16"
             [ngClass]="{'chekbox-press':item.entry === true}"
+            (click)="interpress(item.id)"
+            class="checkbox-wrapper-16"
           >
             <label class="checkbox-wrapper">
-              <input
-                type="checkbox"
-                class="checkbox-input"
-                (click)="interpress(item._id)"
-              />
+              <input type="checkbox" class="checkbox-input" />
               <span class="checkbox-tile">
                 <span class="checkbox-icon">
                   <img src="../../../assets/icon/categorie/{{item.icon}}" />
@@ -32,6 +29,9 @@
               </span>
             </label>
           </div>
+          <!-- 
+                    <ion-card class="chekbox-press" >
+                    </ion-card> -->
         </ion-col>
       </ion-row>
     </ion-grid>

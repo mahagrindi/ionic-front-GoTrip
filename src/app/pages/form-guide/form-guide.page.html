@@ -10,40 +10,46 @@
 
     <form [formGroup]="guidForm" (ngSubmit)="inscriGuide()" novalidate>
         <div class="form-group">
-            <!-- <ion-label position="" class="ion-margin-top">Nom</ion-label>
-            <ion-input formControlName="nom" [(ngModel)]="nom" type="text" autofocus="true" placeholder="Nom" required></ion-input>
-            <div *ngFor="let er of errors">
-                <ng-container *ngIf="guidForm.get('nom').hasError(er.type) && (guidForm.get('nom').touched || guidForm.get('nom').dirty)">
-                    <ion-note color="danger"> {{er.message}} </ion-note>
-                </ng-container>
-            </div> -->
-
-            <ion-label position="" class="ion-margin-top">Work Area</ion-label>
-            <ion-input formControlName="workArea" [(ngModel)]="workArea" type="text" autofocus="true" placeholder="Mars,Tunis..." required></ion-input>
-            <div *ngFor="let er of errors">
-                <!-- <ng-container
-          *ngIf="guidForm.get('prenom').hasError(er.type) && (guidForm.get('prenom').touched || guidForm.get('prenom').dirty)"
-        >
-          <ion-note color="danger"> {{er.message}} </ion-note>
-        </ng-container> -->
+            <ion-list>
+                Choose state
+                <ion-select [interfaceOptions]="customAlertOptions" [compareWith]="compareWith" placeholder="Select state" (ionChange)="selectState($event)" [multiple]="true">
+                    <ion-select-option *ngFor="let state of states" [value]="state">{{ state.nom }}</ion-select-option>
+                </ion-select>
+            </ion-list>
+            <span *ngFor="let state of selectedState">
+        <ion-chip color="secondary">
+          {{state.nom}} <ion-icon name="close"></ion-icon></ion-chip
+      ></span>
+            <div class="ion-margin-top">
+                <ion-text> Nombre de place : </ion-text>
+                <ion-range color="secondary" dualKnobs="true" [pin]="true" [ticks]="true" [min]="1" [max]="10" [snaps]="true" [value]="{ lower :1 , upper:5  }" (ionKnobMoveEnd)="onIonKnobMoveEnd($event)"></ion-range>
+                <ion-chip color="primary">Min : {{this.moveStart}}</ion-chip>
+                <ion-chip color="primary">Max : {{this.moveEnd}}</ion-chip>
             </div>
+            <div class="ion-margin-top">
+                <ion-list>
+                    Choose Categorie
+                    <ion-select Type="ios" [compareWith]="compareWith" placeholder="Select categorie" (ionChange)="handleChange($event)" [multiple]="true">
+                        <ion-select-option *ngFor="let cat of categorie" [value]="cat">{{ cat.nom }}</ion-select-option>
+                    </ion-select>
+                </ion-list>
+                <span *ngFor="let cat of selectedCatgeorie">
+          <ion-chip color="secondary" (click)="remove(cat.id)">
+            {{cat.nom}} <ion-icon name="close"></ion-icon
+          ></ion-chip>
+        </span>
+            </div>
+            <div class="ion-margin-top">
+                Price
 
-            <ion-item>
-                <ion-badge color="primary">{{this.moveStart}}</ion-badge>
-            </ion-item>
-            <ion-item>
-                <ion-badge color="primary" item-right>{{this.moveEnd}}</ion-badge>
-            </ion-item>
-            <ion-range dualKnobs="true" [pin]="true" [ticks]="true" [min]="1" [max]="10" [snaps]="true" [value]="{ lower :1 , upper:5  }" (ionKnobMoveEnd)="onIonKnobMoveEnd($event)"></ion-range>
-
-            <!-- <ion-range dualKnobs="true" [value]="{ lower: 20, upper: 80 }" [(ngModel)]="time" (ionChange)="setBadge(time)"></ion-range> -->
-            <!-- <ion-label position="" class="ion-margin-top">Adresse</ion-label>
-            <ion-input formControlName="adresse" [(ngModel)]="adresse" type="text" autofocus="true" placeholder="Adresse" required></ion-input>
-            <div *ngFor="let er of errors">
-                <ng-container *ngIf="guidForm.get('adresse').hasError(er.type) && (guidForm.get('adresse').touched || guidForm.get('adresse').dirty)">
-                    <ion-note color="danger"> {{er.message}} </ion-note>
-                </ng-container>
-            </div> -->
+                <ion-label> / houre </ion-label>
+                <ion-input class="ion-margin-bottom" [(ngModel)]="hourPrice" type="number" placeholder="000"></ion-input>
+            </div>
+            <div class="ion-margin-top">
+                Price
+                <ion-label> / day </ion-label>
+                <ion-input [(ngModel)]="dayPrice" type="number" placeholder="000"></ion-input>
+            </div>
         </div>
         <div class="ion-text-center">
             <ion-button class="ion-margin-top" type="submit" color="warning">submit request</ion-button>

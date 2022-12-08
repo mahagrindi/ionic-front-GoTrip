@@ -14,6 +14,7 @@ import { ModalComponent } from './pages/forget-password/modal/modal.component';
 import { CodeModalComponent } from './pages/forget-password/code-modal/code-modal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
+
 export function playerFactory(): any {
   return import('lottie-web');
 }
