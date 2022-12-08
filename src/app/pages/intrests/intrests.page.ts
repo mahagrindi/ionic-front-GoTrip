@@ -47,7 +47,8 @@ export class IntrestsPage implements OnInit {
   interpress(id: any) {
     for (let i = 0; i < this.categorie.length; i++) {
       if (id === this.categorie[i].id) {
-        this.categorie[i].entry = !this.categorie[i].entry;
+        this.categorie[i]['entry'] = !this.categorie[i]['entry'];
+        // console.log(this.categorie[i].entry);
       }
     }
   }
@@ -68,9 +69,8 @@ export class IntrestsPage implements OnInit {
   // }
   createTableCategorie() {
     let TableCategorie = new Array();
-    for (let i = 0; i <= this.categorie.length; i++) {
-      console.log(this.categorie[i].entry);
-
+    for (let i = 0; i < this.categorie.length; i++) {
+      // console.log(this.categorie[i].entry);
       this.categorie[i].entry
         ? TableCategorie.push(this.categorie[i].nom)
         : null;

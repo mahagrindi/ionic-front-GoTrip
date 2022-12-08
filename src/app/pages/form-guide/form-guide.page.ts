@@ -24,12 +24,10 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class FormGuidePage implements OnInit {
   processing: boolean;
-  upperValue: number;
-  lowerValue: number;
-  changedKnob: string;
+
   guidForm: FormGroup;
-  workArea: String = '';
-  hourPrice = 0.0;
+  workArea: String[] = [];
+  hourPrice: any;
   dayPrice = 0.0;
   reservationType = 1;
   galerie: String = '';
@@ -41,7 +39,75 @@ export class FormGuidePage implements OnInit {
   timeMax: any = 100;
   timeMin2: any = 20;
   timeMax2: any = 100;
+  moveStart: RangeValue = 1;
+  moveEnd: RangeValue = 5;
   setdage: any;
+  items = [];
+
+  selectedCatgeorie = [];
+  selectedState = [];
+  states = [
+    {
+      id: 1,
+      nom: 'Tunis',
+    },
+    {
+      id: 2,
+      nom: 'Ben Arous',
+    },
+    {
+      id: 3,
+      nom: 'Sousse',
+    },
+    {
+      id: 4,
+      nom: 'Monastir',
+    },
+    {
+      id: 5,
+      nom: 'Mahdia',
+    },
+    {
+      id: 6,
+      nom: 'Nabeul',
+    },
+    {
+      id: 7,
+      nom: 'Tozeur',
+    },
+    {
+      id: 8,
+      nom: 'Gabes',
+    },
+  ];
+  categorie = [
+    { id: 1, nom: 'Beach', icon: 'beach.svg', entry: false },
+    {
+      id: 2,
+      nom: 'Camping',
+      icon: 'camping.svg',
+      entry: false,
+    },
+
+    {
+      id: 3,
+      nom: 'Forest',
+      icon: 'forest.svg',
+      entry: false,
+    },
+    {
+      id: 4,
+      nom: 'Fishing',
+      icon: 'fishing.svg',
+      entry: false,
+    },
+  ];
+
+  customAlertOptions = {
+    header: 'Choose you Work Area',
+
+    translucent: true,
+  };
   constructor(
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
@@ -49,19 +115,22 @@ export class FormGuidePage implements OnInit {
     private formGuideService: FormGuideService
   ) {}
 
-  errors = [
-    { type: 'required', message: 'Champ Obligatoire !' },
-    { type: 'pattern', message: 'Vérifier le format du champ' },
-  ];
-  lastEmittedValue: any;
-
   setBadge(time: any) {
-    // this.time.lower = Math.min(this.timeMin2, this.timeMax2);
-    // this.time.upper = Math.max(this.timeMin2, this.timeMax2);
-    // this.timeMin2 = time.lower;
-    // this.timeMax2 = time.upper;
     console.log('time=', time);
     console.log(this.time);
+  }
+  // supprimer categorie
+  remove(id: any) {
+    console.log(this.selectedCatgeorie);
+    for (let i = 0; i < this.categorie.length; i++) {
+      if (id === this.categorie[i].id) {
+        const index = this.selectedCatgeorie.indexOf(this.categorie[i].id);
+        if (index !== -1) {
+          this.selectedCatgeorie.splice(index, 1);
+          console.log(this.selectedCatgeorie);
+        }
+      }
+    }
   }
 
   ngOnInit() {
@@ -89,33 +158,47 @@ export class FormGuidePage implements OnInit {
       ],
     });
   }
-  moveStart: RangeValue = 1;
-  moveEnd: RangeValue = 5;
 
   onIonKnobMoveEnd(ev: Event) {
     this.moveStart = (ev as RangeCustomEvent).detail.value['lower'];
     this.moveEnd = (ev as RangeCustomEvent).detail.value['upper'];
     // console.log('end', this.moveEnd);
   }
+  onChange(val: Event) {
+    console.log(val);
+  }
+
+  compareWith(o1, o2) {
+    if (!o1 || !o2) {
+      return o1 === o2;
+    }
+
+    if (Array.isArray(o2)) {
+      return o2.some((o) => o.id === o1.id);
+    }
+
+    return o1.id === o2.id;
+  }
+
+  handleChange(ev) {
+    this.selectedCatgeorie = ev.target.value;
+  }
+
+  selectState(ev) {
+    this.selectedState = ev.target.value;
+  }
   inscriGuide() {
     let guide = {
       idUser: this.tokenService.userData.value.userId,
-      listCategory: ['catg1', 'catg2'],
-      workArea: ['city 1', 'city2', 'city3'],
-      hourPrice: 30,
-      dayPrice: 200,
+      listCategory: this.selectedCatgeorie,
+      workArea: this.selectedState,
+      hourPrice: this.hourPrice,
+      dayPrice: this.dayPrice,
       reservationType: [this.moveStart, this.moveEnd],
-      ListOfbestplace: ['place1', 'place2', 'place3', 'place4'],
-      galerie: ['img1', 'img2', 'img3'],
-      verifiedStatus: [
-        'num cin',
-        'papier 2',
-        {
-          matricule: 'mat',
-          adresse: 'adresse',
-        },
-      ],
-      profilePicture: 'img',
+      ListOfbestplace: ['Marina Sousse', 'place2', 'place3', 'place4'],
+      galerie: ['img1.png', 'img2.png', 'img3.png'],
+      verifiedStatus: ['image_cin.jpg', 'b3.pdf'],
+      profilePicture: 'pdp.png',
     };
     this.formGuideService.inscriPost(guide).subscribe(
       (res) => {

@@ -3,6 +3,7 @@
     margin-bottom: 1.5rem;
 }
 
+ion-select,
 ion-search,
 ion-input {
     box-sizing: border-box;
@@ -32,12 +33,12 @@ ion-label {
     /* Headline/100 */
     font-style: normal;
     font-weight: 200;
-    font-size: 8px;
+    font-size: 12px;
     line-height: 25px;
     /* identical to box height, or 208% */
     letter-spacing: 0.01em;
     /* Primary/Black/300 */
-    color: #bababa;
+    color: #5b5b5b;
     /* Inside auto layout */
     flex: none;
     order: 0;
