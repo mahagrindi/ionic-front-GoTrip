@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, isPlatform, ModalController } from '@ionic/angular';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
+import { IntrestsService } from 'src/app/services/intrests.service';
 
 @Component({
   selector: 'app-createevent',
@@ -9,16 +10,19 @@ import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
   styleUrls: ['./createevent.page.scss'],
 })
 export class CreateeventPage implements OnInit {
+  activitselect = [];
 
   public mydate ;
+  public myValue : boolean = false ;
   minDate:String ="";
   startDate:String ="";
   isModalOpen = false;
   isModalOpen2 = false;
   Location:String ="";
   nbrplace:Number ;
+  checkpublic : boolean ;
 
-  creation: {  Location:String , nbrplace: Number , date : Date ,    eventid : String };
+  creation: {  Location:String , nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
   isSubmitted = false;
 
 
@@ -27,6 +31,8 @@ export class CreateeventPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private modalController : ModalController,
+    private intrestsService: IntrestsService,
+
 
   ) {
 
@@ -67,7 +73,11 @@ export class CreateeventPage implements OnInit {
   }
 
 
+  notify() {
+    this.myValue = !this.myValue ;
+    console.log(this.myValue);
 
+  }
 
   showdate(){
     console.log(this.mydate);
@@ -98,9 +108,10 @@ export class CreateeventPage implements OnInit {
       locations: 'saw',
       name: 'Prithivi',
       note: 3,
-    },
+
+      entry : false  , },
     {
-      id: 3,
+      id: 2,
       age : '26',
             fev: 'not_checked',
       price: '35 DT/houre ',
@@ -108,6 +119,18 @@ export class CreateeventPage implements OnInit {
       locations: 'saw2',
       name: 'malliga',
       note: 4.8,
+      entry : false,
+    },
+    {
+      id: 3,
+      age : '26',
+            fev: 'checked',
+      price: '35 DT/houre ',
+      img: 'profile1.jpg',
+      locations: 'saw2',
+      name: 'Gowdaman',
+      note: 4.8,
+      entry : false,
     },
     {
       id: 4,
@@ -118,9 +141,11 @@ export class CreateeventPage implements OnInit {
       locations: 'saw2',
       name: 'Gowdaman',
       note: 4.8,
+      entry : false,
     },
   ];
 
+  // pour l'overtuer et fremteur de model
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
@@ -128,7 +153,7 @@ export class CreateeventPage implements OnInit {
   setOpen2(isOpen: boolean) {
     this.isModalOpen2 = isOpen;
   }
-
+// alerte de errur
   async presentAlert(alertHeader, alertMessage) {
     const alert = await this.alertController.create({
       header: alertHeader,
@@ -140,13 +165,26 @@ export class CreateeventPage implements OnInit {
 
     await alert.present();
   }
+
+  // to get value of mulite input
+
+  handleChange(ev) {
+   console.log(ev.target.value);
+   this.activitselect =   ev.target.value;
+   console.log(this.activitselect);
+
+  }
+
+  // submite forme 1  de location activite nb presome ..
   onSubmitcreate() {
     this.creation = {
 
       Location: this.Location ,
       nbrplace: this.nbrplace,
+      activits : this.activitselect ,
       date : null  ,
-      eventid : "" ,
+      checkpublic : this.myValue,
+      guiedIs : [] ,
     };
 
     this.isSubmitted = true;
@@ -163,21 +201,35 @@ export class CreateeventPage implements OnInit {
     }
   }
 
-
+// submite frome 2 de date
   sub (){
       this.creation = {
 
         Location: this.Location ,
         nbrplace: this.nbrplace,
+        checkpublic : this.myValue ,
+      activits : this.activitselect ,
+
         date : this.mydate   ,
-        eventid : "" ,
+        guiedIs : [] ,
       };
 
-      console.log(this.creation);
+      if (!this.mydate){
+        const alertMessage = 'Please select the date and time!';
+        const alertHeader = 'Missing Informations!';
+        this.presentAlert(alertHeader, alertMessage);
+        // console.log('Please provide all the required values!');
+        return false;
+      }else{
+        console.log(this.creation);
         this.setOpen2(true);
+      }
+
 
   }
 
+
+  // ---------- pour alerte de  validtions de creation
   async showModale(){
     const modal = await this.modalController.create({
       component : AlertModalComponent ,
@@ -189,6 +241,84 @@ export class CreateeventPage implements OnInit {
     await modal.present();
 
   }
+
+
+
+  // ------------ pour sech guide
+  public results = [...this.guides];
+
+  search(event) {
+    const query = event.target.value.toLowerCase();
+    this.results = this.guides.filter(
+      (d) => d.name.toLowerCase().indexOf(query) > -1
+    );
+    console.log(this.results);
+  }
+
+
+  interpress(id) {
+    for (let i = 0; i <= this.guides.length - 1; i++) {
+
+      if (id === this.guides[i].id) {
+        this.guides[i].entry = !this.guides[i].entry ;
+      }
+
+
+  }
+}
+
+  createTableCategorie() {
+    let TableCategorie = new Array();
+    for (let i = 0; i <= this.guides.length - 1; i++) {
+
+
+        this.guides[i].entry  ? TableCategorie.push(this.guides[i].id) : null;
+      }
+
+    console.log(TableCategorie);
+    return TableCategorie;
+  }
+
+submitfinle (){
+    this.creation = {
+
+      Location: this.Location ,
+      nbrplace: this.nbrplace,
+      checkpublic : this.myValue ,
+       activits : this.activitselect ,
+
+      date : this.mydate   ,
+      guiedIs : this.createTableCategorie() ,
+    };
+
+    if (this.creation.guiedIs.length < 1 ){
+      const alertMessage = 'Please select one guide at lest!';
+      const alertHeader = 'Missing Informations!';
+      this.presentAlert(alertHeader, alertMessage);
+      // console.log('Please provide all the required values!');
+      return false;
+    }else
+      if (this.creation.guiedIs.length > 3 ){
+        const alertMessage = 'Please select Max 3 guides !';
+        const alertHeader = '';
+        this.presentAlert(alertHeader, alertMessage);
+        // console.log('Please provide all the required values!');
+        return false;
+
+    }else{
+      console.log(this.creation);
+      const alertMessage = 'thank you for your resrvation';
+        const alertHeader = '';
+        this.presentAlert(alertHeader, alertMessage);
+     // this.showModale();
+     // this.setOpen2(true);
+    }
+
+
+}
+
+
+
 }
 
 

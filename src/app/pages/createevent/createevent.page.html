@@ -1,10 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>createevent</ion-title>
+  <ion-toolbar class="navb">
+      <ion-row class="ion-align-items-center ion-justify-content-between">
+          <div>
+              <ion-buttons slot="start">
+                  <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+          </div>
+          <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+          <div class="">
+              <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg"></ion-icon>
+              <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
+          </div>
+      </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="card-background-page ion-margin-horizontal">
+  <div  class="ion-margin-horizontal">
+
 
   <h3>create your personelle trip </h3>
   <form  [formGroup]="create" (ngSubmit)="onSubmitcreate()" novalidate>
@@ -30,7 +43,7 @@
                 <h5>Select the activite you wanted to be include</h5>
 
                 <ion-item >
-                  <ion-select  multiple="true" >
+                  <ion-select   (ionChange)="handleChange($event)"  placeholder="Select Caste" multiple="true" >
                     <ion-select-option *ngFor="let activit of activits">{{activit.name }}</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -52,11 +65,13 @@
                 </ng-container>
             </div>
             </ion-row>
-<br />
 <ion-row class="chek">
 
               <h5>Would you like another members to join you ?</h5>
-              <ion-toggle color="warning" [checked]="false" [enableOnOffLabels]="true"></ion-toggle>
+              <ion-toggle color="warning"       (ionChange)="notify()"
+              [enableOnOffLabels]="true">
+
+                      </ion-toggle>
 
             </ion-row>
 
@@ -118,54 +133,123 @@
       <ion-content class="ion-padding">
           <ion-grid>
 
-            <ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-input [debounce]="500" (ionChange)="search($event)" placeholder="ex: Tunis, Marsa, ..."></ion-input>
 
-                <div class="review_card" >
-              <ion-card  *ngFor="let guide of guides" >
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="auto">
-                            <img style="height: 100px; width: 100px; margin-right: 10px" src="../../../assets/images/reviwe/{{guide.img}}" />
-                        </ion-col>
-                        <ion-col>
-                            <ion-row>
-                                <ion-col>
-                                    <h6 style="margin: 0; margin-bottom: 5px">{{guide.name}}</h6>
-                                </ion-col>
-                            </ion-row>
+              <!-- <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
+                  <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
+              </ion-button> -->
+          </ion-row>
 
 
 
-                            <ion-row>
-                                <p style="margin: 0; margin-top: 5px">Age : {{guide.age}}</p>
+
+          <ion-list>
+
+
+
+
+
+
+                <ion-card *ngFor="let result of results" class="chekbox-press" [ngClass]="{'chekbox-press':result.entry === true}" (click)="interpress(result.id)">
+                  <div class="review_card" >
+
+                    <ion-grid>
+                      <div class="checkbox-wrapper-12">
+                      <ion-row>
+                        <div class="cbx" style="margin-top: 10px;">
+                          <input id="cbx-12" type="checkbox" [(ngModel)]="result.entry" />
+                          <label for="cbx-12"></label>
+                          <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+                      </div>
+                      <!-- Gooey-->
+
+
+                      </ion-row>
+                      <ion-row>
+                          <ion-col size="auto">
+                              <img style="height: 100px; width: 100px; margin-right: 10px" src="../../../assets/images/reviwe/{{result.img}}" />
+                          </ion-col>
+                          <ion-col>
+                              <ion-row>
+                                  <ion-col>
+                                      <h6 style="margin: 0; margin-bottom: 5px">{{result.name}}</h6>
+                                  </ion-col>
+                              </ion-row>
+
+
+
+                              <ion-row>
+                                  <p style="margin: 0; margin-top: 5px">Age : {{result.age}}</p>
+                              </ion-row>
+                              <ion-row>
+                                  <p style="margin: 0">Location :{{result.locations}}</p>
+                              </ion-row>
+                              <ion-row>
+                                <p style="margin: 0">price :{{result.price}}</p>
                             </ion-row>
-                            <ion-row>
-                                <p style="margin: 0">Location :{{guide.locations}}</p>
-                            </ion-row>
-                            <ion-row>
-                              <p style="margin: 0">price :{{guide.price}}</p>
-                          </ion-row>
-                            <ion-row>
-                                <div>
-                                    <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
-                                </div>
-                            </ion-row>
-                        </ion-col>
+                              <ion-row>
+                                  <div>
+                                      <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
+                                  </div>
+                              </ion-row>
+                          </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-grid>
+                  </div>
+
+                </ion-card>
+
+
+
+
+
+
+
+
+
+                <div *ngIf="(results | json) == '[]'">
+                    <ion-row class="ion-justify-content-center">
+                        <img style="width: 60%" alt="404 not found" src="../../../assets/images/intro/Bad-news.png" />
                     </ion-row>
-                </ion-grid>
-            </ion-card>
+                    <ion-row class="ion-justify-content-center">
+                        <h3 color="primary">We are Sorry 😔</h3>
+                    </ion-row>
+                    <ion-row class="ion-justify-content-center">
+                        <ion-text class="ion-text-center">We didn't finde your guied.
+                        </ion-text>
+                    </ion-row>
 
-          </div>
+                </div>
 
-            </ion-row>
-            <ion-row>
-              <ion-col>
+            <!--
+                <ion-label>{{ result }}</ion-label> -->
+        </ion-list>
+
+
+
+
+
+
+
+
+              <form  [formGroup]="create" (ngSubmit)="submitfinle()" novalidate>
+                <ion-row>
+                    <ion-col>
               <ion-button lass="ion-margin-top" type="submit" expand="block"  color="warning" >Submit</ion-button>
-              </ion-col>
-            </ion-row>
+                    </ion-col>
+                    </ion-row>
+              </form>
+
+
           </ion-grid>
       </ion-content>
   </ng-template>
 </ion-modal>
+
+</div>
 
 </ion-content>
