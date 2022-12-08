@@ -19,10 +19,11 @@ export class CreateeventPage implements OnInit {
   isModalOpen = false;
   isModalOpen2 = false;
   Location:String ="";
+  Name:String ="";
   nbrplace:Number ;
   checkpublic : boolean ;
 
-  creation: {  Location:String , nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
+  creation: {  Location:String , Name : String, nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
   isSubmitted = false;
 
 
@@ -59,6 +60,12 @@ export class CreateeventPage implements OnInit {
         ],
       ],
       Location : [
+        '',
+        [
+          Validators.required,
+        ],
+      ],
+      Name : [
         '',
         [
           Validators.required,
@@ -180,6 +187,7 @@ export class CreateeventPage implements OnInit {
     this.creation = {
 
       Location: this.Location ,
+      Name : this.Name,
       nbrplace: this.nbrplace,
       activits : this.activitselect ,
       date : null  ,
@@ -206,6 +214,8 @@ export class CreateeventPage implements OnInit {
       this.creation = {
 
         Location: this.Location ,
+      Name : this.Name,
+
         nbrplace: this.nbrplace,
         checkpublic : this.myValue ,
       activits : this.activitselect ,
@@ -283,6 +293,8 @@ submitfinle (){
     this.creation = {
 
       Location: this.Location ,
+      Name : this.Name,
+
       nbrplace: this.nbrplace,
       checkpublic : this.myValue ,
        activits : this.activitselect ,

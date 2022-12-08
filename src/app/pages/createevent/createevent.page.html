@@ -38,6 +38,25 @@
                 </ng-container>
             </div>
             </ion-row>
+
+
+
+            <ion-row>
+              <h5>Please enter the Name of trip </h5>
+            </ion-row>
+            <ion-row>
+              <ion-input formControlName="Name" [(ngModel)]="Name" class="" type="text"  placeholder="Name" required>
+              </ion-input>
+            </ion-row>
+            <ion-row>
+              <div *ngFor="let er of errors">
+                <ng-container *ngIf="create.get('Name').hasError(er.type) && (create.get('Name').touched || create.get('Name').dirty)">
+                    <ion-note color="danger"> {{er.message}} </ion-note>
+                </ng-container>
+            </div>
+            </ion-row>
+
+
             <ion-row>
               <ion-list>
                 <h5>Select the activite you wanted to be include</h5>
