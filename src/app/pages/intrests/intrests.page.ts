@@ -23,8 +23,7 @@ export class IntrestsPage implements OnInit {
    }, err => {
      console.log(err);
 
-   })
-  }
+   })}
  async interpress(id: Number) {
    
     

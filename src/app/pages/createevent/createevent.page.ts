@@ -248,9 +248,6 @@ export class CreateeventPage implements OnInit {
     await modal.present();
 
   }
-
-
-
   // ------------ pour sech guide
   public results = [...this.guides];
 
