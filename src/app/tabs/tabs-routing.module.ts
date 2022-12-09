@@ -37,6 +37,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'createevent',
+        loadChildren: () =>
+          import('../pages/createevent/createevent.module').then(
+            (m) => m.CreateeventPageModule
+          ),
+      },
+
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',
