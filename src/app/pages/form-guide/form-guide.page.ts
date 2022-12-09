@@ -27,12 +27,12 @@ export class FormGuidePage implements OnInit {
 
   guidForm: FormGroup;
   workArea: String[] = [];
-  hourPrice: any;
-  dayPrice = 0.0;
-  reservationType = 1;
+  hPrice: any;
+  dPrice: any;
+  reservationType: Number[];
   galerie: String = '';
   isSubmitted = false;
-  profilePicture: any;
+  profilePicture: String;
   uploadImage: String;
   time: { upper: any; lower: any };
   timeMin: any = 20;
@@ -135,33 +135,15 @@ export class FormGuidePage implements OnInit {
 
   ngOnInit() {
     this.guidForm = this.formBuilder.group({
-      adresse: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
-      nom: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
-      prenom: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
+      hPrice: ['', [Validators.required]],
+      dPrice: ['', [Validators.required]],
     });
   }
 
   onIonKnobMoveEnd(ev: Event) {
     this.moveStart = (ev as RangeCustomEvent).detail.value['lower'];
     this.moveEnd = (ev as RangeCustomEvent).detail.value['upper'];
+
     // console.log('end', this.moveEnd);
   }
   onChange(val: Event) {
@@ -188,12 +170,14 @@ export class FormGuidePage implements OnInit {
     this.selectedState = ev.target.value;
   }
   inscriGuide() {
+    console.log(this.dPrice);
+    console.log(this.hPrice);
     let guide = {
       idUser: this.tokenService.userData.value.userId,
       listCategory: this.selectedCatgeorie,
       workArea: this.selectedState,
-      hourPrice: this.hourPrice,
-      dayPrice: this.dayPrice,
+      hourPrice: this.hPrice,
+      dayPrice: this.dPrice,
       reservationType: [this.moveStart, this.moveEnd],
       ListOfbestplace: ['Marina Sousse', 'place2', 'place3', 'place4'],
       galerie: ['img1.png', 'img2.png', 'img3.png'],

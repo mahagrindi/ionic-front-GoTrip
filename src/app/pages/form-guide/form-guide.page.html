@@ -43,12 +43,12 @@
                 Price
 
                 <ion-label> / houre </ion-label>
-                <ion-input class="ion-margin-bottom" [(ngModel)]="hourPrice" type="number" placeholder="000"></ion-input>
+                <ion-input formControlName="hPrice" class="ion-margin-bottom" [(ngModel)]="hPrice" type="number" placeholder=""></ion-input>
             </div>
             <div class="ion-margin-top">
                 Price
                 <ion-label> / day </ion-label>
-                <ion-input [(ngModel)]="dayPrice" type="number" placeholder="000"></ion-input>
+                <ion-input formControlName="dPrice" [(ngModel)]="dPrice" type="number" placeholder=""></ion-input>
             </div>
         </div>
         <div class="ion-text-center">
@@ -56,4 +56,5 @@
             <ion-button class="ion-margin-top" [routerLink]="['/tabs']" type="cancel" color="light">cancel</ion-button>
         </div>
     </form>
+    <br />
 </ion-content>
