@@ -1,54 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { IntrestsService } from 'src/app/services/intrests.service';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
-
+import { CategorieService } from 'src/app/services/categorie.service';
 @Component({
   selector: 'app-intrests',
   templateUrl: './intrests.page.html',
   styleUrls: ['./intrests.page.scss'],
 })
 export class IntrestsPage implements OnInit {
-  entry: any;
-  entry1: any;
-  entry2: any;
-  entry3: any;
-  entry4: any;
-  entry5: any;
-  categorie = [
-    { id: 1, nom: 'Beach', icon: 'beach.svg', entry: false },
-    {
-      id: 2,
-      nom: 'Camping',
-      icon: 'camping.svg',
-      entry: false,
-    },
-
-    {
-      id: 3,
-      nom: 'Forest',
-      icon: 'forest.svg',
-      entry: false,
-    },
-    {
-      id: 4,
-      nom: 'Fishing',
-      icon: 'fishing.svg',
-      entry: false,
-    },
-  ];
+  categorie: any;
 
   constructor(
     private intrestsService: IntrestsService,
-    private route: Router
+    private route: Router,
+    private categorieService: CategorieService
   ) {}
 
-  ngOnInit() {}
-  interpress(id: any) {
+  ngOnInit() {
+    this.categorieService.getAllGategorie().subscribe(
+      async (res) => {
+        console.log(res);
+        this.categorie = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  async interpress(id: Number) {
     for (let i = 0; i < this.categorie.length; i++) {
-      if (id === this.categorie[i].id) {
-        this.categorie[i]['entry'] = !this.categorie[i]['entry'];
-        // console.log(this.categorie[i].entry);
+      if (id === this.categorie[i]._id) {
+        this.categorie[i].entry = !this.categorie[i].entry;
       }
     }
   }
@@ -70,9 +52,11 @@ export class IntrestsPage implements OnInit {
   createTableCategorie() {
     let TableCategorie = new Array();
     for (let i = 0; i < this.categorie.length; i++) {
-      // console.log(this.categorie[i].entry);
-      this.categorie[i].entry
-        ? TableCategorie.push(this.categorie[i].nom)
+      console.log('categorie : : ', this.categorie[i]['entry']);
+      console.log('categorie : : ', this.categorie.length);
+
+      this.categorie[i]['entry']
+        ? TableCategorie.push(this.categorie[i]._id)
         : null;
     }
     console.log(TableCategorie);

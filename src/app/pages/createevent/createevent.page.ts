@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController, isPlatform, ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
-import { IntrestsService } from 'src/app/services/intrests.service';
 
 @Component({
   selector: 'app-createevent',
@@ -12,17 +11,18 @@ import { IntrestsService } from 'src/app/services/intrests.service';
 export class CreateeventPage implements OnInit {
   activitselect = [];
 
-  public mydate ;
-  public myValue : boolean = false ;
+  mydate:any ;
+  myValue : boolean = false ;
   minDate:String ="";
   startDate:String ="";
   isModalOpen = false;
   isModalOpen2 = false;
   Location:String ="";
+  Name:String ="";
   nbrplace:Number ;
   checkpublic : boolean ;
 
-  creation: {  Location:String , nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
+  creation: {  Location:String , Name : String, nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
   isSubmitted = false;
 
 
@@ -31,7 +31,6 @@ export class CreateeventPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private modalController : ModalController,
-    private intrestsService: IntrestsService,
 
 
   ) {
@@ -59,6 +58,12 @@ export class CreateeventPage implements OnInit {
         ],
       ],
       Location : [
+        '',
+        [
+          Validators.required,
+        ],
+      ],
+      Name : [
         '',
         [
           Validators.required,
@@ -102,18 +107,17 @@ export class CreateeventPage implements OnInit {
     {
       id: 1,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw',
       name: 'Prithivi',
       note: 3,
-
-      entry : false  , },
+      entry : false, },
     {
       id: 2,
       age : '26',
-            fev: 'not_checked',
+      fev: 'not_checked',
       price: '35 DT/houre ',
       img: 'profile2.jpg',
       locations: 'saw2',
@@ -124,7 +128,7 @@ export class CreateeventPage implements OnInit {
     {
       id: 3,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw2',
@@ -135,7 +139,7 @@ export class CreateeventPage implements OnInit {
     {
       id: 4,
       age : '26',
-            fev: 'checked',
+      fev: 'checked',
       price: '35 DT/houre ',
       img: 'profile1.jpg',
       locations: 'saw2',
@@ -180,6 +184,7 @@ export class CreateeventPage implements OnInit {
     this.creation = {
 
       Location: this.Location ,
+      Name : this.Name,
       nbrplace: this.nbrplace,
       activits : this.activitselect ,
       date : null  ,
@@ -206,6 +211,8 @@ export class CreateeventPage implements OnInit {
       this.creation = {
 
         Location: this.Location ,
+      Name : this.Name,
+
         nbrplace: this.nbrplace,
         checkpublic : this.myValue ,
       activits : this.activitselect ,
@@ -247,7 +254,7 @@ export class CreateeventPage implements OnInit {
   // ------------ pour sech guide
   public results = [...this.guides];
 
-  search(event) {
+  search(event:any) {
     const query = event.target.value.toLowerCase();
     this.results = this.guides.filter(
       (d) => d.name.toLowerCase().indexOf(query) > -1
@@ -283,6 +290,8 @@ submitfinle (){
     this.creation = {
 
       Location: this.Location ,
+      Name : this.Name,
+
       nbrplace: this.nbrplace,
       checkpublic : this.myValue ,
        activits : this.activitselect ,
@@ -290,7 +299,6 @@ submitfinle (){
       date : this.mydate   ,
       guiedIs : this.createTableCategorie() ,
     };
-
     if (this.creation.guiedIs.length < 1 ){
       const alertMessage = 'Please select one guide at lest!';
       const alertHeader = 'Missing Informations!';
@@ -310,8 +318,6 @@ submitfinle (){
       const alertMessage = 'thank you for your resrvation';
         const alertHeader = '';
         this.presentAlert(alertHeader, alertMessage);
-     // this.showModale();
-     // this.setOpen2(true);
     }
 
 

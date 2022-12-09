@@ -112,7 +112,8 @@ export class FormGuidePage implements OnInit {
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
     private alertController: AlertController,
-    private formGuideService: FormGuideService
+    private formGuideService: FormGuideService,
+    private route: Router
   ) {}
 
   setBadge(time: any) {
@@ -187,6 +188,7 @@ export class FormGuidePage implements OnInit {
     this.formGuideService.inscriPost(guide).subscribe(
       (res) => {
         console.log(res);
+        this.route.navigate(['/tabs']);
         this.formGuideService.modifyStatusUser().subscribe(
           (res) => console.log(res),
           (err) => console.log(err)
