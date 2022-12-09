@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RangeCustomEvent } from '@ionic/angular';
 import { RangeValue } from '@ionic/core';
-import { AlertController, RangeChangeEventDetail } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 // import { Filesystem, Directory } from '@capacitor/filesystem';
 // import { HttpClient } from '@angular/common/http';
 // import { Router } from '@angular/router';
@@ -27,12 +27,12 @@ export class FormGuidePage implements OnInit {
 
   guidForm: FormGroup;
   workArea: String[] = [];
-  hourPrice: any;
-  dayPrice = 0.0;
-  reservationType = 1;
+  hPrice: any;
+  dPrice: any;
+  reservationType: Number[];
   galerie: String = '';
   isSubmitted = false;
-  profilePicture: any;
+  profilePicture: String;
   uploadImage: String;
   time: { upper: any; lower: any };
   timeMin: any = 20;
@@ -112,7 +112,8 @@ export class FormGuidePage implements OnInit {
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
     private alertController: AlertController,
-    private formGuideService: FormGuideService
+    private formGuideService: FormGuideService,
+    private route: Router
   ) {}
 
   setBadge(time: any) {
@@ -135,33 +136,15 @@ export class FormGuidePage implements OnInit {
 
   ngOnInit() {
     this.guidForm = this.formBuilder.group({
-      adresse: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
-      nom: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
-      prenom: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern('^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$'),
-        ],
-      ],
+      hPrice: ['', [Validators.required]],
+      dPrice: ['', [Validators.required]],
     });
   }
 
   onIonKnobMoveEnd(ev: Event) {
     this.moveStart = (ev as RangeCustomEvent).detail.value['lower'];
     this.moveEnd = (ev as RangeCustomEvent).detail.value['upper'];
+
     // console.log('end', this.moveEnd);
   }
   onChange(val: Event) {
@@ -188,12 +171,14 @@ export class FormGuidePage implements OnInit {
     this.selectedState = ev.target.value;
   }
   inscriGuide() {
+    console.log(this.dPrice);
+    console.log(this.hPrice);
     let guide = {
       idUser: this.tokenService.userData.value.userId,
       listCategory: this.selectedCatgeorie,
       workArea: this.selectedState,
-      hourPrice: this.hourPrice,
-      dayPrice: this.dayPrice,
+      hourPrice: this.hPrice,
+      dayPrice: this.dPrice,
       reservationType: [this.moveStart, this.moveEnd],
       ListOfbestplace: ['Marina Sousse', 'place2', 'place3', 'place4'],
       galerie: ['img1.png', 'img2.png', 'img3.png'],
@@ -203,6 +188,7 @@ export class FormGuidePage implements OnInit {
     this.formGuideService.inscriPost(guide).subscribe(
       (res) => {
         console.log(res);
+        this.route.navigate(['/tabs']);
         this.formGuideService.modifyStatusUser().subscribe(
           (res) => console.log(res),
           (err) => console.log(err)

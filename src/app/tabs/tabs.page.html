@@ -15,9 +15,14 @@
             <input (change)="switchMode($event)" [(ngModel)]="isGuide" [checked]="true" class="tgl tgl-ios" id="toggle-34" type="checkbox" />
             <label class="tgl-btn" for="toggle-34"></label>
         </div>
-        <ion-menu-toggle>
-            <ion-button *ngIf="verifGuide()" (click)="switchGuide()">switch to guide account</ion-button>
-        </ion-menu-toggle>
+        <ion-footer *ngIf="verifGuide()" class="ion-text-center ion-no-border">
+            <br /><br /><br />
+            <ion-toolbar>
+                <ion-menu-toggle class="ion-margin-horizontal">
+                    <ion-button (click)="switchGuide()">switch to guide account</ion-button>
+                </ion-menu-toggle>
+            </ion-toolbar>
+        </ion-footer>
     </ion-content>
 </ion-menu>
 <ion-header>
