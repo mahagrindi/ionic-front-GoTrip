@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
+import { CreateEventService } from 'src/app/services/create-event.service';
+import { TokenService } from 'src/app/services/token.service';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
 
 @Component({
@@ -22,7 +24,7 @@ export class CreateeventPage implements OnInit {
   nbrplace:Number ;
   checkpublic : boolean ;
 
-  creation: {  Location:String , Name : String, nbrplace: Number , activits : string[] , date : Date ,  checkpublic : boolean,  guiedIs : string[] };
+  creation: any;
   isSubmitted = false;
 
 
@@ -31,6 +33,8 @@ export class CreateeventPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private modalController : ModalController,
+    private createEventService: CreateEventService,
+    private tokenService:TokenService,
 
 
   ) {
@@ -286,16 +290,24 @@ export class CreateeventPage implements OnInit {
 submitfinle (){
     this.creation = {
 
-      Location: this.Location ,
-      Name : this.Name,
-
-      nbrplace: this.nbrplace,
-      checkpublic : this.myValue ,
-       activits : this.activitselect ,
-
-      date : this.mydate   ,
-      guiedIs : this.createTableCategorie() ,
+     
+      name : this.Name,
+      dateCircuit : this.mydate   ,
+      localization: this.Location ,
+      guideIdProposed : this.createTableCategorie() ,
+      totalplaceNumber: this.nbrplace,
+      imgGroup:["img1","img2"],
+      category : this.activitselect ,
+      typeCircuit : this.myValue ,
+      idUser:this.tokenService.userData.value.userId,    
     };
+    this.createEventService.postCircuit( this.creation).subscribe(res=>{
+      console.log(res);
+      
+    },err=>{
+      console.log(err);
+      
+    });
     if (this.creation.guiedIs.length < 1 ){
       const alertMessage = 'Please select one guide at lest!';
       const alertHeader = 'Missing Informations!';
