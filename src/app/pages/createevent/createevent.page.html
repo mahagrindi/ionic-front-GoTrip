@@ -79,17 +79,15 @@
             <ion-list>
               <h5>Select the activite you wanted to be include</h5>
 
-              <ion-item>
-                <ion-select
-                  (ionChange)="handleChange($event)"
-                  placeholder="Select Caste"
-                  multiple="true"
+              <ion-select
+                (ionChange)="handleChange($event)"
+                placeholder="Select Caste"
+                multiple="true"
+              >
+                <ion-select-option *ngFor="let activit of activits"
+                  >{{activit.name }}</ion-select-option
                 >
-                  <ion-select-option *ngFor="let activit of activits"
-                    >{{activit.name }}</ion-select-option
-                  >
-                </ion-select>
-              </ion-item>
+              </ion-select>
             </ion-list>
           </ion-row>
           <ion-row>
@@ -189,7 +187,7 @@
           <ion-toolbar>
             <ion-title>Schoose the guide </ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="setOpen2(false)">Close</ion-button>
+              <ion-button (click)="setOpen2()">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
