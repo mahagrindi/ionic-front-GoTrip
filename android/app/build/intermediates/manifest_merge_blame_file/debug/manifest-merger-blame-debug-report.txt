@@ -1,0 +1,149 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.ionic.starter"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+8-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:14:5-67
+11-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:14:22-64
+12    <uses-permission android:name="android.permission.VIBRATE" />
+12-->[:capacitor-haptics] C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\node_modules\@capacitor\haptics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-66
+12-->[:capacitor-haptics] C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\node_modules\@capacitor\haptics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-63
+13    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+13-->[:codetrix-studio-capacitor-google-auth] C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\node_modules\@codetrix-studio\capacitor-google-auth\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-74
+13-->[:codetrix-studio-capacitor-google-auth] C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\node_modules\@codetrix-studio\capacitor-google-auth\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-71
+14
+15    <application
+15-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:5-13:19
+16        android:allowBackup="true"
+16-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:18-44
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.8.0] C:\Users\yosra\.gradle\caches\transforms-3\fe0dba67bfac75aa58e7b93d33808165\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+18        android:debuggable="true"
+19        android:icon="@mipmap/ic_launcher"
+19-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:45-79
+20        android:label="@string/app_name"
+20-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:80-112
+21        android:roundIcon="@mipmap/ic_launcher_round"
+21-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:113-158
+22        android:supportsRtl="true"
+22-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:159-185
+23        android:theme="@style/AppTheme"
+23-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:186-217
+24        android:usesCleartextTraffic="true" >
+24-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:3:218-253
+25        <activity
+25-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:9-9:20
+26            android:name="io.ionic.starter.MainActivity"
+26-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:236-280
+27            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+27-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:19-135
+28            android:exported="true"
+28-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:136-159
+29            android:label="@string/title_activity_main"
+29-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:160-203
+30            android:launchMode="singleTask"
+30-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:204-235
+31            android:theme="@style/AppTheme.NoActionBarLaunch" >
+31-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:4:281-330
+32            <intent-filter>
+32-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:5:13-8:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:6:17-69
+33-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:6:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:7:17-77
+35-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:7:27-74
+36            </intent-filter>
+37        </activity>
+38
+39        <provider
+40            android:name="androidx.core.content.FileProvider"
+40-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:10:131-180
+41            android:authorities="io.ionic.starter.fileprovider"
+41-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:10:19-70
+42            android:exported="false"
+42-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:10:71-95
+43            android:grantUriPermissions="true" >
+43-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:10:96-130
+44            <meta-data
+44-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:11:13-112
+45                android:name="android.support.FILE_PROVIDER_PATHS"
+45-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:11:24-74
+46                android:resource="@xml/file_paths" />
+46-->C:\Users\yosra\OneDrive\Bureau\dmwm-2-\projet I\projet sem 1\projet-DMWM\android\app\src\main\AndroidManifest.xml:11:75-109
+47        </provider>
+48
+49        <activity
+49-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:23:9-27:75
+50            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+50-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:24:13-93
+51            android:excludeFromRecents="true"
+51-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:25:13-46
+52            android:exported="false"
+52-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:26:13-37
+53            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+53-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:27:13-72
+54        <!--
+55            Service handling Google Sign-In user revocation. For apps that do not integrate with
+56            Google Sign-In, this service will never be started.
+57        -->
+58        <service
+58-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:33:9-37:51
+59            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+59-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:34:13-89
+60            android:exported="true"
+60-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:35:13-36
+61            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+61-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:36:13-107
+62            android:visibleToInstantApps="true" />
+62-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\yosra\.gradle\caches\transforms-3\2a11cfcfbeb6c3bf277680b1f6c308b8\transformed\jetified-play-services-auth-18.1.0\AndroidManifest.xml:37:13-48
+63
+64        <activity
+64-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\yosra\.gradle\caches\transforms-3\cc79bd5bd5bd60be6ec66d59deea98b4\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+65            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+65-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\yosra\.gradle\caches\transforms-3\cc79bd5bd5bd60be6ec66d59deea98b4\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+66            android:exported="false"
+66-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\yosra\.gradle\caches\transforms-3\cc79bd5bd5bd60be6ec66d59deea98b4\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+67            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+67-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\yosra\.gradle\caches\transforms-3\cc79bd5bd5bd60be6ec66d59deea98b4\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+68
+69        <meta-data
+69-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\yosra\.gradle\caches\transforms-3\8353e685dd113ec0ab2ed76fb506518f\transformed\jetified-play-services-basement-17.1.1\AndroidManifest.xml:23:9-25:69
+70            android:name="com.google.android.gms.version"
+70-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\yosra\.gradle\caches\transforms-3\8353e685dd113ec0ab2ed76fb506518f\transformed\jetified-play-services-basement-17.1.1\AndroidManifest.xml:24:13-58
+71            android:value="@integer/google_play_services_version" />
+71-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\yosra\.gradle\caches\transforms-3\8353e685dd113ec0ab2ed76fb506518f\transformed\jetified-play-services-basement-17.1.1\AndroidManifest.xml:25:13-66
+72
+73        <provider
+73-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+74            android:name="androidx.startup.InitializationProvider"
+74-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+75            android:authorities="io.ionic.starter.androidx-startup"
+75-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+76            android:exported="false" >
+76-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+77            <meta-data
+77-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+78                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+78-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+79                android:value="androidx.startup" />
+79-->[androidx.emoji2:emoji2:1.0.0] C:\Users\yosra\.gradle\caches\transforms-3\8876b0ef355d9d3e8b47dae2b38cca4c\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+80            <meta-data
+80-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\yosra\.gradle\caches\transforms-3\31fc96d9881c54f9b47ddec530ec8052\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+81                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+81-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\yosra\.gradle\caches\transforms-3\31fc96d9881c54f9b47ddec530ec8052\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+82                android:value="androidx.startup" />
+82-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\yosra\.gradle\caches\transforms-3\31fc96d9881c54f9b47ddec530ec8052\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+83        </provider>
+84    </application>
+85
+86</manifest>
