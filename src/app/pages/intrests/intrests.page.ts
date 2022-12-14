@@ -17,6 +17,7 @@ export class IntrestsPage implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.categorieService.getAllGategorie().subscribe(
       async (res) => {
         console.log(res);
@@ -31,6 +32,7 @@ export class IntrestsPage implements OnInit {
     for (let i = 0; i < this.categorie.length; i++) {
       if (id === this.categorie[i]._id) {
         this.categorie[i].entry = !this.categorie[i].entry;
+
       }
     }
   }
@@ -52,9 +54,6 @@ export class IntrestsPage implements OnInit {
   createTableCategorie() {
     let TableCategorie = new Array();
     for (let i = 0; i < this.categorie.length; i++) {
-      console.log('categorie : : ', this.categorie[i]['entry']);
-      console.log('categorie : : ', this.categorie.length);
-
       this.categorie[i]['entry']
         ? TableCategorie.push(this.categorie[i]._id)
         : null;

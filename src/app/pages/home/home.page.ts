@@ -137,7 +137,7 @@ export class HomePage implements OnInit {
     }
     return false;
   }
-  favoris(id:any) {
+  favoris(id: any) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
       console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
@@ -156,7 +156,7 @@ export class HomePage implements OnInit {
   }
 
   creatTrip() {
-    this.route.navigate(['/createevent']);
+    this.route.navigate(['/tabs/createevent']);
   }
 
   //   *********** fonction de recherche *************

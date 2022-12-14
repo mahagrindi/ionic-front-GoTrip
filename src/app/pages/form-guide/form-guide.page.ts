@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RangeCustomEvent } from '@ionic/angular';
 import { RangeValue } from '@ionic/core';
-import { AlertController, RangeChangeEventDetail } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 // import { Filesystem, Directory } from '@capacitor/filesystem';
 // import { HttpClient } from '@angular/common/http';
 // import { Router } from '@angular/router';
