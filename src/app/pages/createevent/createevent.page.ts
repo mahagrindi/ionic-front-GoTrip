@@ -42,7 +42,7 @@ export class CreateeventPage implements OnInit {
   }
 
   errors = [
-    { type: 'required', message: 'Champ Obligatoire !' },
+    { type: 'required', message: 'Champ Obligatoire  !' },
     { type: 'pattern', message: 'The minimum place is 1' },
   ];
   create: FormGroup;
