@@ -9,7 +9,11 @@ import { TokenService } from '../services/token.service';
 })
 export class TabsPage {
   user: any;
-  constructor(private route: Router, private home: HomeServiceService,private token:TokenService) {
+  constructor(
+    private route: Router,
+    private home: HomeServiceService,
+    private token: TokenService
+  ) {
     this.getUser();
   }
 
@@ -37,15 +41,14 @@ export class TabsPage {
     this.route.navigate(['/tabs/form-guide']);
   }
 
-  isGuide:boolean=this.token.modeData;
-  switchMode(event:any) { 
+  isGuide: boolean = this.token.modeData;
+  switchMode(event: any) {
     if (event.target.checked) {
       console.log('guide');
       this.token.updateMode();
-    } else
-    {
+    } else {
       this.token.updateMode();
       console.log('tourist');
-    } 
+    }
   }
 }

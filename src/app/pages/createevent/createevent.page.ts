@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import {
+  AlertController,
+  ModalController,
+  RangeCustomEvent,
+} from '@ionic/angular';
 import { CreateEventService } from 'src/app/services/create-event.service';
 import { TokenService } from 'src/app/services/token.service';
+import { RangeValue } from '@ionic/core';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
 
 @Component({
@@ -22,20 +27,19 @@ export class CreateeventPage implements OnInit {
   isModalOpen2 = false;
   Location: String = '';
   Name: String = '';
-  nbrplace: Number;
+  nbrplace: Number = 1;
   checkpublic: boolean;
-
+  nbrplaceValue: RangeValue = 1;
   creation: any;
   isSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private alertController: AlertController,
-    private modalController : ModalController,
+    private modalController: ModalController,
     private createEventService: CreateEventService,
-    private tokenService:TokenService,
+    private tokenService: TokenService,
     private router: Router
-
   ) {
     this.startDate = new Date().toISOString();
     this.minDate = new Date().toISOString();
@@ -56,6 +60,10 @@ export class CreateeventPage implements OnInit {
   }
   get errorControl() {
     return this.create.controls;
+  }
+
+  onIonChangeNbrPlace(ev: Event) {
+    this.nbrplaceValue = (ev as RangeCustomEvent).detail.value;
   }
 
   notify() {
@@ -160,7 +168,6 @@ export class CreateeventPage implements OnInit {
           cssClass: 'alert-button-confirm',
           handler: () => {
             console.log('Confirm Okay');
-
           },
         },
       ],
@@ -183,12 +190,13 @@ export class CreateeventPage implements OnInit {
     this.creation = {
       Location: this.Location,
       Name: this.Name,
-      nbrplace: this.nbrplace,
+      nbrplace: this.nbrplaceValue,
       activits: this.activitselect,
       date: null,
       checkpublic: this.myValue,
       guiedIs: [],
     };
+    console.log(this.nbrplace);
 
     this.isSubmitted = true;
 
@@ -270,28 +278,27 @@ export class CreateeventPage implements OnInit {
 
   submitfinle() {
     this.creation = {
-
-     
-      name : this.Name,
-      dateCircuit : this.mydate   ,
-      localization: this.Location ,
-      guideIdProposed : this.createTableCategorie() ,
+      name: this.Name,
+      dateCircuit: this.mydate,
+      localization: this.Location,
+      guideIdProposed: this.createTableCategorie(),
       totalplaceNumber: this.nbrplace,
-      imgGroup:["img1","img2"],
-      category : this.activitselect ,
-      typeCircuit : this.myValue ,
-      idUser:this.tokenService.userData.value.userId,    
+      imgGroup: ['img1', 'img2'],
+      category: this.activitselect,
+      typeCircuit: this.myValue,
+      idUser: this.tokenService.userData.value.userId,
     };
-    this.createEventService.postCircuit( this.creation).subscribe(async res=>{
-      console.log(res);
-     this.setOpen(false);
-      this.setOpen2();
-     await this.router.navigate(['/tabs']);
-      
-    },err=>{
-      console.log(err);
-      
-    });
+    this.createEventService.postCircuit(this.creation).subscribe(
+      async (res) => {
+        console.log(res);
+        this.setOpen(false);
+        this.setOpen2();
+        await this.router.navigate(['/tabs']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
     // if (this.creation.guiedIs.length < 1 ){
     //   const alertMessage = 'Please select one guide at lest!';
     //   const alertHeader = 'Missing Informations!';
@@ -311,7 +318,6 @@ export class CreateeventPage implements OnInit {
     //   this.setOpen(false);
     //   this.setOpen2(false);
     //   this.presentAlert2(alertHeader, alertMessage);
-      
 
     // }
   }

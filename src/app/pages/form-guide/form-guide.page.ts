@@ -35,10 +35,7 @@ export class FormGuidePage implements OnInit {
   profilePicture: String;
   uploadImage: String;
   time: { upper: any; lower: any };
-  timeMin: any = 20;
-  timeMax: any = 100;
-  timeMin2: any = 20;
-  timeMax2: any = 100;
+
   moveStart: RangeValue = 1;
   moveEnd: RangeValue = 5;
   setdage: any;

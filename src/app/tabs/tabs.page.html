@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content">
     <ion-header>
-        <ion-toolbar>
-            <ion-title>Menu List</ion-title>
+        <ion-toolbar class="navb">
+            <img src="../../../assets/logo/logo.svg" width="180px" alt="" srcset="" />
         </ion-toolbar>
     </ion-header>
 
@@ -10,7 +10,7 @@
         <ion-item> Paramétre </ion-item>
         <ion-item> Conditions Génerales </ion-item>
         <br />
-        <div *ngIf="!verifGuide()" class="checkbox-wrapper-34">
+        <div *ngIf="!verifGuide()" class="checkbox-wrapper-34" style="margin-left: 40px">
             <label style="font-size: 10px">Vous etes en mode :</label>
             <input (change)="switchMode($event)" [(ngModel)]="isGuide" [checked]="true" class="tgl tgl-ios" id="toggle-34" type="checkbox" />
             <label class="tgl-btn" for="toggle-34"></label>
