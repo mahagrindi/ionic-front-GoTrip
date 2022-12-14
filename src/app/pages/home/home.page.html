@@ -27,15 +27,15 @@
     <!--*********** fonction de recherche *************
         ***************************************************
     ******************************************************-->
-    <h5 class="h1_card">Rcommended for you</h5>
+    <h5 class="h1_card" [hidden]="verifGuide2()">Rcommended for you</h5>
 
     <!--************ recommanded section ***********-->
-    <div class="recommended-section">
+    <div class="recommended-section" [hidden]="verifGuide2()">
       <swiper [config]="{ slidesPerView: 2 , loop: true }">
         <ng-template swiperSlide *ngFor="let item of testData ">
           <ion-card>
             <img
-              class="card-img"
+              class="card-img image"
               (click)="showDetails()"
               src="../../../assets/images/home/{{item.img}}"
             />
@@ -99,7 +99,7 @@
     </div>
     <!--************ recommanded section***********-->
 
-    <div>
+    <div [hidden]="verifGuide2()">
       <h5>Last Chance</h5>
 
       <div class="lastChance">
@@ -177,6 +177,215 @@
         <!-- <ion-card>
                 <h1>Create your event personalize</h1>
             </ion-card> -->
+      </div>
+    </div>
+
+    <div [hidden]="!verifGuide2()">
+      <ion-card color="warning">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col> You have notification </ion-col>
+                <ion-col size="2"> <span class="notif">11</span> </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content><p>Tap to check your requests</p> </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div [hidden]="!verifGuide2()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card color="warning">
+              <ion-card-content>
+                <ion-col> you have created </ion-col>
+                <ion-col>
+                  <span class="notif">3</span>
+                </ion-col>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card color="warning">
+              <ion-card-content>
+                <ion-col> You have attend </ion-col>
+                <ion-col>
+                  <span class="notif">11</span>
+                </ion-col>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="recommended-section" [hidden]="!verifGuide2()">
+      <swiper [config]="{ slidesPerView: 2 , loop: true }">
+        <ng-template swiperSlide>
+          <ion-card>
+            <img
+              class="card-img image"
+              (click)="showDetails()"
+              src="../../../assets/images/no-media.svg"
+            />
+
+            <div
+              class="card-icon"
+              style="position: absolute; top: 40%; left: 35%"
+            >
+              <img class="add" src="../../../assets/images/Small.svg" />
+            </div>
+            <ion-card-header>
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center ion-justify-content-between"
+                >
+                  <ion-card-title
+                    color="dark"
+                    class="card-title"
+                    (click)="showDetails()"
+                    style="margin-top: 0px; font-size: medium"
+                  >
+                    Creat new trip
+                  </ion-card-title>
+                </ion-row>
+              </ion-grid>
+            </ion-card-header>
+          </ion-card>
+        </ng-template>
+        <ng-template swiperSlide *ngFor="let item of testData ">
+          <ion-card>
+            <img
+              class="card-img image"
+              (click)="showDetails()"
+              src="../../../assets/images/home/{{item.img}}"
+            />
+
+            <div
+              class="card-icon-{{item.fev}}"
+              (click)="favorisrec(item.id)"
+            ></div>
+
+            <ion-card-header>
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center ion-justify-content-between"
+                >
+                  <ion-card-title
+                    color="dark"
+                    class="card-title"
+                    (click)="showDetails()"
+                  >
+                    {{item.name.length >9 ? item.name.substring(0 , 9) +'...' :
+                    item.name.substring(0, 9) }}
+                  </ion-card-title>
+                  <div class="ion-align-items-center note">
+                    {{item.note}}
+                    <ion-icon name="star" color="warning"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{item.locations}}</ion-card-subtitle
+                >
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-row
+                    class="ion-align-items-center ion-justify-content-between"
+                  >
+                    <div>
+                      <span class="card-prix">{{item.price}}</span>/person
+                    </div>
+                    <div>
+                      <ion-icon
+                        name="arrow-forward-outline"
+                        color="secondary"
+                        class="start-icon"
+                        (click)="showDetails()"
+                      ></ion-icon>
+                    </div>
+                  </ion-row>
+                </ion-card-subtitle>
+              </ion-grid>
+            </ion-card-header>
+          </ion-card>
+        </ng-template>
+      </swiper>
+    </div>
+
+    <div [hidden]="!verifGuide2()">
+      <h5>Your active tripe</h5>
+
+      <div class="lastChance">
+        <ion-card *ngFor="let item of LastChance">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <img
+                  height="100"
+                  (click)="showDetails()"
+                  class="image"
+                  width="100"
+                  src="../../../assets/images/lastChance/{{item.img}}"
+                />
+              </ion-col>
+              <ion-col>
+                <ion-row>
+                  <ion-col>
+                    <div class="wrap-text" (click)="showDetails()">
+                      {{item.name}}
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <div><span class="price">{{item.price}}</span>/person</div>
+                </ion-row>
+                <ion-row>
+                  <div class="starts">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="auto">
+                    <div class="location">
+                      <ion-icon name="location-outline"></ion-icon>
+                      {{item.locations}}
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="place">
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                      {{item.nbPlace}} Spots left
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+      <div class="personlistions ion-text-center">
+        <ion-button
+          class="ion-margin-top"
+          (click)="creatTrip()"
+          type="submit"
+          color="light"
+          expand=""
+          color="warning"
+        >
+          Create your trip
+        </ion-button>
+        <!-- <ion-card>
+                  <h1>Create your event personalize</h1>
+              </ion-card> -->
       </div>
     </div>
   </div>

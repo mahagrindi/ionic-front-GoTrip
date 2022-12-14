@@ -114,6 +114,11 @@ export class HomePage implements OnInit {
     );
   }
 
+  verifGuide2(){
+    return true ;
+  }
+
+
   verifGuide() {
     if (this.user) {
       if (this.user['guide'] === true) {

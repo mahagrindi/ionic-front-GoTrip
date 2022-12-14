@@ -3,13 +3,17 @@
 @import "../../../theme/card.scss";
 //@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 .recommended-section {
-    .swiper .swiper-slide img {
+    .swiper .swiper-slide .image {
         border-radius: 10px;
         width: 90%;
         height: 80%;
         margin-top: 8px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
+      .swiper .swiper-slide .add {
+        width: 20%;
+
+     }
     ion-card {
         position: relative;
         // border: 0px;
@@ -248,3 +252,13 @@
 //         text-shadow: 0px 4px 4px $medium;
 //     }
 // }
+
+
+.notif {
+    background-color: white;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+
