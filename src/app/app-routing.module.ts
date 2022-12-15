@@ -146,7 +146,11 @@ const routes: Routes = [
       import('./pages/error-modal/error-modal.module').then(
         (m) => m.ErrorModalPageModule
       ),
+  },  {
+    path: 'notification',
+    loadChildren: () => import('./pages/notification/notification.module').then( m => m.NotificationPageModule)
   },
+
   // {
   //   path: 'createevent',
   //   loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)
