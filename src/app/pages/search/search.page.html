@@ -21,6 +21,9 @@
 
     <ion-list>
         <div class="lastChance">
+            <h4 *ngIf="(results | json) !== '[]'" class="ion-margin-horizontal">
+                places
+            </h4>
             <ion-card *ngFor="let result of results">
                 <ion-grid>
                     <ion-row>
@@ -61,6 +64,56 @@
                                     <div class="place">
                                         <ion-icon name="person-circle-outline"></ion-icon>
                                         {{result.nbPlace}} Spots left
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
+            <h4 *ngIf="(results | json) !== '[]'" class="ion-margin-horizontal">
+                Guides
+            </h4>
+            <ion-card *ngFor="let result of resultsGuide">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="auto">
+                            <img height="100" width="100" src="../../../assets/images/reviwe/{{result.img}}" />
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <ion-col>
+                                    <div class="name">{{result.name}}</div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="hert">
+                                        <!-- <ion-icon (click)="favoris(result.id)" src="../../../assets/icon/heart-{{result.fev}}.svg" side="right"></ion-icon> -->
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <div><span class="price">{{result.price}}</span>/person</div>
+                            </ion-row>
+                            <ion-row>
+                                <div class="starts">
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star"></ion-icon>
+                                    <ion-icon name="star-outline"></ion-icon>
+                                </div>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="auto">
+                                    <div class="location">
+                                        <ion-icon name="location-outline"></ion-icon>
+                                        {{result.locations}}
+                                    </div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="place">
+                                        <ion-icon name="person-circle-outline"></ion-icon>
+                                        {{result.note}} Spots left
                                     </div>
                                 </ion-col>
                             </ion-row>
