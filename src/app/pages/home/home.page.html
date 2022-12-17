@@ -186,13 +186,13 @@
         <div class="recommended-section" [hidden]="verifGuide()">
             <swiper [config]="{ slidesPerView: 2 , loop: true }">
                 <ng-template swiperSlide>
-                    <ion-card>
+                    <ion-card class="cardH">
                         <img class="card-img image" src="../../../assets/icon/frame.svg" />
 
                         <div [routerLink]="['/tabs/createevent']" class="card-icon" style="position: absolute; top: 40%; left: 35%">
                             <img class="add" src="../../../assets/images/Small.svg" />
                         </div>
-                        <ion-card-header>
+                        <ion-card-content style="height: 94px">
                             <ion-grid>
                                 <ion-row class="ion-align-items-center ion-justify-content-between">
                                     <ion-card-title color="dark" class="card-title" [routerLink]="['/tabs/createevent']" style="margin-top: 0px; font-size: medium">
@@ -200,16 +200,16 @@
                                     </ion-card-title>
                                 </ion-row>
                             </ion-grid>
-                        </ion-card-header>
+                        </ion-card-content>
                     </ion-card>
                 </ng-template>
                 <ng-template swiperSlide *ngFor="let item of testData ">
-                    <ion-card class="">
+                    <ion-card class="cardH">
                         <img class="card-img image" (click)="showDetails()" src="../../../assets/images/home/{{item.img}}" />
 
                         <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)"></div>
 
-                        <ion-card-header>
+                        <ion-card-content>
                             <ion-grid>
                                 <ion-row class="ion-align-items-center ion-justify-content-between">
                                     <ion-card-title color="dark" class="card-title" (click)="showDetails()">
@@ -229,12 +229,12 @@
                                             <span class="card-prix">{{item.price}}</span>/person
                                         </div>
                                         <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetails()"></ion-icon>
+                                            <ion-icon name="arrow-forward-outline" [routerLink]="['/tabs/event']" color="secondary" class="start-icon"></ion-icon>
                                         </div>
                                     </ion-row>
                                 </ion-card-subtitle>
                             </ion-grid>
-                        </ion-card-header>
+                        </ion-card-content>
                     </ion-card>
                 </ng-template>
             </swiper>

@@ -25,6 +25,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'historique',
+        loadChildren: () =>
+          import('../pages/historique/historique.module').then(
+            (m) => m.HistoriquePageModule
+          ),
+      },
+      {
+        path: 'wishlist',
+        loadChildren: () =>
+          import('../pages/wishlist/wishlist.module').then(
+            (m) => m.WishlistPageModule
+          ),
+      },
+      {
         path: 'notification',
         loadChildren: () =>
           import('../pages/notification/notification.module').then(
