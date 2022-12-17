@@ -40,6 +40,7 @@
                 <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg">
                 </ion-icon>
                 <ion-icon [routerLink]="['/search']" class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
+                <ion-icon *ngIf="verifGuidemode()" [routerLink]="['/tabs/notification']" class="ion-margin-end" src="../../../assets/icon/notification.svg"></ion-icon>
             </div>
         </ion-row>
     </ion-toolbar>
@@ -59,7 +60,7 @@
             <ion-label>My Trip</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" *ngIf="verifGuide()">
+        <ion-tab-button tab="tab2">
             <ion-icon src="../../assets/icon/heart.svg"></ion-icon>
             <ion-icon class="selectedIcon" src="../../assets/icon/heart-selected.svg"></ion-icon>
             <ion-label>guide</ion-label>
@@ -83,7 +84,7 @@
             <ion-label>event</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="form-guide" *ngIf="!verifGuide()">
+        <ion-tab-button tab="form-guide" hidden>
             <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
             <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
             <ion-label>form guide</ion-label>

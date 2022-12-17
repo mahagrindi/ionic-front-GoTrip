@@ -147,11 +147,6 @@ const routes: Routes = [
         (m) => m.ErrorModalPageModule
       ),
   },
-  {
-    path: 'notification',
-    loadChildren: () => import('./pages/notification/notification.module').then( m => m.NotificationPageModule)
-  },
-
 
   {
     path: '',
@@ -218,14 +213,13 @@ const routes: Routes = [
 
     // canLoad: [AuthGuard],
   },
- 
-  
+
   {
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
-  
+
   // {
   //   path: 'createevent',
   //   loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)

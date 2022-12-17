@@ -16,7 +16,12 @@ export class HomePage implements OnInit {
   LastChance: any;
   user: any;
 
-  constructor(private route: Router, private home: HomeServiceService,private token:TokenService,private guideService:GuideService) {
+  constructor(
+    private route: Router,
+    private home: HomeServiceService,
+    private token: TokenService,
+    private guideService: GuideService
+  ) {
     this.testData = [
       {
         id: 1,
@@ -106,31 +111,28 @@ export class HomePage implements OnInit {
     ];
     this.getUser();
   }
-  AllGuide:any;
+  AllGuide: any;
   ngOnInit() {
-   this.guideService.getAllGuide().subscribe(async res=>{this.AllGuide=await res;
-  console.log(res);
-  });
-  
+    this.guideService.getAllGuide().subscribe(async (res) => {
+      this.AllGuide = await res;
+      console.log(res);
+    });
   }
-getUser(){
-  this.home.getUser().subscribe(
-    (res) => {
-      this.user = res;
-    },
-    (err) => {
-      console.log(err);
-    }
-  );
-}
-
+  getUser() {
+    this.home.getUser().subscribe(
+      (res) => {
+        this.user = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   verifGuide() {
-    if(this.token.modeData)
-    {
+    if (this.token.modeData) {
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -157,12 +159,6 @@ getUser(){
     // this.route.navigate(['/login']);
     this.route.navigate(['/event']);
   }
-
-  showDetailsNotification() {
-    // this.route.navigate(['/login']);
-    this.route.navigate(['/notification']);
-  }
-
 
   creatTrip() {
     this.route.navigate(['/tabs/createevent']);

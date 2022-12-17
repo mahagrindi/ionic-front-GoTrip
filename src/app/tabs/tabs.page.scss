@@ -4,7 +4,7 @@ ion-tab-bar {
     bottom: 20px;
     position: relative;
     border-radius: 16px;
-    width: 92%;
+    width: 95%;
     margin: 0 auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -27,6 +27,10 @@ ion-tab-button {
     &.tab-selected::before {
         background-color: var(--ion-color-primary);
     }
+}
+
+ion-label {
+    width: fit-content;
 }
 
 

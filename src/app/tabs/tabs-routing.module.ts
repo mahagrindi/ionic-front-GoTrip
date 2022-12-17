@@ -25,6 +25,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'notification',
+        loadChildren: () =>
+          import('../pages/notification/notification.module').then(
+            (m) => m.NotificationPageModule
+          ),
+      },
+      {
         path: 'event',
         loadChildren: () =>
           import('../pages/event/event.module').then((m) => m.EventPageModule),

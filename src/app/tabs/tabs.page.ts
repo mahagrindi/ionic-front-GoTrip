@@ -11,16 +11,16 @@ import { TokenService } from '../services/token.service';
 })
 export class TabsPage {
   user: any;
-  constructor(private route: Router, private home: HomeServiceService,private token:TokenService,private func: FunctionsService) {
+  constructor(
+    private route: Router,
+    private home: HomeServiceService,
+    private token: TokenService,
+    private func: FunctionsService
+  ) {
     this.getUser();
-    
-     }
-
-  ngOnInit(){
-   
-   
-   
   }
+
+  ngOnInit() {}
   async getUser() {
     this.home.getUser().subscribe(
       (res) => {
@@ -35,36 +35,37 @@ export class TabsPage {
   verifGuide() {
     if (this.user) {
       if (this.user['guide'] === true) {
-      
         return false;
       } else {
         return true;
       }
     }
   }
+
+  verifGuidemode() {
+    if (this.token.modeData) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   switchGuide() {
     this.route.navigate(['/tabs/form-guide']);
   }
 
-  isGuide:boolean=this.token.modeData;
- async switchMode(event:any) { 
+  isGuide: boolean = this.token.modeData;
+  async switchMode(event: any) {
     if (event.target.checked) {
       this.func.presentSplash();
       console.log('guide');
       this.token.updateMode();
-     
-    } else
-    {
-       this.func.presentSplash();
+    } else {
+      this.func.presentSplash();
       this.token.updateMode();
       console.log('tourist');
-     
-    
-    } 
+    }
     setTimeout(() => {
       window.location.reload();
-     },200); 
-    
-
+    }, 200);
   }
 }
