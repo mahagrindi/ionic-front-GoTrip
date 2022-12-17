@@ -4,10 +4,12 @@ import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { FormGuideService } from './form-guide.service';
 
 const helper=new JwtHelperService();
 const TOKEN_KEY ="token-key";
 const MODE_KEY = 'mode-key';
+const TOKEN_KEY_Guide = 'token-key-guide';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +17,15 @@ const MODE_KEY = 'mode-key';
 export class TokenService {
   public user: Observable<any>;
   public userData=new BehaviorSubject(null);
-  public modeData:boolean=null;
-  constructor(private storage:Storage,private plt:Platform) 
+  public modeData:boolean=false;
+  public GuideToken:any;
+
+  constructor(private storage:Storage,private plt:Platform , private guideService:FormGuideService) 
   {
     this.storage.create();
     this.loadStoredToken();
+    this.storage.get(MODE_KEY).then(res=>this.modeData=res);
+    this.storage.get(TOKEN_KEY_Guide).then(res=>this.GuideToken=res);
    
   }
 
@@ -36,6 +42,8 @@ export class TokenService {
 
          let decoded=helper.decodeToken(token);
          this.userData.next(decoded);
+         this.guideService.conxGet(this.userData.value.userId).subscribe(res=>{console.log(res);
+         });
          return true;
       }else{ 
         return null;
@@ -43,7 +51,7 @@ export class TokenService {
 
     })
    )
-   this.storage.get(MODE_KEY).then(res=>this.modeData=res);   
+
   } 
   updateMode(){
     this.storage.get(MODE_KEY).then(value => {

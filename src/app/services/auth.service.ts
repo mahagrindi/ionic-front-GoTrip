@@ -14,7 +14,7 @@ const TOKEN_KEY = 'token-key';
 })
 export class AuthService {
   public user: Observable<any>;
-  private userData = new BehaviorSubject(null);
+  public userData = new BehaviorSubject(null);
   constructor(
     private http: HttpClient,
     private storage: Storage,

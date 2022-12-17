@@ -7,7 +7,7 @@
         >Welcome, {{this.user['username']}} 👋</ion-text
       >
     </h4>
-    <h3>Where do you want to go ?</h3>
+    <h3 [hidden]="!verifGuide()">Where do you want to go ?</h3>
     <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-input placeholder="ex: beach, Marsa, ..."></ion-input>
             <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
@@ -27,28 +27,28 @@
     <!--*********** fonction de recherche *************
         ***************************************************
     ******************************************************-->
-    <h5 class="h1_card" [hidden]="verifGuide2()">Rcommended for you</h5>
+    <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended for you</h5>
 
     <!--************ recommanded section ***********-->
-    <div class="recommended-section" [hidden]="verifGuide2()">
+    <div class="recommended-section" [hidden]="!verifGuide()">
       <swiper [config]="{ slidesPerView: 2 , loop: true }">
-        <ng-template swiperSlide *ngFor="let item of testData ">
+        <ng-template swiperSlide *ngFor="let item of AllGuide ">
           <ion-card>
             <img
               class="card-img image"
               (click)="showDetails()"
-              src="../../../assets/images/home/{{item.img}}"
+              src="../../../assets/images/home/{{item.profilePicture}}"
             />
 
             <div
               class="card-icon-{{item.fev}}"
-              (click)="favorisrec(item.id)"
+              (click)="favorisrec(item._id)"
             ></div>
 
             <div class="card-icon">
               <ion-icon
-                (click)="favorisrec(item.id)"
-                src="../../../assets/icon/heart-{{item.fev}}-2.svg"
+                (click)="favorisrec(item._id)"
+                src="../../../assets/icon/heart-{{'checked'}}-2.svg"
                 side="right"
               ></ion-icon>
             </div>
@@ -62,24 +62,24 @@
                     class="card-title"
                     (click)="showDetails()"
                   >
-                    {{item.name.length >9 ? item.name.substring(0 , 9) +'...' :
-                    item.name.substring(0, 9) }}
+                    {{item.idUser.length >9 ? item.idUser.substring(0 , 9)
+                    +'...' : item.idUser.substring(0, 9) }}
                   </ion-card-title>
                   <div class="ion-align-items-center note">
-                    {{item.note}}
+                    {{item.ratingNumber}}
                     <ion-icon name="star" color="warning"></ion-icon>
                   </div>
                 </ion-row>
                 <ion-card-subtitle class="card-subtitle">
                   <ion-icon name="location-outline"></ion-icon>
-                  {{item.locations}}</ion-card-subtitle
+                  {{item.workArea}}</ion-card-subtitle
                 >
                 <ion-card-subtitle class="card-subtitle">
                   <ion-row
                     class="ion-align-items-center ion-justify-content-between"
                   >
                     <div>
-                      <span class="card-prix">{{item.price}}</span>/person
+                      <span class="card-prix">{{item.hourPrice}}</span>/person
                     </div>
                     <div>
                       <ion-icon
@@ -99,7 +99,7 @@
     </div>
     <!--************ recommanded section***********-->
 
-    <div [hidden]="verifGuide2()">
+    <div [hidden]="!verifGuide()">
       <h5>Last Chance</h5>
 
       <div class="lastChance">
@@ -180,7 +180,7 @@
       </div>
     </div>
 
-    <div [hidden]="!verifGuide2()">
+    <div [hidden]="verifGuide()">
       <ion-card color="warning">
         <ion-card-header>
           <ion-card-title>
@@ -197,7 +197,7 @@
       </ion-card>
     </div>
 
-    <div [hidden]="!verifGuide2()">
+    <div [hidden]="verifGuide()">
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -224,7 +224,7 @@
       </ion-grid>
     </div>
 
-    <div class="recommended-section" [hidden]="!verifGuide2()">
+    <div class="recommended-section" [hidden]="verifGuide()">
       <swiper [config]="{ slidesPerView: 2 , loop: true }">
         <ng-template swiperSlide>
           <ion-card>
@@ -317,7 +317,7 @@
       </swiper>
     </div>
 
-    <div [hidden]="!verifGuide2()">
+    <div [hidden]="verifGuide()">
       <h5>Your active tripe</h5>
 
       <div class="lastChance">

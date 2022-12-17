@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TokenService } from './token.service';
 import { Storage } from '@ionic/storage-angular';
 import { from } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
@@ -17,16 +16,17 @@ const MODE_KEY = 'mode-key';
 export class FormGuideService {
 
   constructor(
-    private tokenService:TokenService,
     private http: HttpClient,
     private ipservice:IpService,
     private storage: Storage,
     ) {     this.storage.create();    }
-    conxGet() {
+    conxGet(userId:any) {
+      console.log("hello guide");
+      
       return this.http
         .get(`http://${this.ipservice.ip}:3001/guides/signin`, {
           headers: {
-            userId:this.tokenService.userData.value.userId,
+            userId:userId,
           },
         })
         .pipe(
@@ -35,8 +35,9 @@ export class FormGuideService {
             return res['token'];
           }),
           switchMap((token) => {
+            console.log("token guide set",token);
+            
             let storageObs = from(this.storage.set(TOKEN_KEY, token));
-            from(this.storage.set(MODE_KEY, true));
             return storageObs;
           })
         );

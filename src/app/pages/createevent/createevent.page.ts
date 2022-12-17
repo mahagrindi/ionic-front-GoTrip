@@ -270,8 +270,6 @@ export class CreateeventPage implements OnInit {
 
   submitfinle() {
     this.creation = {
-
-     
       name : this.Name,
       dateCircuit : this.mydate   ,
       localization: this.Location ,

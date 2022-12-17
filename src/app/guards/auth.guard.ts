@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { map, take } from 'rxjs/operators';
 import { FunctionsService } from '../services/functions.service';
+import { FormGuideService } from '../services/form-guide.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +13,22 @@ export class AuthGuard implements CanActivate {
   constructor(
     private func: FunctionsService,
     private auth: AuthService,
-    private route: Router
+    private route: Router,
+  
   ) {}
   canActivate(): Observable<boolean> {
     return this.auth.user.pipe(
       take(1),
       map((user) => {
         if (!user) {
-          //  this.func.dismissSplash();
+           this.func.dismissSplash();
 
           return true;
         } else {
-          //  this.func.dismissSplash();
+          this.func.presentSplash();  
+          setTimeout(() => {
+            this.func.dismissSplash();
+          }, 1000);
           this.route.navigate(['/tabs']);
           console.log('auth guard  yes');
         }

@@ -1,60 +1,105 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>FormGuide</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>FormGuide</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding-horizontal">
-    <h3 class="ion-text-center" color="primary">Welcome Back!</h3>
-    <p class="ion-text-center">Join our guide community🚀</p>
+  <h3 class="ion-text-center" color="primary">Welcome Back!</h3>
+  <p class="ion-text-center">Join our guide community🚀</p>
 
-    <form [formGroup]="guidForm" (ngSubmit)="inscriGuide()" novalidate>
-        <div class="form-group">
-            <ion-list>
-                Choose state
-                <ion-select [interfaceOptions]="customAlertOptions" [compareWith]="compareWith" placeholder="Select state" (ionChange)="selectState($event)" [multiple]="true">
-                    <ion-select-option *ngFor="let state of states" [value]="state">{{ state.nom }}</ion-select-option>
-                </ion-select>
-            </ion-list>
-            <span *ngFor="let state of selectedState">
+  <form [formGroup]="guidForm" (ngSubmit)="inscriGuide()" novalidate>
+    <div class="form-group">
+      <ion-list>
+        Choose state
+        <ion-select
+          [interfaceOptions]="customAlertOptions"
+          [compareWith]="compareWith"
+          placeholder="Select state"
+          (ionChange)="selectState($event)"
+          [multiple]="true"
+        >
+          <ion-select-option *ngFor="let state of states" [value]="state"
+            >{{ state.nom }}</ion-select-option
+          >
+        </ion-select>
+      </ion-list>
+      <span *ngFor="let state of selectedState">
         <ion-chip color="secondary">
           {{state.nom}} <ion-icon name="close"></ion-icon></ion-chip
       ></span>
-            <div class="ion-margin-top">
-                <ion-text> Nombre de place : </ion-text>
-                <ion-range color="secondary" dualKnobs="true" [pin]="true" [ticks]="true" [min]="1" [max]="10" [snaps]="true" [value]="{ lower :1 , upper:5  }" (ionKnobMoveEnd)="onIonKnobMoveEnd($event)"></ion-range>
-                <ion-chip color="primary">Min : {{this.moveStart}}</ion-chip>
-                <ion-chip color="primary">Max : {{this.moveEnd}}</ion-chip>
-            </div>
-            <div class="ion-margin-top">
-                <ion-list>
-                    Choose Categorie
-                    <ion-select Type="ios" [compareWith]="compareWith" placeholder="Select categorie" (ionChange)="handleChange($event)" [multiple]="true">
-                        <ion-select-option *ngFor="let cat of categorie" [value]="cat">{{ cat.nom }}</ion-select-option>
-                    </ion-select>
-                </ion-list>
-                <span *ngFor="let cat of selectedCatgeorie">
-          <ion-chip color="secondary" (click)="remove(cat.id)">
-            {{cat.nom}} <ion-icon name="close"></ion-icon
+      <div class="ion-margin-top">
+        <ion-text> Nombre de place : </ion-text>
+        <ion-range
+          color="secondary"
+          dualKnobs="true"
+          [pin]="true"
+          [ticks]="true"
+          [min]="1"
+          [max]="10"
+          [snaps]="true"
+          [value]="{ lower :1 , upper:5  }"
+          (ionKnobMoveEnd)="onIonKnobMoveEnd($event)"
+        ></ion-range>
+        <ion-chip color="primary">Min : {{this.moveStart}}</ion-chip>
+        <ion-chip color="primary">Max : {{this.moveEnd}}</ion-chip>
+      </div>
+      <div class="ion-margin-top">
+        <ion-list>
+          Choose Categorie
+          <ion-select
+            Type="ios"
+            [compareWith]="compareWith"
+            placeholder="Select categorie"
+            (ionChange)="handleChange($event)"
+            [multiple]="true"
+          >
+            <ion-select-option *ngFor="let cat of categorie" [value]="cat"
+              >{{ cat.name }}</ion-select-option
+            >
+          </ion-select>
+        </ion-list>
+        <span *ngFor="let cat of selectedCatgeorie">
+          <ion-chip color="secondary" (click)="remove(cat._id)">
+            {{cat.name}} <ion-icon name="close"></ion-icon
           ></ion-chip>
         </span>
-            </div>
-            <div class="ion-margin-top">
-                Price
+      </div>
+      <div class="ion-margin-top">
+        Price
 
-                <ion-label> / houre </ion-label>
-                <ion-input formControlName="hPrice" class="ion-margin-bottom" [(ngModel)]="hPrice" type="number" placeholder=""></ion-input>
-            </div>
-            <div class="ion-margin-top">
-                Price
-                <ion-label> / day </ion-label>
-                <ion-input formControlName="dPrice" [(ngModel)]="dPrice" type="number" placeholder=""></ion-input>
-            </div>
-        </div>
-        <div class="ion-text-center">
-            <ion-button class="ion-margin-top" type="submit" color="warning">submit request</ion-button>
-            <ion-button class="ion-margin-top" [routerLink]="['/tabs']" type="cancel" color="light">cancel</ion-button>
-        </div>
-    </form>
-    <br />
+        <ion-label> / houre </ion-label>
+        <ion-input
+          formControlName="hPrice"
+          class="ion-margin-bottom"
+          [(ngModel)]="hPrice"
+          type="number"
+          placeholder=""
+        ></ion-input>
+      </div>
+      <div class="ion-margin-top">
+        Price
+        <ion-label> / day </ion-label>
+        <ion-input
+          formControlName="dPrice"
+          [(ngModel)]="dPrice"
+          type="number"
+          placeholder=""
+        ></ion-input>
+      </div>
+    </div>
+    <div class="ion-text-center">
+      <ion-button class="ion-margin-top" type="submit" color="warning"
+        >submit request</ion-button
+      >
+      <ion-button
+        class="ion-margin-top"
+        [routerLink]="['/tabs']"
+        type="cancel"
+        color="light"
+        >cancel</ion-button
+      >
+    </div>
+  </form>
+  <br />
 </ion-content>

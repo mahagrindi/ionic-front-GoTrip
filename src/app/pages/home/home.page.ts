@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { HomeServiceService } from 'src/app/services/home-service.service';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
+import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,7 @@ export class HomePage implements OnInit {
   LastChance: any;
   user: any;
 
-  constructor(private route: Router, private home: HomeServiceService) {
+  constructor(private route: Router, private home: HomeServiceService,private token:TokenService,private guideService:GuideService) {
     this.testData = [
       {
         id: 1,
@@ -102,34 +104,35 @@ export class HomePage implements OnInit {
         note: 4.8,
       },
     ];
+    this.getUser();
   }
+  AllGuide:any;
   ngOnInit() {
-    this.home.getUser().subscribe(
-      (res) => {
-        this.user = res;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+   this.guideService.getAllGuide().subscribe(async res=>{this.AllGuide=await res;
+  console.log(res);
+  });
+  
   }
-
-  verifGuide2(){
-    return true ;
-  }
+getUser(){
+  this.home.getUser().subscribe(
+    (res) => {
+      this.user = res;
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+}
 
 
   verifGuide() {
-    if (this.user) {
-      if (this.user['guide'] === true) {
-        return false;
-      } else {
-        return true;
-      }
+    if(this.token.modeData)
+    {
+      return false;
     }
-  }
-  switchGuide() {
-    this.route.navigate(['/form-guide']);
+    else {
+      return true;
+    }
   }
   verifUser() {
     if (this.user) {

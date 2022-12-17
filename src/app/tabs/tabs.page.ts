@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGuideService } from '../services/form-guide.service';
+import { FunctionsService } from '../services/functions.service';
 import { HomeServiceService } from '../services/home-service.service';
 import { TokenService } from '../services/token.service';
 @Component({
@@ -9,10 +11,16 @@ import { TokenService } from '../services/token.service';
 })
 export class TabsPage {
   user: any;
-  constructor(private route: Router, private home: HomeServiceService,private token:TokenService) {
+  constructor(private route: Router, private home: HomeServiceService,private token:TokenService,private func: FunctionsService) {
     this.getUser();
-  }
+    
+     }
 
+  ngOnInit(){
+   
+   
+   
+  }
   async getUser() {
     this.home.getUser().subscribe(
       (res) => {
@@ -27,6 +35,7 @@ export class TabsPage {
   verifGuide() {
     if (this.user) {
       if (this.user['guide'] === true) {
+      
         return false;
       } else {
         return true;
@@ -38,14 +47,24 @@ export class TabsPage {
   }
 
   isGuide:boolean=this.token.modeData;
-  switchMode(event:any) { 
+ async switchMode(event:any) { 
     if (event.target.checked) {
+      this.func.presentSplash();
       console.log('guide');
       this.token.updateMode();
+     
     } else
     {
+       this.func.presentSplash();
       this.token.updateMode();
       console.log('tourist');
+     
+    
     } 
+    setTimeout(() => {
+      window.location.reload();
+     },200); 
+    
+
   }
 }

@@ -24,10 +24,9 @@ export class IntroPage implements OnInit {
   constructor(
     private func: FunctionsService,
     private authservice: AuthService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.func.presentSplash();
-    this.func.dismissSplash();
   }
+
+  ngOnInit() {}
 }

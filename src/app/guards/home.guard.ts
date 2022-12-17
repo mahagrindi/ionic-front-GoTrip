@@ -18,16 +18,10 @@ export class HomeGuard implements CanActivate {
       map(user =>{
         if(!user)
         {
-        //  this.func.dismissSplash();
           this.route.navigate(['/intro']);
           return true;
-        }else{ 
-        //  this.func.dismissSplash();
-          console.log("home guard  yes");
-        
         }
-        
-        
+        this.func.dismissSplash();
       })
       
     );
