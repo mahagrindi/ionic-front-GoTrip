@@ -313,4 +313,10 @@ export class CreateeventPage implements OnInit {
 
     // }
   }
+
+
+  verifGuide2(){
+    return true ;
+  }
+
 }

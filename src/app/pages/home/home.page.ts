@@ -158,6 +158,12 @@ getUser(){
     this.route.navigate(['/event']);
   }
 
+  showDetailsNotification() {
+    // this.route.navigate(['/login']);
+    this.route.navigate(['/notification']);
+  }
+
+
   creatTrip() {
     this.route.navigate(['/tabs/createevent']);
   }

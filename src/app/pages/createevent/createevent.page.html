@@ -65,6 +65,25 @@
             >
             </ion-input>
           </ion-row>
+
+
+          <ion-row [hidden]="!verifGuide2()">
+            <h5>Please enter the Price of trip</h5>
+          </ion-row>
+          <ion-row  [hidden]="!verifGuide2()">
+            <ion-input
+              formControlName="Price"
+              [(ngModel)]="Name"
+              class=""
+              type="text"
+              placeholder="Name"
+              required
+            >
+            </ion-input>
+          </ion-row>
+
+
+
           <ion-row>
             <div *ngFor="let er of errors">
               <ng-container
@@ -322,7 +341,7 @@
         </ion-content>
       </ng-template>
     </ion-modal>
-    
+
   </div>
 
 
