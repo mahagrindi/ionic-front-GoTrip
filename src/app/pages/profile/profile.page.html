@@ -1,7 +1,127 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>profile</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-avatar>
+        <img src="../../../assets/images/reviwe/{{data.profilePicture}}" />
+        <h3>{{user.username}}</h3>
+        <p>
+          <ion-icon src="../../../assets/icon/email.svg"></ion-icon>
+          {{user.email}}
+        </p>
+        <p>
+          <ion-icon src="../../../assets/icon/phone.svg"></ion-icon> +216
+          {{user.phone}}
+        </p>
+      </ion-avatar>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="itemscard">
+        <p>
+          {{data.ratingNumber}} <ion-icon name="star"></ion-icon> <br />
+          <samp> Review </samp>
+        </p>
+      </ion-col>
+      <ion-col class="itemscard">
+        <p>
+          {{data.dayPrice}} DT <br />
+          <samp>Price per day</samp>
+        </p>
+      </ion-col>
+
+      <ion-col class="itemscard">
+        <p>
+          {{data.hourPrice}} DT <br />
+          <samp> Price per hour </samp>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h4>Work areas</h4>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="auto" *ngFor="let catg of data.workArea ">
+        <div class="items">
+          <p>
+            <ion-icon name="location-outline"></ion-icon>{{" "}} {{catg.nom}}
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <h4>{{user.username}}'s best places'</h4>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="auto" *ngFor="let nom of data.ListOfbestplace ">
+        <div class="items">
+          <p><ion-icon name="location-outline"></ion-icon>{{" "}} {{nom}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    
+
+    <ion-row>
+      <h4>list of categories</h4>
+    </ion-row>
+    <ion-row>
+      <swiper [slidesPerView]="2.7" [centeredSlides]="true" [loop]="true">
+        <ng-template swiperSlide *ngFor="let listCat of data.listCategory ">
+          <div class="activite_card">
+            <h6 class="h6">
+              <ion-icon
+                src="../../../assets/icon/categorie/{{listCat.icon}}"
+                side="right"
+              >
+              </ion-icon
+              >{{listCat.name}}
+            </h6>
+          </div>
+        </ng-template>
+      </swiper>
+    </ion-row>
+    <ion-row>
+      <h4>Gallery</h4>
+    </ion-row>
+    <ion-row>
+      <swiper
+        [slidesPerView]="2.5"
+        [spaceBetween]="10"
+        [centeredSlides]="true"
+        [loop]="true"
+      >
+        <ng-template swiperSlide *ngFor="let img of data.galerie ">
+          <img
+            class="image"
+            style="height: 100px; width: 150px"
+            src="../../../assets/images/lastChance/{{img}}"
+          />
+        </ng-template>
+      </swiper>
+    </ion-row>
+
+    <ion-row>
+      <h4>Type of reservation</h4>
+    </ion-row>
+    <ion-row>
+      <p>the group of the trip must have :</p>
+    </ion-row>
+    <ion-row class="typeREs ion-justify-content-center">
+      <ion-col>
+        <p>At least <samp>{{data.reservationType[0][0] }}</samp></p>
+      </ion-col>
+      <ion-col>
+        <p>Maximum <samp>{{data.reservationType[1][1]}}</samp></p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
