@@ -181,11 +181,11 @@ getUser(){
     }
   }
   showDetails() {
-
-    // this.route.navigate(['/login']);
     this.route.navigate(['/event']);
   }
-
+  showDetailsGuide(id:any){
+    this.route.navigate(['/event']);
+  }
   showDetailsNotification() {
     // this.route.navigate(['/login']);
     this.route.navigate(['/notification']);

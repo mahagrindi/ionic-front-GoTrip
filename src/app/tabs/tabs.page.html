@@ -1,92 +1,134 @@
 <ion-menu contentId="main-content">
-    <ion-header>
-        <ion-toolbar class="navb">
-            <img src="../../../assets/logo/logo.svg" width="180px" alt="" srcset="" />
-        </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar class="navb">
+      <img src="../../../assets/logo/logo.svg" width="180px" alt="" srcset="" />
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content>
-        <ion-item> Evénements </ion-item>
-        <ion-item> Paramétre </ion-item>
-        <ion-item> Conditions Génerales </ion-item>
-        <br />
-        <div *ngIf="!verifGuide()" class="checkbox-wrapper-34" style="margin-left: 40px">
-            <label style="font-size: 10px">Vous etes en mode :</label>
-            <input (change)="switchMode($event)" [(ngModel)]="isGuide" [checked]="true" class="tgl tgl-ios" id="toggle-34" type="checkbox" />
-            <label class="tgl-btn" for="toggle-34"></label>
-        </div>
-        <ion-footer *ngIf="verifGuide()" class="ion-text-center ion-no-border">
-            <br /><br /><br />
-            <ion-toolbar>
-                <ion-menu-toggle class="ion-margin-horizontal">
-                    <ion-button (click)="switchGuide()">switch to guide account</ion-button>
-                </ion-menu-toggle>
-            </ion-toolbar>
-        </ion-footer>
-    </ion-content>
+  <ion-content>
+    <ion-item> Evénements </ion-item>
+    <ion-item> Paramétre </ion-item>
+    <ion-item> Conditions Génerales </ion-item>
+    <br />
+    <div
+      *ngIf="!verifGuide()"
+      class="checkbox-wrapper-34"
+      style="margin-left: 40px"
+    >
+      <label style="font-size: 10px">Vous etes en mode :</label>
+      <input
+        (change)="switchMode($event)"
+        [(ngModel)]="isGuide"
+        [checked]="true"
+        class="tgl tgl-ios"
+        id="toggle-34"
+        type="checkbox"
+      />
+      <label class="tgl-btn" for="toggle-34"></label>
+    </div>
+    <ion-footer *ngIf="verifGuide()" class="ion-text-center ion-no-border">
+      <br /><br /><br />
+      <ion-toolbar>
+        <ion-menu-toggle class="ion-margin-horizontal">
+          <ion-button (click)="switchGuide()"
+            >switch to guide account</ion-button
+          >
+        </ion-menu-toggle>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-content>
 </ion-menu>
 <ion-header>
-    <ion-toolbar class="navb">
-        <ion-row class="ion-align-items-center ion-justify-content-between">
-            <div class="ion-page" id="main-content">
-                <div>
-                    <ion-buttons slot="start">
-                        <ion-menu-button></ion-menu-button>
-                    </ion-buttons>
-                </div>
-            </div>
-            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-            <div class="">
-                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg">
-                </ion-icon>
-                <ion-icon [routerLink]="['/search']" class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
-            </div>
-        </ion-row>
-    </ion-toolbar>
+  <ion-toolbar class="navb">
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <div class="ion-page" id="main-content">
+        <div>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+        </div>
+      </div>
+      <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+      <div class="">
+        <ion-icon
+          [routerLink]="['/createevent']"
+          class="ion-margin-end"
+          src="../../../assets/icon/add-square.svg"
+        >
+        </ion-icon>
+        <ion-icon
+          [routerLink]="['/search']"
+          class="ion-margin-end"
+          src="../../../assets/icon/search-normal.svg"
+        ></ion-icon>
+      </div>
+    </ion-row>
+  </ion-toolbar>
 </ion-header>
 
 <ion-tabs>
-    <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-            <ion-icon src="../../assets/icon/home-2.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/home-2-selected.svg"></ion-icon>
-            <ion-label>home</ion-label>
-        </ion-tab-button>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon src="../../assets/icon/home-2.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/home-2-selected.svg"
+      ></ion-icon>
+      <ion-label>home</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="tab2" layout="icon-top">
-            <ion-icon src="../../assets/icon/send-2.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/send-2-selected.svg"></ion-icon>
-            <ion-label>My Trip</ion-label>
-        </ion-tab-button>
+    <ion-tab-button tab="tab2" layout="icon-top">
+      <ion-icon src="../../assets/icon/send-2.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/send-2-selected.svg"
+      ></ion-icon>
+      <ion-label>My Trip</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="tab2" *ngIf="verifGuide()">
-            <ion-icon src="../../assets/icon/heart.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/heart-selected.svg"></ion-icon>
-            <ion-label>guide</ion-label>
-        </ion-tab-button>
+    <ion-tab-button tab="tab2" *ngIf="verifGuide()">
+      <ion-icon src="../../assets/icon/heart.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/heart-selected.svg"
+      ></ion-icon>
+      <ion-label>guide</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="profile">
-            <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
-            <ion-label>profile</ion-label>
-        </ion-tab-button>
-        <!-- event hidden pour que tabs et le menu soient toujours accessibles -->
-        <ion-tab-button tab="event" hidden>
-            <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
-            <ion-label>event</ion-label>
-        </ion-tab-button>
+    <ion-tab-button tab="profile">
+      <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/profile-selected.svg"
+      ></ion-icon>
+      <ion-label>profile</ion-label>
+    </ion-tab-button>
+    <!-- event hidden pour que tabs et le menu soient toujours accessibles -->
+    <ion-tab-button tab="event" hidden>
+      <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/profile-selected.svg"
+      ></ion-icon>
+      <ion-label>event</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="createevent" hidden>
-            <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
-            <ion-label>event</ion-label>
-        </ion-tab-button>
+    <ion-tab-button tab="createevent" hidden>
+      <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/profile-selected.svg"
+      ></ion-icon>
+      <ion-label>event</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="form-guide" *ngIf="!verifGuide()">
-            <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
-            <ion-icon class="selectedIcon" src="../../assets/icon/profile-selected.svg"></ion-icon>
-            <ion-label>form guide</ion-label>
-        </ion-tab-button>
-    </ion-tab-bar>
+    <ion-tab-button tab="form-guide" *ngIf="!verifGuide()">
+      <ion-icon src="../../assets/icon/profile.svg"></ion-icon>
+      <ion-icon
+        class="selectedIcon"
+        src="../../assets/icon/profile-selected.svg"
+      ></ion-icon>
+      <ion-label>form guide</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
 </ion-tabs>

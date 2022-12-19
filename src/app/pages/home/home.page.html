@@ -36,7 +36,7 @@
           <ion-card>
             <img
               class="card-img image"
-              (click)="showDetails()"
+              (click)="showDetailsGuide(item._id)"
               src="../../../assets/images/home/{{item.profilePicture}}"
             />
 
@@ -60,7 +60,7 @@
                   <ion-card-title
                     color="dark"
                     class="card-title"
-                    (click)="showDetails()"
+                    (click)="showDetailsGuide(item._id)"
                   >
                     {{item.username.length >9 ? item.username.substring(0 , 9)
                     +'...' : item.username.substring(0, 9) }}
@@ -87,7 +87,7 @@
                         name="arrow-forward-outline"
                         color="secondary"
                         class="start-icon"
-                        (click)="showDetails()"
+                        (click)="showDetailsGuide(item._id)"
                       ></ion-icon>
                     </div>
                   </ion-row>
