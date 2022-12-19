@@ -31,18 +31,18 @@
 
     <!--************ recommanded section ***********-->
     <div class="recommended-section" [hidden]="!verifGuide()">
-      <swiper [config]="{ slidesPerView: 2.5  }">
+      <swiper [config]="{ slidesPerView: 2.5 , loop: true }">
         <ng-template swiperSlide *ngFor="let item of allGuideCollection ">
           <ion-card>
             <img
               class="card-img image"
-              (click)="showDetailsGuide(item._id)"
-              src="../../../assets/ImageProfile/{{item.profilePicture}}"
+              (click)="showDetailsGuide(item)"
+              src="../../../assets/images/home/{{item.profilePicture}}"
             />
 
             <div
               class="card-icon-{{item.fev}}"
-              (click)="favorisrec(item._id)"
+              (click)="favorisrec(item)"
             ></div>
 
             <div class="card-icon">
@@ -60,7 +60,7 @@
                   <ion-card-title
                     color="dark"
                     class="card-title"
-                    (click)="showDetailsGuide(item._id)"
+                    (click)="showDetailsGuide(item)"
                   >
                     {{item.username.length >9 ? item.username.substring(0 , 9)
                     +'...' : item.username.substring(0, 9) }}
@@ -86,7 +86,7 @@
                         name="arrow-forward-outline"
                         color="secondary"
                         class="start-icon"
-                        (click)="showDetailsGuide(item._id)"
+                        (click)="showDetailsGuide(item)"
                       ></ion-icon>
                     </div>
                   </ion-row>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { HomeServiceService } from 'src/app/services/home-service.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
 import { GuideService } from 'src/app/services/guide.service';
 
@@ -132,10 +132,17 @@ export class HomePage implements OnInit {
               dayPrice: element.dayPrice,
               fev: 'not_checked',
               ratingNumber: element.ratingNumber,
+              galerie:element.galerie,
+              reservationType:element.reservationType,
+              hourPrice:element.hourPrice,
+              ListOfbestplace:element.ListOfbestplace,
+              listCategory:element.listCategory
             });
           }
         });
       });
+      console.log(this.allGuideCollection);
+      
     });
   }
 
@@ -179,8 +186,13 @@ export class HomePage implements OnInit {
   showDetails() {
     this.route.navigate(['/event']);
   }
-  showDetailsGuide(id: any) {
-    this.route.navigate(['/event']);
+  showDetailsGuide(guide: any) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        guide:guide,
+      },
+    };
+    this.route.navigate(['/profile'],navigationExtras);
   }
   showDetailsNotification() {
     // this.route.navigate(['/login']);

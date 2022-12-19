@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  constructor() { }
+  guide:any;
+  constructor(private route: ActivatedRoute) {
+   
+   }
 
   ngOnInit() {
+    this.guide=history.state.guide;
+ console.log(this.guide);
+ 
+    
   }
   data = {
                 "ratingNumber":"0",
