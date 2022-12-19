@@ -1,173 +1,224 @@
 <br /><br /><br /><br />
 
 <ion-content class="card-background-page ion-margin-horizontal">
-    <div class="ion-margin-horizontal">
-        <h4>
-            <ion-text color="primary" *ngIf="verifUser()">Welcome, {{this.user['username']}} 👋</ion-text>
-        </h4>
-        <h3 [hidden]="!verifGuide()">Where do you want to go ?</h3>
-        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
+  <div class="ion-margin-horizontal">
+    <h4>
+      <ion-text color="primary" *ngIf="verifUser()"
+        >Welcome, {{this.user['username']}} 👋</ion-text
+      >
+    </h4>
+    <h3 [hidden]="!verifGuide()">Where do you want to go ?</h3>
+    <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-input placeholder="ex: beach, Marsa, ..."></ion-input>
             <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
                 <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
             </ion-button>
         </ion-row> -->
-        <!--*********** fonction de recherche *************
+    <!--*********** fonction de recherche *************
         ***************************************************
     ******************************************************-->
-        <!-- <ion-input [debounce]="1000" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
+    <!-- <ion-input [debounce]="1000" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
         <ion-list>
             <ion-item *ngFor="let result of results">
                 <ion-label>{{ result }}</ion-label>
             </ion-item>
         </ion-list> -->
 
-        <!--*********** fonction de recherche *************
+    <!--*********** fonction de recherche *************
         ***************************************************
     ******************************************************-->
-        <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended for you</h5>
+    <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended for you</h5>
 
-        <!--************ recommanded section ***********-->
-        <div class="recommended-section" [hidden]="!verifGuide()">
-            <swiper [config]="{ slidesPerView: 2 , loop: true }">
-                <ng-template swiperSlide *ngFor="let item of allGuideCollection ">
-                    <ion-card>
-                        <img class="card-img image" (click)="showDetailsGuide(item._id)" src="../../../assets/images/home/{{item.profilePicture}}" />
+    <!--************ recommanded section ***********-->
+    <div class="recommended-section" [hidden]="!verifGuide()">
+      <swiper [config]="{ slidesPerView: 2.5 , loop: true }">
+        <ng-template swiperSlide *ngFor="let item of allGuideCollection ">
+          <ion-card>
+            <img
+              class="card-img image"
+              (click)="showDetailsGuide(item)"
+              src="../../../assets/images/home/{{item.profilePicture}}"
+            />
 
-                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item._id)"></div>
+            <div
+              class="card-icon-{{item.fev}}"
+              (click)="favorisrec(item)"
+            ></div>
 
-                        <div class="card-icon">
-                            <ion-icon (click)="favorisrec(item._id)" src="../../../assets/icon/heart-{{'checked'}}-2.svg" side="right"></ion-icon>
-                        </div>
-                        <ion-card-header>
-                            <ion-grid>
-                                <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title" (click)="showDetailsGuide(item._id)">
-                                        {{item.username.length >9 ? item.username.substring(0 , 9) +'...' : item.username.substring(0, 9) }}
-                                    </ion-card-title>
-                                    <div class="ion-align-items-center note">
-                                        {{item.ratingNumber}}
-                                        <ion-icon name="star" color="warning"></ion-icon>
-                                    </div>
-                                </ion-row>
-                                <ion-card-subtitle class="card-subtitle">
-                                    <ion-icon name="location-outline"></ion-icon>
-                                    {{item.workArea[0]? item.workArea[0]["nom"]:null}}
-                                </ion-card-subtitle>
-                                <ion-card-subtitle class="card-subtitle">
-                                    <ion-row class="ion-align-items-center ion-justify-content-between">
-                                        <div>
-                                            <span class="card-prix">{{item.dayPrice}}</span>/Day
-                                        </div>
-                                        <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetailsGuide(item._id)"></ion-icon>
-                                        </div>
-                                    </ion-row>
-                                </ion-card-subtitle>
-                            </ion-grid>
-                        </ion-card-header>
-                    </ion-card>
-                </ng-template>
-            </swiper>
-        </div>
-        <!--************ recommanded section***********-->
-
-        <div [hidden]="!verifGuide()">
-            <h5>Last Chance</h5>
-
-            <div class="lastChance">
-                <ion-card *ngFor="let item of LastChance">
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col size="auto">
-                                <img height="100" (click)="showDetails()" class="image" width="100" src="../../../assets/images/lastChance/{{item.img}}" />
-                            </ion-col>
-                            <ion-col>
-                                <ion-row>
-                                    <ion-col>
-                                        <div class="wrap-text" (click)="showDetails()">
-                                            {{item.name}}
-                                        </div>
-                                    </ion-col>
-                                    <ion-col>
-                                        <div class="hert">
-                                            <ion-icon (click)="favoris(item.id)" src="../../../assets/icon/heart-{{item.fev}}.svg" side="right"></ion-icon>
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <div><span class="price">{{item.price}}</span>/person</div>
-                                </ion-row>
-                                <ion-row>
-                                    <div class="starts">
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star-outline"></ion-icon>
-                                    </div>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col size="auto">
-                                        <div class="location">
-                                            <ion-icon name="location-outline"></ion-icon>
-                                            {{item.locations}}
-                                        </div>
-                                    </ion-col>
-                                    <ion-col>
-                                        <div class="place">
-                                            <ion-icon name="person-circle-outline"></ion-icon>
-                                            {{item.nbPlace}} Spots left
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-card>
+            <div class="card-icon">
+              <ion-icon
+                (click)="favorisrec(item._id)"
+                src="../../../assets/icon/heart-{{'checked'}}-2.svg"
+                side="right"
+              ></ion-icon>
             </div>
-            <div class="personlistions ion-text-center">
-                <ion-button class="ion-margin-top" (click)="creatTrip()" type="submit" color="light" expand="" color="warning">
-                    Create your trip
-                </ion-button>
-                <!-- <ion-card>
+            <ion-card-header>
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center ion-justify-content-between"
+                >
+                  <ion-card-title
+                    color="dark"
+                    class="card-title"
+                    (click)="showDetailsGuide(item)"
+                  >
+                    {{item.username.length >9 ? item.username.substring(0 , 9)
+                    +'...' : item.username.substring(0, 9) }}
+                  </ion-card-title>
+                  <div class="ion-align-items-center note">
+                    {{item.ratingNumber}}
+                    <ion-icon name="star" color="warning"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{item.workArea[0]? item.workArea[0]["nom"]:null}}
+                </ion-card-subtitle>
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-row
+                    class="ion-align-items-center ion-justify-content-between"
+                  >
+                    <div>
+                      <span class="card-prix">{{item.dayPrice}}</span>/Day
+                    </div>
+                    <div>
+                      <ion-icon
+                        name="arrow-forward-outline"
+                        color="secondary"
+                        class="start-icon"
+                        (click)="showDetailsGuide(item)"
+                      ></ion-icon>
+                    </div>
+                  </ion-row>
+                </ion-card-subtitle>
+              </ion-grid>
+            </ion-card-header>
+          </ion-card>
+        </ng-template>
+      </swiper>
+    </div>
+    <!--************ recommanded section***********-->
+
+    <div [hidden]="!verifGuide()">
+      <h5>Last Chance</h5>
+
+      <div class="lastChance">
+        <ion-card *ngFor="let item of LastChance">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <img
+                  height="100"
+                  (click)="showDetails()"
+                  class="image"
+                  width="100"
+                  src="../../../assets/images/lastChance/{{item.img}}"
+                />
+              </ion-col>
+              <ion-col>
+                <ion-row>
+                  <ion-col>
+                    <div class="wrap-text" (click)="showDetails()">
+                      {{item.name}}
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="hert">
+                      <ion-icon
+                        (click)="favoris(item.id)"
+                        src="../../../assets/icon/heart-{{item.fev}}.svg"
+                        side="right"
+                      ></ion-icon>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <div><span class="price">{{item.price}}</span>/person</div>
+                </ion-row>
+                <ion-row>
+                  <div class="starts">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="auto">
+                    <div class="location">
+                      <ion-icon name="location-outline"></ion-icon>
+                      {{item.locations}}
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="place">
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                      {{item.nbPlace}} Spots left
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+      <div class="personlistions ion-text-center">
+        <ion-button
+          class="ion-margin-top"
+          (click)="creatTrip()"
+          type="submit"
+          color="light"
+          expand=""
+          color="warning"
+        >
+          Create your trip
+        </ion-button>
+        <!-- <ion-card>
                 <h1>Create your event personalize</h1>
             </ion-card> -->
-            </div>
-        </div>
+      </div>
+    </div>
 
-        <div class="ion-margin-top" [hidden]="verifGuide()">
-            <ion-card style="background-color: #e5edf9" class="notif-card">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <ion-row>
-                                <ion-text color="secondary">
-                                    <h5>New Requests</h5>
-                                </ion-text>
-                            </ion-row>
-                            <ion-row [routerLink]="['/tabs/notification']" style="width: 75%">
-                                <p class="underline">
-                                    Tap to check your requests
-                                    <ion-icon name="arrow-forward-outline" class="ion-margin-horizontal" color="secondary"></ion-icon>
-                                </p>
-                            </ion-row>
-                        </ion-col>
+    <div class="ion-margin-top" [hidden]="verifGuide()">
+      <ion-card style="background-color: #e5edf9" class="notif-card">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-row>
+                <ion-text color="secondary">
+                  <h5>New Requests</h5>
+                </ion-text>
+              </ion-row>
+              <ion-row [routerLink]="['/tabs/notification']" style="width: 75%">
+                <p class="underline">
+                  Tap to check your requests
+                  <ion-icon
+                    name="arrow-forward-outline"
+                    class="ion-margin-horizontal"
+                    color="secondary"
+                  ></ion-icon>
+                </p>
+              </ion-row>
+            </ion-col>
 
-                        <ion-col>
-                            <img class="card-img image" src="../../../assets/icon/notif-banner.svg" />
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
+            <ion-col>
+              <img
+                class="card-img image"
+                src="../../../assets/icon/notif-banner.svg"
+              />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
-                <!-- 
+        <!-- 
                 <ion-card-content >
                     <p>Tap to check your requests</p>
                 </ion-card-content> -->
-            </ion-card>
-        </div>
+      </ion-card>
+    </div>
 
-        <!-- <div [hidden]="verifGuide()">
+    <!-- <div [hidden]="verifGuide()">
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -204,121 +255,167 @@
             </ion-grid>
         </div> -->
 
-        <div class="recommended-section" [hidden]="verifGuide()">
-            <swiper [config]="{ slidesPerView: 2 , loop: true }">
-                <ng-template swiperSlide>
-                    <ion-card class="cardH">
-                        <img class="card-img image" src="../../../assets/icon/frame.svg" />
+    <div class="recommended-section" [hidden]="verifGuide()">
+      <swiper [config]="{ slidesPerView: 2 , loop: true }">
+        <ng-template swiperSlide>
+          <ion-card class="cardH">
+            <img class="card-img image" src="../../../assets/icon/frame.svg" />
 
-                        <div [routerLink]="['/tabs/createevent']" class="card-icon" style="position: absolute; top: 40%; left: 35%">
-                            <img class="add" src="../../../assets/images/Small.svg" />
-                        </div>
-                        <ion-card-content style="height: 94px">
-                            <ion-grid>
-                                <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title" [routerLink]="['/tabs/createevent']" style="margin-top: 0px; font-size: medium">
-                                        Creat new trip
-                                    </ion-card-title>
-                                </ion-row>
-                            </ion-grid>
-                        </ion-card-content>
-                    </ion-card>
-                </ng-template>
-                <ng-template swiperSlide *ngFor="let item of testData ">
-                    <ion-card class="cardH">
-                        <img class="card-img image" (click)="showDetails()" src="../../../assets/images/home/{{item.img}}" />
-
-                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item.id)"></div>
-
-                        <ion-card-content>
-                            <ion-grid>
-                                <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title" (click)="showDetails()">
-                                        {{item.name.length >9 ? item.name.substring(0 , 9) +'...' : item.name.substring(0, 9) }}
-                                    </ion-card-title>
-                                    <div class="ion-align-items-center note">
-                                        {{item.note}}
-                                        <ion-icon name="star" color="warning"></ion-icon>
-                                    </div>
-                                </ion-row>
-                                <ion-card-subtitle class="card-subtitle">
-                                    <ion-icon name="location-outline"></ion-icon>
-                                    {{item.locations}}</ion-card-subtitle>
-                                <ion-card-subtitle class="card-subtitle">
-                                    <ion-row class="ion-align-items-center ion-justify-content-between">
-                                        <div>
-                                            <span class="card-prix">{{item.price}}</span>/person
-                                        </div>
-                                        <div>
-                                            <ion-icon name="arrow-forward-outline" [routerLink]="['/tabs/event']" color="secondary" class="start-icon"></ion-icon>
-                                        </div>
-                                    </ion-row>
-                                </ion-card-subtitle>
-                            </ion-grid>
-                        </ion-card-content>
-                    </ion-card>
-                </ng-template>
-            </swiper>
-        </div>
-
-        <div [hidden]="verifGuide()">
-            <h5>Your active tripe</h5>
-
-            <div class="lastChance">
-                <ion-card *ngFor="let item of LastChance">
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col size="auto">
-                                <img height="100" (click)="showDetails()" class="image" width="100" src="../../../assets/images/lastChance/{{item.img}}" />
-                            </ion-col>
-                            <ion-col>
-                                <ion-row>
-                                    <ion-col>
-                                        <div class="wrap-text" (click)="showDetails()">
-                                            {{item.name}}
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <div><span class="price">{{item.price}}</span>/person</div>
-                                </ion-row>
-                                <ion-row>
-                                    <div class="starts">
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star-outline"></ion-icon>
-                                    </div>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col size="auto">
-                                        <div class="location">
-                                            <ion-icon name="location-outline"></ion-icon>
-                                            {{item.locations}}
-                                        </div>
-                                    </ion-col>
-                                    <ion-col>
-                                        <div class="place">
-                                            <ion-icon name="person-circle-outline"></ion-icon>
-                                            {{item.nbPlace}} Spots left
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-card>
+            <div
+              [routerLink]="['/tabs/createevent']"
+              class="card-icon"
+              style="position: absolute; top: 40%; left: 35%"
+            >
+              <img class="add" src="../../../assets/images/Small.svg" />
             </div>
-            <div class="personlistions ion-text-center">
-                <ion-button class="ion-margin-top" (click)="creatTrip()" type="submit" color="light" expand="" color="warning">
-                    Create your trip
-                </ion-button>
-                <!-- <ion-card>
+            <ion-card-content style="height: 94px">
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center ion-justify-content-between"
+                >
+                  <ion-card-title
+                    color="dark"
+                    class="card-title"
+                    [routerLink]="['/tabs/createevent']"
+                    style="margin-top: 0px; font-size: medium"
+                  >
+                    Creat new trip
+                  </ion-card-title>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
+        <ng-template swiperSlide *ngFor="let item of testData ">
+          <ion-card class="cardH">
+            <img
+              class="card-img image"
+              (click)="showDetails()"
+              src="../../../assets/images/home/{{item.img}}"
+            />
+
+            <div
+              class="card-icon-{{item.fev}}"
+              (click)="favorisrec(item.id)"
+            ></div>
+
+            <ion-card-content>
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center ion-justify-content-between"
+                >
+                  <ion-card-title
+                    color="dark"
+                    class="card-title"
+                    (click)="showDetails()"
+                  >
+                    {{item.name.length >9 ? item.name.substring(0 , 9) +'...' :
+                    item.name.substring(0, 9) }}
+                  </ion-card-title>
+                  <div class="ion-align-items-center note">
+                    {{item.note}}
+                    <ion-icon name="star" color="warning"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{item.locations}}</ion-card-subtitle
+                >
+                <ion-card-subtitle class="card-subtitle">
+                  <ion-row
+                    class="ion-align-items-center ion-justify-content-between"
+                  >
+                    <div>
+                      <span class="card-prix">{{item.price}}</span>/person
+                    </div>
+                    <div>
+                      <ion-icon
+                        name="arrow-forward-outline"
+                        [routerLink]="['/tabs/event']"
+                        color="secondary"
+                        class="start-icon"
+                      ></ion-icon>
+                    </div>
+                  </ion-row>
+                </ion-card-subtitle>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
+      </swiper>
+    </div>
+
+    <div [hidden]="verifGuide()">
+      <h5>Your active tripe</h5>
+
+      <div class="lastChance">
+        <ion-card *ngFor="let item of LastChance">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <img
+                  height="100"
+                  (click)="showDetails()"
+                  class="image"
+                  width="100"
+                  src="../../../assets/images/lastChance/{{item.img}}"
+                />
+              </ion-col>
+              <ion-col>
+                <ion-row>
+                  <ion-col>
+                    <div class="wrap-text" (click)="showDetails()">
+                      {{item.name}}
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <div><span class="price">{{item.price}}</span>/person</div>
+                </ion-row>
+                <ion-row>
+                  <div class="starts">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="auto">
+                    <div class="location">
+                      <ion-icon name="location-outline"></ion-icon>
+                      {{item.locations}}
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="place">
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                      {{item.nbPlace}} Spots left
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+      <div class="personlistions ion-text-center">
+        <ion-button
+          class="ion-margin-top"
+          (click)="creatTrip()"
+          type="submit"
+          color="light"
+          expand=""
+          color="warning"
+        >
+          Create your trip
+        </ion-button>
+        <!-- <ion-card>
                   <h1>Create your event personalize</h1>
               </ion-card> -->
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </ion-content>
 <br /><br />
