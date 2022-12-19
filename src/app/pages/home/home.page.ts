@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
   user: any;
+  allGuideCollection = [];
 
   constructor(
     private route: Router,
@@ -110,14 +111,34 @@ export class HomePage implements OnInit {
       },
     ];
     this.getUser();
+    this.getAllGuide();
   }
-  AllGuide: any;
-  ngOnInit() {
+
+  ngOnInit() {}
+  getAllGuide() {
+    let AllGuide: any = [];
+    let guideName: any = [];
+    this.guideService.getNameGuide().subscribe((res) => (guideName = res));
     this.guideService.getAllGuide().subscribe(async (res) => {
-      this.AllGuide = await res;
-      console.log(res);
+      AllGuide = res;
+      await AllGuide.forEach(async (element) => {
+        await guideName.forEach((elm) => {
+          if (elm._id == element.idUser) {
+            this.allGuideCollection.push({
+              _id: element._id,
+              username: elm.username,
+              profilePicture: element.profilePicture,
+              workArea: element.workArea,
+              dayPrice: element.dayPrice,
+              fev: 'not_checked',
+              ratingNumber: element.ratingNumber,
+            });
+          }
+        });
+      });
     });
   }
+
   getUser() {
     this.home.getUser().subscribe(
       (res) => {
@@ -156,12 +177,18 @@ export class HomePage implements OnInit {
     }
   }
   showDetails() {
-    // this.route.navigate(['/login']);
     this.route.navigate(['/event']);
+  }
+  showDetailsGuide(id: any) {
+    this.route.navigate(['/event']);
+  }
+  showDetailsNotification() {
+    // this.route.navigate(['/login']);
+    this.route.navigate(['/notification']);
   }
 
   creatTrip() {
-    this.route.navigate(['/tabs/createevent']);
+    this.route.navigate(['/createevent']);
   }
 
   //   *********** fonction de recherche *************

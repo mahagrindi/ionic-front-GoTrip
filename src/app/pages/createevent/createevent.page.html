@@ -1,17 +1,11 @@
 <ion-header>
     <ion-toolbar class="navb">
         <ion-row class="ion-align-items-center ion-justify-content-between">
-            <div>
-                <ion-buttons slot="start">
-                    <ion-menu-button></ion-menu-button>
-                </ion-buttons>
-            </div>
             <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-            <div class="">
-                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg"></ion-icon>
-                <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
-            </div>
         </ion-row>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs"></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -56,7 +50,7 @@
                             <h5>Select the activite you wanted to be include</h5>
 
                             <ion-select (ionChange)="handleChange($event)" placeholder="Select Caste" multiple="true">
-                                <ion-select-option *ngFor="let activit of activits">{{activit.name }}</ion-select-option>
+                                <ion-select-option *ngFor="let activit of categorie">{{activit.name }}</ion-select-option>
                             </ion-select>
                         </ion-list>
                     </ion-row>
@@ -136,7 +130,7 @@
                         </ion-row>
 
                         <ion-list>
-                            <ion-card *ngFor="let result of results" class="chekbox-press" [ngClass]="{'chekbox-press':result.entry === true}" (click)="interpress(result.id)">
+                            <ion-card *ngFor="let result of results" class="chekbox-press" [ngClass]="{'chekbox-press':result.entry === true}" (click)="interpress(result._id)">
                                 <div class="review_card">
                                     <ion-grid>
                                         <div class="checkbox-wrapper-12">
@@ -156,29 +150,27 @@
                               height: 100px;
                               width: 100px;
                               margin-right: 10px;
-                            " src="../../../assets/images/reviwe/{{result.img}}" />
+                            " src="../../../assets/images/reviwe/{{result.profilePicture}}" />
                                                 </ion-col>
                                                 <ion-col>
                                                     <ion-row>
                                                         <ion-col>
                                                             <h6 style="margin: 0; margin-bottom: 5px">
-                                                                {{result.name}}
+                                                                {{result.username}}
                                                             </h6>
                                                         </ion-col>
                                                     </ion-row>
 
                                                     <ion-row>
-                                                        <p style="margin: 0; margin-top: 5px">
-                                                            Age : {{result.age}}
+                                                        <p style="margin: 0">Work area :</p>
+                                                        <p style="margin: 0" *ngFor="let area of result.workArea ">
+                                                            {{ area ? area.nom+",":null}}
                                                         </p>
                                                     </ion-row>
                                                     <ion-row>
                                                         <p style="margin: 0">
-                                                            Location :{{result.locations}}
+                                                            price :{{result.dayPrice}}/Day
                                                         </p>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <p style="margin: 0">price :{{result.price}}</p>
                                                     </ion-row>
                                                     <ion-row>
                                                         <div>

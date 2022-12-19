@@ -59,13 +59,7 @@ const routes: Routes = [
             (m) => m.FormGuidePageModule
           ),
       },
-      {
-        path: 'createevent',
-        loadChildren: () =>
-          import('../pages/createevent/createevent.module').then(
-            (m) => m.CreateeventPageModule
-          ),
-      },
+      
 
       {
         path: '',

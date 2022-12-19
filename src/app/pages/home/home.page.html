@@ -5,14 +5,34 @@
         <h4>
             <ion-text color="primary" *ngIf="verifUser()">Welcome, {{this.user['username']}} 👋</ion-text>
         </h4>
+        <h3 [hidden]="!verifGuide()">Where do you want to go ?</h3>
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
+            <ion-input placeholder="ex: beach, Marsa, ..."></ion-input>
+            <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
+                <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
+            </ion-button>
+        </ion-row> -->
+        <!--*********** fonction de recherche *************
+        ***************************************************
+    ******************************************************-->
+        <!-- <ion-input [debounce]="1000" (ionChange)="handleChange($event)" placeholder="ex: beach, Marsa, ..."></ion-input>
+        <ion-list>
+            <ion-item *ngFor="let result of results">
+                <ion-label>{{ result }}</ion-label>
+            </ion-item>
+        </ion-list> -->
+
+        <!--*********** fonction de recherche *************
+        ***************************************************
+    ******************************************************-->
         <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended for you</h5>
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section" [hidden]="!verifGuide()">
             <swiper [config]="{ slidesPerView: 2 , loop: true }">
-                <ng-template swiperSlide *ngFor="let item of AllGuide ">
+                <ng-template swiperSlide *ngFor="let item of allGuideCollection ">
                     <ion-card>
-                        <img class="card-img image" (click)="showDetails()" src="../../../assets/images/home/{{item.profilePicture}}" />
+                        <img class="card-img image" (click)="showDetailsGuide(item._id)" src="../../../assets/images/home/{{item.profilePicture}}" />
 
                         <div class="card-icon-{{item.fev}}" (click)="favorisrec(item._id)"></div>
 
@@ -22,8 +42,8 @@
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title" (click)="showDetails()">
-                                        {{item.idUser.length >9 ? item.idUser.substring(0 , 9) +'...' : item.idUser.substring(0, 9) }}
+                                    <ion-card-title color="dark" class="card-title" (click)="showDetailsGuide(item._id)">
+                                        {{item.username.length >9 ? item.username.substring(0 , 9) +'...' : item.username.substring(0, 9) }}
                                     </ion-card-title>
                                     <div class="ion-align-items-center note">
                                         {{item.ratingNumber}}
@@ -32,14 +52,15 @@
                                 </ion-row>
                                 <ion-card-subtitle class="card-subtitle">
                                     <ion-icon name="location-outline"></ion-icon>
-                                    {{item.workArea}}</ion-card-subtitle>
+                                    {{item.workArea[0]? item.workArea[0]["nom"]:null}}
+                                </ion-card-subtitle>
                                 <ion-card-subtitle class="card-subtitle">
                                     <ion-row class="ion-align-items-center ion-justify-content-between">
                                         <div>
-                                            <span class="card-prix">{{item.hourPrice}}</span>/person
+                                            <span class="card-prix">{{item.dayPrice}}</span>/Day
                                         </div>
                                         <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetails()"></ion-icon>
+                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetailsGuide(item._id)"></ion-icon>
                                         </div>
                                     </ion-row>
                                 </ion-card-subtitle>

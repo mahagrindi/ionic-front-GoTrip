@@ -98,11 +98,6 @@ const routes: Routes = [
   },
 
   {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  {
     path: 'forget-password',
     loadChildren: () =>
       import('./pages/forget-password/forget-password.module').then(
@@ -221,13 +216,22 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfilePageModule),
   },
 
   // {
   //   path: 'createevent',
   //   loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)
   // },
+
+  {
+    path: 'createevent',
+    loadChildren: () =>
+      import('./pages/createevent/createevent.module').then(
+        (m) => m.CreateeventPageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [
