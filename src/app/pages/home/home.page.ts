@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
         id: 3,
         price: '35 DT ',
         fev: 'checked',
-        img: 'img1.jpg',
+        img: 'profile2_img2.jpg',
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
@@ -92,7 +92,7 @@ export class HomePage implements OnInit {
         nbPlace: 5,
         fev: 'not_checked',
         price: '35 DT ',
-        img: 'image2.jpg',
+        img: 'profile2_img2.jpg',
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
@@ -142,7 +142,7 @@ export class HomePage implements OnInit {
         });
       });
       console.log(this.allGuideCollection);
-      
+
     });
   }
 
