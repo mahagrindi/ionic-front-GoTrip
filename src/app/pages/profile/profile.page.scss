@@ -1,0 +1,86 @@
+@import "~@ionic/angular/css/ionic-swiper";
+@import "../../../theme/input.scss";
+@import "../../../theme/card.scss";
+@import "../../../theme/images.scss";
+@import "../../../theme/variables.scss";
+
+
+ion-avatar {
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  p {
+    padding: 0;
+    color:   rgb(125, 125, 125);
+    margin: 0;
+    font-size: small;
+    font-style: italic;
+  }
+}
+
+.itemscard {
+  border-radius: 15px;
+  box-shadow: $shadow ;
+  margin: 10px;
+  padding: 10px;
+  margin-top: 150px;
+  text-align: center;
+
+  p {
+    color: $dark ;
+    font-size: 15px;
+
+    samp {
+      font-size: 14px;
+      color: rgb(125, 125, 125);
+    }
+
+  }
+
+  ion-icon {
+    color: $warning;
+  }
+
+}
+
+.items {
+  background-color: #62cdff48 ;
+  padding: 20px ;
+
+  padding-top: 5px ;
+  padding-bottom: 5px ;
+
+  border-radius: 10px;
+  color: #000;
+  text-align: center;
+
+
+}
+
+.activite_card {
+  h6 {
+    margin: 0;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+}
+
+.typeREs {
+  samp {
+    background-color:  #62cdff48 ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 15px;
+  }
+}
+
+
