@@ -33,16 +33,18 @@ export class NotificationPage implements OnInit {
 
     ]
    this.guide.getPropTrip().subscribe(res=>{this.trip=res; console.log(this.trip);},err=>console.log(err));
+ 
    }
 
   ngOnInit() {}
-  VerifEtatTrip(etat:any){
-    if(etat=="false")
-    {
-      return false;
-    }else{
-      return true;
-    }
+  VerifEtatTrip(guideTab:any){
+       
+    // if(etat=="false")
+    // {
+    //   return false;
+    // }else{
+    //   return true;
+    // }
   }
 
 }

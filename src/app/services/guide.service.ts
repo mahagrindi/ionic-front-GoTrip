@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IpService } from './ip.service';
-import { TokenService } from './token.service';
-
+import { Storage } from '@ionic/storage-angular';
+const TOKEN_KEY_Guide = 'token-key-guide';
 @Injectable({
   providedIn: 'root'
 })
 export class GuideService {
-  constructor(private tokenService:TokenService,private http: HttpClient,private ipservice:IpService) {}
+  public GuideToken:any;
+
+  constructor(private http: HttpClient,private ipservice:IpService,private storage:Storage) {  this.storage.get(TOKEN_KEY_Guide).then(res=>this.GuideToken=res);}
   getAllGuide()
   {
     return this.http.get(`http://${this.ipservice.ip}:3001/guides/getAllGuide`);

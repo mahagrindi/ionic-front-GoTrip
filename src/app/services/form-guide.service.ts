@@ -21,7 +21,7 @@ export class FormGuideService {
     private storage: Storage,
     ) {     this.storage.create();    }
     conxGet(userId:any) {
-      console.log("hello guide");
+      // console.log("hello guide");
       
       return this.http
         .get(`http://${this.ipservice.ip}:3001/guides/signin`, {
@@ -35,7 +35,7 @@ export class FormGuideService {
             return res['token'];
           }),
           switchMap((token) => {
-            console.log("token guide set",token);
+            // console.log("token guide set",token);
             
             let storageObs = from(this.storage.set(TOKEN_KEY, token));
             return storageObs;

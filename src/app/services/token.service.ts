@@ -36,14 +36,12 @@ export class TokenService {
     switchMap(()=>{
       return from(this.storage.get(TOKEN_KEY))
     }),map(token=>{
-      console.log("token ach sevice token ",token);
       
       if(token){
 
          let decoded=helper.decodeToken(token);
          this.userData.next(decoded);
-         this.guideService.conxGet(this.userData.value.userId).subscribe(res=>{console.log(res);
-         });
+         this.guideService.conxGet(this.userData.value.userId).subscribe(res=>{});
          return true;
       }else{ 
         return null;
