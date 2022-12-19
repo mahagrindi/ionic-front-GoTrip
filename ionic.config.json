@@ -1,8 +1,8 @@
 {
-  "name": "projet-DMWM",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
+    "name": "projet-DMWM",
+    "integrations": {
+        "capacitor": {},
+        "cordova": {}
+    },
+    "type": "angular"
 }
