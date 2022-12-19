@@ -17,13 +17,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('../tab2/tab2.module').then((m) => m.Tab2PageModule),
       },
-      {
-        path: 'profile',
-        loadChildren: () =>
-          import('../pages/profile/profile.module').then(
-            (m) => m.ProfilePageModule
-          ),
-      },
+
       {
         path: 'event',
         loadChildren: () =>
