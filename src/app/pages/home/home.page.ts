@@ -193,7 +193,7 @@ getUser(){
 
 
   creatTrip() {
-    this.route.navigate(['/tabs/createevent']);
+    this.route.navigate(['/createevent']);
   }
 
   //   *********** fonction de recherche *************

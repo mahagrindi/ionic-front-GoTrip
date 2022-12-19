@@ -97,11 +97,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
+  
   {
     path: 'forget-password',
     loadChildren: () =>
@@ -226,10 +222,10 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   
-  // {
-  //   path: 'createevent',
-  //   loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)
-  // },
+  {
+    path: 'createevent',
+    loadChildren: () => import('./pages/createevent/createevent.module').then( m => m.CreateeventPageModule)
+  },
 ];
 @NgModule({
   imports: [

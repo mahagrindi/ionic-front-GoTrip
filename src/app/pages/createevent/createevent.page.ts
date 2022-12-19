@@ -118,53 +118,7 @@ export class CreateeventPage implements OnInit {
     console.log(this.mydate);
   }
 
-  public guides = [
-    {
-      id: 1,
-      age: '26',
-      fev: 'checked',
-      price: '35 DT/houre ',
-      img: 'profile1.jpg',
-      locations: 'saw',
-      name: 'Prithivi',
-      note: 3,
-      entry: false,
-    },
-    {
-      id: 2,
-      age: '26',
-      fev: 'not_checked',
-      price: '35 DT/houre ',
-      img: 'profile2.jpg',
-      locations: 'saw2',
-      name: 'malliga',
-      note: 4.8,
-      entry: false,
-    },
-    {
-      id: 3,
-      age: '26',
-      fev: 'checked',
-      price: '35 DT/houre ',
-      img: 'profile1.jpg',
-      locations: 'saw2',
-      name: 'Gowdaman',
-      note: 4.8,
-      entry: false,
-    },
-    {
-      id: 4,
-      age: '26',
-      fev: 'checked',
-      price: '35 DT/houre ',
-      img: 'profile1.jpg',
-      locations: 'saw2',
-      name: 'Gowdaman',
-      note: 4.8,
-      entry: false,
-    },
-  ];
-
+ 
   // pour l'overtuer et fremteur de model
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -275,28 +229,28 @@ export class CreateeventPage implements OnInit {
     await modal.present();
   }
   // ------------ pour sech guide
-  public results = [...this.guides];
+  public results = [...this.allGuideCollection];
 
   search(event: any) {
     const query = event.target.value.toLowerCase();
-    this.results = this.guides.filter(
-      (d) => d.name.toLowerCase().indexOf(query) > -1
+    this.results = this.allGuideCollection.filter(
+      (d) => d.username.toLowerCase().indexOf(query) > -1
     );
     console.log(this.results);
   }
 
   interpress(id) {
-    for (let i = 0; i <= this.guides.length - 1; i++) {
-      if (id === this.guides[i].id) {
-        this.guides[i].entry = !this.guides[i].entry;
+    for (let i = 0; i <= this.allGuideCollection.length - 1; i++) {
+      if (id === this.allGuideCollection[i]._id) {
+        this.allGuideCollection[i].entry = !this.allGuideCollection[i].entry;
       }
     }
   }
 
   createTableCategorie() {
     let TableCategorie = new Array();
-    for (let i = 0; i <= this.guides.length - 1; i++) {
-      this.guides[i].entry ? TableCategorie.push(this.guides[i].id) : null;
+    for (let i = 0; i <= this.allGuideCollection.length - 1; i++) {
+      this.allGuideCollection[i].entry ? TableCategorie.push(this.allGuideCollection[i]._id) : null;
     }
 
     console.log(TableCategorie);
