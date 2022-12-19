@@ -237,11 +237,12 @@
                           </ion-row>
 
                           <ion-row>
+                            <p style="margin: 0">Work area :</p>
                             <p
                               style="margin: 0"
                               *ngFor="let area of result.workArea "
                             >
-                              Work area :{{ area ? area.nom:null}}
+                              {{ area ? area.nom+",":null}}
                             </p>
                           </ion-row>
                           <ion-row>
