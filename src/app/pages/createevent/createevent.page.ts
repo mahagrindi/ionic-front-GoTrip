@@ -10,6 +10,8 @@ import { CreateEventService } from 'src/app/services/create-event.service';
 import { TokenService } from 'src/app/services/token.service';
 import { RangeValue } from '@ionic/core';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
+import { CategorieService } from 'src/app/services/categorie.service';
+import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
   selector: 'app-createevent',
@@ -32,6 +34,8 @@ export class CreateeventPage implements OnInit {
   nbrplaceValue: RangeValue = 1;
   creation: any;
   isSubmitted = false;
+  categorie: any;
+  allGuideCollection=[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,10 +43,15 @@ export class CreateeventPage implements OnInit {
     private modalController: ModalController,
     private createEventService: CreateEventService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private categorieBase:CategorieService,
+    private guideService:GuideService
+
   ) {
     this.startDate = new Date().toISOString();
     this.minDate = new Date().toISOString();
+    this.getAllGuide();
+
   }
 
   errors = [
@@ -57,7 +66,41 @@ export class CreateeventPage implements OnInit {
       Location: ['', [Validators.required]],
       Name: ['', [Validators.required]],
     });
+    this.categorieBase.getAllGategorie().subscribe(res=>{this.categorie=res;},err=>{console.log(err)});
+    
+    
   }
+
+  getAllGuide()
+  {
+   let AllGuide:any=[];
+   let guideName:any=[];
+   this.guideService.getNameGuide().subscribe(res=>guideName=res);
+   this.guideService.getAllGuide().subscribe(async res=>{
+     AllGuide= res;    
+    await AllGuide.forEach(async element => {
+     await guideName.forEach(elm =>{
+       if(elm._id==element.idUser)
+       {
+         this.allGuideCollection.push({
+           _id:element._id,
+           username:elm.username,
+           profilePicture:element.profilePicture,
+           workArea:element.workArea,
+           dayPrice:element.dayPrice,
+           fev:'not_checked',
+           ratingNumber:element.ratingNumber,
+           entry:false,
+         });    
+       }
+     });
+          
+     });
+     console.log(this.allGuideCollection);
+     
+  });
+  }
+
   get errorControl() {
     return this.create.controls;
   }
@@ -74,20 +117,6 @@ export class CreateeventPage implements OnInit {
   showdate() {
     console.log(this.mydate);
   }
-  activits: any[] = [
-    {
-      id: 1,
-      name: 'Alice',
-    },
-    {
-      id: 2,
-      name: 'Bob',
-    },
-    {
-      id: 3,
-      name: 'Charlie',
-    },
-  ];
 
   public guides = [
     {
@@ -196,7 +225,6 @@ export class CreateeventPage implements OnInit {
       checkpublic: this.myValue,
       guiedIs: [],
     };
-    console.log(this.nbrplace);
 
     this.isSubmitted = true;
 
@@ -204,7 +232,6 @@ export class CreateeventPage implements OnInit {
       const alertMessage = 'Please provide all the required values!';
       const alertHeader = 'Missing Informations!';
       this.presentAlert(alertHeader, alertMessage);
-      // console.log('Please provide all the required values!');
       return false;
     } else {
       this.setOpen(true);

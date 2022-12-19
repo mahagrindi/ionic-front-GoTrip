@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
   testData: any;
   LastChance: any;
   user: any;
+  allGuideCollection=[];
 
   constructor(private route: Router, private home: HomeServiceService,private token:TokenService,private guideService:GuideService) {
     this.testData = [
@@ -105,14 +106,40 @@ export class HomePage implements OnInit {
       },
     ];
     this.getUser();
+    this.getAllGuide();
   }
-  AllGuide:any;
-  ngOnInit() {
-   this.guideService.getAllGuide().subscribe(async res=>{this.AllGuide=await res;
-  console.log(res);
-  });
+ 
+
+  ngOnInit() 
+ {
+ }
+ getAllGuide()
+ {
+  let AllGuide:any=[];
+  let guideName:any=[];
+  this.guideService.getNameGuide().subscribe(res=>guideName=res);
+  this.guideService.getAllGuide().subscribe(async res=>{
+    AllGuide= res;    
+   await AllGuide.forEach(async element => {
+    await guideName.forEach(elm =>{
+      if(elm._id==element.idUser)
+      {
+        this.allGuideCollection.push({
+          _id:element._id,
+          username:elm.username,
+          profilePicture:element.profilePicture,
+          workArea:element.workArea,
+          dayPrice:element.dayPrice,
+          fev:'not_checked',
+          ratingNumber:element.ratingNumber
+        });    
+      }
+    });
+         
+    });
+ });
+ }
   
-  }
 getUser(){
   this.home.getUser().subscribe(
     (res) => {
@@ -154,6 +181,7 @@ getUser(){
     }
   }
   showDetails() {
+
     // this.route.navigate(['/login']);
     this.route.navigate(['/event']);
   }

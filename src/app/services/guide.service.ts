@@ -12,4 +12,10 @@ export class GuideService {
   {
     return this.http.get(`http://${this.ipservice.ip}:3001/guides/getAllGuide`);
   }
+  getNameGuide()
+  { 
+   return  this.http.get(`http://${this.ipservice.ip}:3001/users/getAllNameUser`);
+   
+  }
+
 }

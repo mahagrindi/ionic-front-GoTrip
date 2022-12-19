@@ -99,15 +99,12 @@ export class FormGuidePage implements OnInit {
     console.log('time=', time);
     console.log(this.time);
   }
-  // supprimer categorie
   remove(id: any) {
-    console.log(this.selectedCatgeorie);
     for (let i = 0; i < this.categorie.length; i++) {
       if (id === this.categorie[i]._id) {
         const index = this.selectedCatgeorie.indexOf(this.categorie[i]._id);
         if (index !== -1) {
           this.selectedCatgeorie.splice(index, 1);
-          console.log(this.selectedCatgeorie);
         }
       }
     }
@@ -118,22 +115,17 @@ export class FormGuidePage implements OnInit {
       hPrice: ['', [Validators.required]],
       dPrice: ['', [Validators.required]],
     });
-    this.categorieBase.getAllGategorie().subscribe(res=>{this.categorie=res; console.log(res);
-    },err=>{console.log(err);
-    })
+    this.categorieBase.getAllGategorie().subscribe(res=>{this.categorie=res;},err=>{console.log(err)});
   }
 
   onIonKnobMoveEnd(ev: Event) {
     this.moveStart = (ev as RangeCustomEvent).detail.value['lower'];
-    this.moveEnd = (ev as RangeCustomEvent).detail.value['upper'];
-
-    // console.log('end', this.moveEnd);
-  }
+    this.moveEnd = (ev as RangeCustomEvent).detail.value['upper'];  }
   onChange(val: Event) {
     console.log(val);
   }
 
-  compareWith(o1, o2) {
+  compareWith(o1:any, o2:any) {
     if (!o1 || !o2) {
       return o1 === o2;
     }
