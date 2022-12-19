@@ -17,6 +17,11 @@ export class GuideService {
    return  this.http.get(`http://${this.ipservice.ip}:3001/users/getAllNameUser`);
    
   }
+  getPropTrip()
+  { 
+   return  this.http.get(`http://${this.ipservice.ip}:3001/proposedCircuits/getAllProposedCircuit`);
+   
+  }
   
 
 }

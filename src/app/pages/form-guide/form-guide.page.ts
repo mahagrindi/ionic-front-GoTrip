@@ -152,10 +152,10 @@ export class FormGuidePage implements OnInit {
       hourPrice: this.hPrice,
       dayPrice: this.dPrice,
       reservationType: [this.moveStart, this.moveEnd],
-      ListOfbestplace: ['Marina Sousse', 'place2', 'place3', 'place4'],
-      galerie: ['img1.png', 'img2.png', 'img3.png'],
+      ListOfbestplace: ['Ras jebal', 'plage Sousse', 'kantaoui Sousse'],
+      galerie: ['profile2_img1.jpg', 'profile2_img2.jpg'],
       verifiedStatus: ['image_cin.jpg', 'b3.pdf'],
-      profilePicture: 'pdp.png',
+      profilePicture: 'profile2.jpg',
     };
     this.formGuideService.inscriPost(guide).subscribe(
       (res) => {
@@ -164,7 +164,7 @@ export class FormGuidePage implements OnInit {
            async  (res) => {
             await this.func.presentSplash();
              window.location.reload();
-           
+
           },
           (err) => console.log(err)
         );

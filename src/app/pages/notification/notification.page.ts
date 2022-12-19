@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
   selector: 'app-notification',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationPage implements OnInit {
   notification: any[];
-
-  constructor() {
+  trip:any;
+  constructor(private guide:GuideService) {
     this.notification = [{
       name : "Trip to Bizerte" ,
       dateCircuit : "11/12/2022"   ,
@@ -31,10 +32,17 @@ export class NotificationPage implements OnInit {
     }
 
     ]
-
+   this.guide.getPropTrip().subscribe(res=>{this.trip=res; console.log(this.trip);},err=>console.log(err));
    }
 
-  ngOnInit() {
+  ngOnInit() {}
+  VerifEtatTrip(etat:any){
+    if(etat=="false")
+    {
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }
