@@ -181,7 +181,11 @@
     </div>
 
     <div class="ion-margin-top" [hidden]="verifGuide()">
-      <ion-card style="background-color: #e5edf9" class="notif-card">
+      <ion-card
+        style="background-color: #e5edf9"
+        class="notif-card"
+        [routerLink]="['/tabs/notification']"
+      >
         <ion-grid>
           <ion-row>
             <ion-col>
