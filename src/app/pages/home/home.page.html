@@ -37,8 +37,7 @@
             <img
               class="card-img image"
               (click)="showDetailsGuide(item)"
-              style="height: 100px ; object-fit: cover ;
-            "
+              style="height: 100px; object-fit: cover"
               src="../../../assets/ImageProfile/{{item.profilePicture}}"
             />
 
@@ -67,6 +66,8 @@
                     {{item.username.length >9 ? item.username.substring(0 , 9)
                     +'...' : item.username.substring(0, 9) }}
                   </ion-card-title>
+                </ion-row>
+                <ion-row>
                   <div class="ion-align-items-center note">
                     {{item.ratingNumber}}
                     <ion-icon name="star" color="warning"></ion-icon>
