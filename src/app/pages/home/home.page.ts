@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
   user: any;
   allGuideCollection = [];
   AllPublicTrip:any;
+  AllPublicTripForGuide:any[]=[];
 
   constructor(
     private route: Router,
@@ -119,7 +120,24 @@ export class HomePage implements OnInit {
   ngOnInit() {}
   getAllPublicTrip()
   {
-    this.home.getAllPublicTrip().subscribe(res=>{this.AllPublicTrip=res;},err=>console.log(err));
+    this.home.getAllPublicTrip().subscribe(async res=>
+      {
+        this.AllPublicTrip=await res;        
+        for(let element of this.AllPublicTrip)
+        {
+          if(this.guideService.GuideId==element.guideId)
+          {
+            console.log(element.guideId);
+            this.AllPublicTripForGuide.push(element);
+          }
+        }
+        console.log(this.AllPublicTripForGuide);
+        
+        
+
+      }
+      ,err=>
+      console.log(err));
   }
 
   getAllGuide() {

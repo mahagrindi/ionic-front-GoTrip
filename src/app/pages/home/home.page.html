@@ -139,47 +139,19 @@
     </div>
 
     <div class="recommended-section" [hidden]="verifGuide()">
-      <swiper [config]="{ slidesPerView: 2 , loop: true }">
-        <ng-template swiperSlide>
-          <ion-card class="cardH">
-            <img class="card-img image" src="../../../assets/icon/frame.svg" />
-
-            <div
-              [routerLink]="['/tabs/createevent']"
-              class="card-icon"
-              style="position: absolute; top: 40%; left: 35%"
-            >
-              <img class="add" src="../../../assets/images/Small.svg" />
-            </div>
-            <ion-card-content style="height: 94px">
-              <ion-grid>
-                <ion-row
-                  class="ion-align-items-center ion-justify-content-between"
-                >
-                  <ion-card-title
-                    color="dark"
-                    class="card-title"
-                    [routerLink]="['/tabs/createevent']"
-                    style="margin-top: 0px; font-size: medium"
-                  >
-                    Creat new trip
-                  </ion-card-title>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-        </ng-template>
-        <ng-template swiperSlide *ngFor="let item of testData ">
+      <swiper [config]="{ slidesPerView: 2.5}">
+        <ng-template swiperSlide *ngFor="let item of AllPublicTripForGuide ">
           <ion-card class="cardH">
             <img
               class="card-img image"
               (click)="showDetails()"
-              src="../../../assets/images/home/{{item.img}}"
+              style="height: 100px; object-fit: cover"
+              src="../../../assets/Circuit/{{item.imgGroup[0]}}"
             />
 
             <div
-              class="card-icon-{{item.fev}}"
-              (click)="favorisrec(item.id)"
+              class="card-icon-{{'checked'}}"
+              (click)="favorisrec(item._id)"
             ></div>
 
             <ion-card-content>
@@ -187,37 +159,28 @@
                 <ion-row
                   class="ion-align-items-center ion-justify-content-between"
                 >
-                  <ion-card-title
-                    color="dark"
-                    class="card-title"
-                    (click)="showDetails()"
-                  >
-                    {{item.name.length >9 ? item.name.substring(0 , 9) +'...' :
-                    item.name.substring(0, 9) }}
+                  <ion-card-title color="dark" class="card-title">
+                    {{item.name.length >7 ? item.name.substring(0 , 7) +'...' :
+                    item.name.substring(0, 7) }}
                   </ion-card-title>
+                </ion-row>
+                <ion-row>
                   <div class="ion-align-items-center note">
-                    {{item.note}}
+                    {{5}}
                     <ion-icon name="star" color="warning"></ion-icon>
                   </div>
                 </ion-row>
+
                 <ion-card-subtitle class="card-subtitle">
                   <ion-icon name="location-outline"></ion-icon>
-                  {{item.locations}}</ion-card-subtitle
+                  {{item.localization}}</ion-card-subtitle
                 >
                 <ion-card-subtitle class="card-subtitle">
                   <ion-row
                     class="ion-align-items-center ion-justify-content-between"
                   >
                     <div>
-                      <span class="card-prix">{{item.price}}</span>/person
-                    </div>
-                    <div>
-                      <ion-icon
-                        name="arrow-forward-outline"
-                        [routerLink]="['/tabs/event']"
-                        color="secondary"
-                        class="start-icon"
-                      ></ion-icon>
+                      <span class="card-prix">{{item.Price}}</span>/person
                     </div>
                   </ion-row>
                 </ion-card-subtitle>
@@ -248,7 +211,7 @@
               <ion-col>
                 <ion-row>
                   <ion-col>
-                    <div>{{item.name}}</div>
+                    <div class="wrap-text">{{item.name}}</div>
                   </ion-col>
                   <ion-col>
                     <div class="hert">
