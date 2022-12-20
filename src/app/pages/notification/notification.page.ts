@@ -30,4 +30,25 @@ if(elm._id==this.guide.GuideId)
 }
  }}
 
+ async refuseTrip(trip:any)
+ {
+   
+   for(let element of trip.guideIdProposed)
+   {
+    if(element._id==this.guide.GuideId)
+    {
+      element.etat=true;
+    }
+   
+    
+   }
+   this.guide.updateStatusTrip(trip).subscribe(res=>console.log(res),err=>console.log(err));
+   
+ }
+ async acceptTrip(trip:any)
+ {
+  console.log(trip);
+  
+ }
+
 }
