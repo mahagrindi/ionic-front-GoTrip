@@ -265,7 +265,7 @@ export class CreateeventPage implements OnInit {
       localization: this.Location,
       guideIdProposed: this.createTableCategorie(),
       totalplaceNumber: this.nbrplace,
-      imgGroup: [ 'circuit3_img1.jpg','circuit3_img2.jpg' ,'circuit3_img3.jpg','circuit3_img3.jpg'],
+      imgGroup: [ 'circuit10_img1.jpg','circuit10_img2.jpg' ,'circuit10_img3.jpg' ],
       category: this.activitselect,
       typeCircuit: this.myValue,
       idUser: this.tokenService.userData.value.userId,
