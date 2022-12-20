@@ -54,6 +54,11 @@ export class TokenService {
   }
   clearStorage() {
     this.storage.clear();
+    this.storage.remove(TOKEN_KEY);
+    this.storage.remove(TOKEN_KEY_Guide);
+    this.storage.remove(MODE_KEY);
+
+
   }
   updateMode() {
     this.storage.get(MODE_KEY).then((value) => {
@@ -65,4 +70,5 @@ export class TokenService {
       // console.log("Mode value",value);
     });
   }
+  
 }

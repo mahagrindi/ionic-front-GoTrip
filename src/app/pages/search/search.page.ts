@@ -98,7 +98,7 @@ export class SearchPage implements OnInit {
   search(event) {
     const query = event.target.value.toLowerCase();
     this.results = this.data.filter(
-      (d) => d.name.toLowerCase().indexOf(query) > -1
+      (d) => d.locations.toLowerCase().indexOf(query) > -1
     );
 
     for (let j = 0; j < this.guides.length; j++) {
