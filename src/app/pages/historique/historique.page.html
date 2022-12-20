@@ -5,5 +5,63 @@
 </ion-header>
 
 <ion-content>
+  <h5>Your private trip :</h5>
 
+  <div class="lastChance">
+    <ion-card *ngFor="let item of AllPrivateTripForGuide">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto">
+            <img
+              height="100"
+              class="image"
+              width="100"
+              src="../../../assets/Circuit/{{item.imgGroup[0]}}"
+            />
+          </ion-col>
+          <ion-col>
+            <ion-row>
+              <ion-col>
+                <div class="wrap-text">{{item.name}}</div>
+              </ion-col>
+              <ion-col>
+                <div class="hert">
+                  <ion-icon
+                    src="../../../assets/icon/heart-{{'checked'}}.svg"
+                    side="right"
+                  ></ion-icon>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <div><span class="price">{{item.Price}}</span>/person</div>
+            </ion-row>
+            <ion-row>
+              <div class="starts">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div>
+            </ion-row>
+            <ion-row>
+              <ion-col size="auto">
+                <div class="location">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{item.localization}}
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="place">
+                  <ion-icon name="person-circle-outline"></ion-icon>
+                  {{item.totalplaceNumber}} Spots left
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 </ion-content>

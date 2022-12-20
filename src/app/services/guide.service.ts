@@ -53,4 +53,5 @@ export class GuideService {
   PostPrivateTrip(trip: any) {
     return this.http.post(`http://${this.ipservice.ip}:3001/privateCircuits/setPrivatecCircuit`, trip);
   }
+  getAllPrivateTrip(){return this.http.get(`http://${this.ipservice.ip}:3001/privateCircuits/getAllPrivatecCircuit`);}
 }
