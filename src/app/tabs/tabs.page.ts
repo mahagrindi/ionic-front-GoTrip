@@ -51,6 +51,10 @@ export class TabsPage {
   switchGuide() {
     this.route.navigate(['/tabs/form-guide']);
   }
+  deconnexion() {
+    this.token.clearStorage();
+    this.route.navigate(['/']);
+  }
 
   isGuide: boolean = this.token.modeData;
   async switchMode(event: any) {

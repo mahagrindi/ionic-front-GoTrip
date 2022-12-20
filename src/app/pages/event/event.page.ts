@@ -27,6 +27,7 @@ export class EventPage implements OnInit {
   isSubmitted = false;
  minDate:String ="";
   startDate:String ="";
+  trip:any;
 
   constructor(
 
@@ -76,6 +77,9 @@ export class EventPage implements OnInit {
     ];
     res: FormGroup;
    ngOnInit(): void {
+    this.trip=history.state.trip;
+    console.log(this.trip);
+    
     this.res = this.formBuilder.group({
       identity: [
         '',

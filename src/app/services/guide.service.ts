@@ -40,6 +40,17 @@ export class GuideService {
       trip
     );
   }
+  updateStatusTripPrincipale(trip:any) {   
+    return this.http.patch(
+      `http://${this.ipservice.ip}:3001/proposedCircuits/updateTripStatuspricipale`,
+      trip
+    );
+  }
   
-
+  PostPublicTrip(trip: any) {
+    return this.http.post(`http://${this.ipservice.ip}:3001/publicCircuits/setPubliccCircuit`, trip);
+  }
+  PostPrivateTrip(trip: any) {
+    return this.http.post(`http://${this.ipservice.ip}:3001/privateCircuits/setPrivatecCircuit`, trip);
+  }
 }

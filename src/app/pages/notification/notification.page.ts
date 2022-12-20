@@ -21,14 +21,22 @@ export class NotificationPage implements OnInit {
 async  VerifEtatTrip(guideTab:any){
  for( let element of guideTab)
  {
-  for(let elm of element.guideIdProposed)
-if(elm._id==this.guide.GuideId)
-{
-  if(elm.etat==false)
-  {   
-   this.trip.push(element);  
+  if(element.etat==null)
+  {
+    for(let elm of element.guideIdProposed)
+    {
+      if(elm._id==this.guide.GuideId)
+      {
+        if(elm.etat==false)
+        {   
+         this.trip.push(element);  
+        }
+      }
+    }
+    
   }
-}
+ 
+
  }}
 
  async refuseTrip(trip:any)
@@ -48,13 +56,58 @@ if(elm._id==this.guide.GuideId)
    this.func.presentSplash();
    setTimeout(() => {
    this.func.dismissSplash();
-  }, 200);
-   
+  }, 200); 
  }
  async acceptTrip(trip:any)
  {
-  console.log(trip);
+  // console.log(trip);
   
+  trip.etat= true;
+  this.guide.updateStatusTripPrincipale(trip).subscribe(res=>console.log(res),err=>console.log(err));
+  if(trip.typeCircuit=="true")
+  {
+   let publicTrip=
+    {
+      name:trip.name,
+      dateCircuit:trip.dateCircuit,
+      localization:trip.localization,
+      guideId:this.guide.GuideId,
+      totalplaceNumber:trip.totalplaceNumber,
+      imgGroup:trip.imgGroup,
+      category:trip.category,
+      ListMembreReserver:[trip.idUser],
+      Price:35,
+    }
+    // console.log(publicTrip);
+    this.guide.PostPublicTrip(publicTrip).subscribe(res=>console.log(res),err=>console.log(err));
+    // console.log("public");
+    
+  }
+  else
+  {
+    let privateTrip=
+    {
+      name:trip.name,
+      dateCircuit:trip.dateCircuit,
+      localization:trip.localization,
+      guideId:this.guide.GuideId,
+      totalplaceNumber:trip.totalplaceNumber,
+      imgGroup:trip.imgGroup,
+      category:trip.category,
+      MembreReserver:trip.idUser,
+      Price:35,
+    }
+    // console.log(privateTrip);
+    this.guide.PostPrivateTrip(privateTrip).subscribe(res=>console.log(res),err=>console.log(err));
+    // console.log("private");
+    
+  }
+  
+ await this.func.presentSplash();
+  setTimeout(() => {
+  this.func.dismissSplash();
+ }, 200); 
+ window.location.reload();
  }
 
 }

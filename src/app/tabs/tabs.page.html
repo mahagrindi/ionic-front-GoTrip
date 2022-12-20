@@ -6,12 +6,12 @@
     </ion-header>
 
     <ion-content>
-        <ion-item> Evénements </ion-item>
-        <ion-item> Paramétre </ion-item>
-        <ion-item> Conditions Génerales </ion-item>
+        <ion-item> Events </ion-item>
+        <ion-item> Setting </ion-item>
+        <ion-item> Terms and conditions </ion-item>
         <br />
         <div *ngIf="!verifGuide()" class="checkbox-wrapper-34" style="margin-left: 40px">
-            <label style="font-size: 10px">Vous etes en mode :</label>
+            <label style="font-size: 10px">You are in mode:</label>
             <input (change)="switchMode($event)" [(ngModel)]="isGuide" [checked]="true" class="tgl tgl-ios" id="toggle-34" type="checkbox" />
             <label class="tgl-btn" for="toggle-34"></label>
         </div>
@@ -19,10 +19,15 @@
             <br /><br /><br />
             <ion-toolbar>
                 <ion-menu-toggle class="ion-margin-horizontal">
-                    <ion-button (click)="switchGuide()">switch to guide account</ion-button>
+                    <ion-button (click)="switchGuide()">Apply to become a guide</ion-button>
                 </ion-menu-toggle>
             </ion-toolbar>
         </ion-footer>
+        <div>
+            <br /><br /><br />
+            <ion-button class="ion-margin-horizontal" (click)="deconnexion()" expand="block" color="warning">
+                <ion-icon name="log-out-outline"></ion-icon>Log Out</ion-button>
+        </div>
     </ion-content>
 </ion-menu>
 <ion-header>

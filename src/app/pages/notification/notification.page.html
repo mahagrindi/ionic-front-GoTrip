@@ -13,7 +13,10 @@
         <div>
           <swiper class="ion-padding" [config]="{ slidesPerView: 2.5}">
             <ng-template swiperSlide *ngFor="let im of item.imgGroup  ">
-              <img src="../../../assets/Circuit/{{im}}" />
+              <img
+                src="../../../assets/Circuit/{{im}}"
+                style="object-fit: cover; width: 150px"
+              />
             </ng-template>
           </swiper>
         </div>
