@@ -34,6 +34,12 @@ export class GuideService {
   { 
    return  this.http.get(`http://${this.ipservice.ip}:3001/proposedCircuits/getAllProposedCircuit`);
    }
+   updateStatusTrip(trip:any) {   
+    return this.http.patch(
+      `http://${this.ipservice.ip}:3001/proposedCircuits/updateTripStatus`,
+      trip
+    );
+  }
   
 
 }

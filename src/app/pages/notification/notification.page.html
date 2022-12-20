@@ -13,7 +13,7 @@
         <div>
           <swiper class="ion-padding" [config]="{ slidesPerView: 2.5}">
             <ng-template swiperSlide *ngFor="let im of item.imgGroup  ">
-              <img src="../../../assets/images/home/{{im}}" />
+              <img src="../../../assets/Circuit/{{im}}" />
             </ng-template>
           </swiper>
         </div>
@@ -48,6 +48,7 @@
                   color="light"
                   expand="block"
                   color="success"
+                  (click)="acceptTrip(item)"
                 >
                   Accepte
                 </ion-button>
@@ -58,6 +59,7 @@
                   type="submit"
                   color="light"
                   color="danger"
+                  (click)="refuseTrip(item)"
                 >
                   Deny
                 </ion-button>
