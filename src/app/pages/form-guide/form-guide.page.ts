@@ -152,10 +152,10 @@ export class FormGuidePage implements OnInit {
       hourPrice: this.hPrice,
       dayPrice: this.dPrice,
       reservationType: [this.moveStart, this.moveEnd],
-      ListOfbestplace: ['Ras jebal', 'plage Sousse', 'kantaoui Sousse'],
-      galerie: ['profile2_img1.jpg', 'profile2_img2.jpg'],
+      ListOfbestplace: ['Ribat ', "Habib Bourguiba Mausoleum" , "Medina" , " Marina"],
+      galerie: ['profile16_img1.jpg', 'profile16_img2.jpg'   , 'profile16_img3.jpg'    ],
       verifiedStatus: ['image_cin.jpg', 'b3.pdf'],
-      profilePicture: 'profile2.jpg',
+      profilePicture: 'profile16.jpg',
     };
     this.formGuideService.inscriPost(guide).subscribe(
       (res) => {

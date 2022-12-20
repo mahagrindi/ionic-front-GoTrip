@@ -7,44 +7,37 @@ import { GuideService } from 'src/app/services/guide.service';
   styleUrls: ['./notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
-  notification: any[];
-  trip:any;
-  constructor(private guide:GuideService) {
-    this.notification = [{
-      name : "Trip to Bizerte" ,
-      dateCircuit : "11/12/2022"   ,
-      localization: "Bizerte",
-
-      totalplaceNumber: "5",
-      imgGroup:["img1.jpg","Sidi-Bou-Said-1.jpg"],
-      activit : ["beach" , "camping"] ,
-      typeCircuit :"Privet",
-    },
-    {
-      name : "Trip to Tunis" ,
-      dateCircuit : "11/12/2022"   ,
-      localization: "Bizerte",
-
-      totalplaceNumber: "5",
-      imgGroup:["stay-in-tunis-e1555423387390.jpg","img1.jpg"],
-      activit : ["fishing" , "forest","mountain"] ,
-      typeCircuit :"public",
-    }
-
-    ]
-   this.guide.getPropTrip().subscribe(res=>{this.trip=res; console.log(this.trip);},err=>console.log(err));
  
-   }
+  trip:any[]=[];
+  tripsub:any;
+  constructor(private guide:GuideService) {
+   this.guide.getPropTrip().subscribe(async res=>{
+    this.tripsub=await res;
+    console.log("trip sub",this.tripsub);
+   await this.VerifEtatTrip(this.tripsub);
+   console.log("trip : ",this.trip);
+   
 
-  ngOnInit() {}
-  VerifEtatTrip(guideTab:any){
-       
-    // if(etat=="false")
-    // {
-    //   return false;
-    // }else{
-    //   return true;
-    // }
+  },err=>console.log(err));}
+
+  ngOnInit() { console.log(this.guide.GuideId);}
+async  VerifEtatTrip(guideTab:any){
+ for( let element of guideTab)
+ {
+  for(let elm of element.guideIdProposed)
+if(elm._id==this.guide.GuideId)
+{
+  console.log("hello");
+  if(elm.etat==false)
+  {   
+    console.log(element);
+    
+   this.trip.push(element);  
+  }
+}
+ }
+ 
+ 
   }
 
 }

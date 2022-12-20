@@ -10,7 +10,7 @@
 
     <div class="lastChance">
       <ion-card *ngFor="let item of trip">
-        <div *ngIf="VerifEtatTrip(item.guideIdProposed)">
+        <div>
           <swiper class="ion-padding" [config]="{ slidesPerView: 2.5}">
             <ng-template swiperSlide *ngFor="let im of item.imgGroup  ">
               <img src="../../../assets/images/home/{{im}}" />
@@ -18,14 +18,14 @@
           </swiper>
         </div>
 
-        <ion-card-header *ngIf="VerifEtatTrip(item.guideIdProposed)">
+        <ion-card-header>
           <ion-card-title> {{item.name}}</ion-card-title>
           <ion-card-subtitle>
             <ion-icon name="location-outline"></ion-icon>
             {{item.localization}}</ion-card-subtitle
           >
         </ion-card-header>
-        <ion-card-content *ngIf="VerifEtatTrip(item.guideIdProposed)">
+        <ion-card-content>
           <ion-grid>
             <ion-row>
               <div class="location">
