@@ -9,9 +9,9 @@
     <h2>Your active tripe</h2>
 
     <div class="lastChance">
-      <ion-card *ngFor="let item of notification">
+      <ion-card *ngFor="let item of trip">
         <div>
-          <swiper class="ion-padding" [config]="{ slidesPerView: 2}">
+          <swiper class="ion-padding" [config]="{ slidesPerView: 2.5}">
             <ng-template swiperSlide *ngFor="let im of item.imgGroup  ">
               <img src="../../../assets/images/home/{{im}}" />
             </ng-template>
@@ -34,7 +34,7 @@
               </div>
             </ion-row>
             <ion-row>
-              <ion-col size="auto" *ngFor="let catg of item.activit ">
+              <ion-col size="auto" *ngFor="let catg of item.category ">
                 <div class="items">
                   <p>{{catg}}</p>
                 </div>

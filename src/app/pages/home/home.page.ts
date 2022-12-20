@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { HomeServiceService } from 'src/app/services/home-service.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
 import { GuideService } from 'src/app/services/guide.service';
 
@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
         id: 3,
         price: '35 DT ',
         fev: 'checked',
-        img: 'img1.jpg',
+        img: 'profile2_img2.jpg',
         nbreStarts: 2,
         locations: 'saw2',
         name: 'Gowdaman',
@@ -92,7 +92,7 @@ export class HomePage implements OnInit {
         nbPlace: 5,
         fev: 'not_checked',
         price: '35 DT ',
-        img: 'image2.jpg',
+        img: 'profile2_img2.jpg',
         nbreStarts: 5,
         locations: 'saw2',
         name: 'malliga',
@@ -132,10 +132,17 @@ export class HomePage implements OnInit {
               dayPrice: element.dayPrice,
               fev: 'not_checked',
               ratingNumber: element.ratingNumber,
+              galerie:element.galerie,
+              reservationType:element.reservationType,
+              hourPrice:element.hourPrice,
+              ListOfbestplace:element.ListOfbestplace,
+              listCategory:element.listCategory
             });
           }
         });
       });
+      // console.log(this.allGuideCollection);
+      
     });
   }
 
@@ -165,9 +172,9 @@ export class HomePage implements OnInit {
   }
   favoris(id: any) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
-      console.log(this.LastChance[i].id);
+      // console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
-        console.log(this.LastChance[i].fev);
+        // console.log(this.LastChance[i].fev);
         if ('checked' === this.LastChance[i].fev) {
           this.LastChance[i].fev = 'not_checked';
         } else {
@@ -179,8 +186,13 @@ export class HomePage implements OnInit {
   showDetails() {
     this.route.navigate(['/event']);
   }
-  showDetailsGuide(id: any) {
-    this.route.navigate(['/event']);
+  showDetailsGuide(guide: any) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        guide:guide,
+      },
+    };
+    this.route.navigate(['/profile'],navigationExtras);
   }
   showDetailsNotification() {
     // this.route.navigate(['/login']);
@@ -219,9 +231,9 @@ export class HomePage implements OnInit {
 
   favorisrec(id: any) {
     for (let i = 0; i <= this.testData.length - 1; i++) {
-      console.log(this.testData[i].id);
+      // console.log(this.testData[i].id);
       if (id === this.testData[i].id) {
-        console.log(this.testData[i].fev);
+        // console.log(this.testData[i].fev);
         if ('checked' === this.testData[i].fev) {
           this.testData[i].fev = 'not_checked';
         } else {

@@ -29,12 +29,12 @@
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section" [hidden]="!verifGuide()">
-            <swiper [config]="{ slidesPerView: 2 , loop: true }">
+            <swiper [config]="{ slidesPerView: 2.5 }">
                 <ng-template swiperSlide *ngFor="let item of allGuideCollection ">
                     <ion-card>
-                        <img class="card-img image" (click)="showDetailsGuide(item._id)" src="../../../assets/images/home/{{item.profilePicture}}" />
+                        <img class="card-img image" (click)="showDetailsGuide(item)" style="height: 100px; object-fit: cover" src="../../../assets/ImageProfile/{{item.profilePicture}}" />
 
-                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item._id)"></div>
+                        <div class="card-icon-{{item.fev}}" (click)="favorisrec(item)"></div>
 
                         <div class="card-icon">
                             <ion-icon (click)="favorisrec(item._id)" src="../../../assets/icon/heart-{{'checked'}}-2.svg" side="right"></ion-icon>
@@ -42,7 +42,7 @@
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row class="ion-align-items-center ion-justify-content-between">
-                                    <ion-card-title color="dark" class="card-title" (click)="showDetailsGuide(item._id)">
+                                    <ion-card-title color="dark" class="card-title" (click)="showDetailsGuide(item)">
                                         {{item.username.length >9 ? item.username.substring(0 , 9) +'...' : item.username.substring(0, 9) }}
                                     </ion-card-title>
                                     <div class="ion-align-items-center note">
@@ -60,7 +60,7 @@
                                             <span class="card-prix">{{item.dayPrice}}</span>/Day
                                         </div>
                                         <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetailsGuide(item._id)"></ion-icon>
+                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon" (click)="showDetailsGuide(item)"></ion-icon>
                                         </div>
                                     </ion-row>
                                 </ion-card-subtitle>
@@ -137,7 +137,7 @@
         </div>
 
         <div class="ion-margin-top" [hidden]="verifGuide()">
-            <ion-card style="background-color: #e5edf9" class="notif-card">
+            <ion-card style="background-color: #e5edf9" class="notif-card" [routerLink]="['/tabs/notification']">
                 <ion-grid>
                     <ion-row>
                         <ion-col>
@@ -160,7 +160,7 @@
                     </ion-row>
                 </ion-grid>
 
-                <!-- 
+                <!--
                 <ion-card-content >
                     <p>Tap to check your requests</p>
                 </ion-card-content> -->

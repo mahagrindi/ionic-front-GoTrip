@@ -96,7 +96,7 @@ export class CreateeventPage implements OnInit {
           }
         });
       });
-      console.log(this.allGuideCollection);
+      // console.log(this.allGuideCollection);
     });
   }
 
@@ -211,7 +211,7 @@ export class CreateeventPage implements OnInit {
       // console.log('Please provide all the required values!');
       return false;
     } else {
-      console.log(this.creation);
+      // console.log(this.creation);
       this.setOpen2();
     }
   }
@@ -234,7 +234,7 @@ export class CreateeventPage implements OnInit {
     this.results = this.allGuideCollection.filter(
       (d) => d.username.toLowerCase().indexOf(query) > -1
     );
-    console.log(this.results);
+    // console.log(this.results);
   }
 
   interpress(id) {
@@ -249,11 +249,11 @@ export class CreateeventPage implements OnInit {
     let TableCategorie = new Array();
     for (let i = 0; i <= this.allGuideCollection.length - 1; i++) {
       this.allGuideCollection[i].entry
-        ? TableCategorie.push(this.allGuideCollection[i]._id)
+        ? TableCategorie.push({_id:this.allGuideCollection[i]._id,etat:false})
         : null;
     }
 
-    console.log(TableCategorie);
+    // console.log(TableCategorie);
     return TableCategorie;
   }
 
@@ -271,7 +271,7 @@ export class CreateeventPage implements OnInit {
     };
     this.createEventService.postCircuit(this.creation).subscribe(
       async (res) => {
-        console.log(res);
+        // console.log(res);
         this.setOpen(false);
         this.setOpen2();
         await this.router.navigate(['/tabs']);

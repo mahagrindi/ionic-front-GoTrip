@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Account {{guide.username}} </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,36 +11,36 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-avatar>
-        <img src="../../../assets/images/reviwe/{{data.profilePicture}}" />
-        <h3>{{user.username}}</h3>
-        <p>
+        <img src="../../../assets/ImageProfile/{{guide.profilePicture}}" />
+        <h3>{{guide.username}}</h3>
+        <!-- <p>
           <ion-icon src="../../../assets/icon/email.svg"></ion-icon>
           {{user.email}}
         </p>
         <p>
           <ion-icon src="../../../assets/icon/phone.svg"></ion-icon> +216
           {{user.phone}}
-        </p>
+        </p> -->
       </ion-avatar>
     </ion-row>
 
     <ion-row class="ion-justify-content-center">
       <ion-col class="itemscard">
         <p>
-          {{data.ratingNumber}} <ion-icon name="star"></ion-icon> <br />
+          {{guide.ratingNumber}} <ion-icon name="star"></ion-icon> <br />
           <samp> Review </samp>
         </p>
       </ion-col>
       <ion-col class="itemscard">
         <p>
-          {{data.dayPrice}} DT <br />
+          {{guide.dayPrice}} DT <br />
           <samp>Price per day</samp>
         </p>
       </ion-col>
 
       <ion-col class="itemscard">
         <p>
-          {{data.hourPrice}} DT <br />
+          {{guide.hourPrice}} DT <br />
           <samp> Price per hour </samp>
         </p>
       </ion-col>
@@ -47,7 +50,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="auto" *ngFor="let catg of data.workArea ">
+      <ion-col size="auto" *ngFor="let catg of guide.workArea ">
         <div class="items">
           <p>
             <ion-icon name="location-outline"></ion-icon>{{" "}} {{catg.nom}}
@@ -57,25 +60,23 @@
     </ion-row>
 
     <ion-row>
-      <h4>{{user.username}}'s best places'</h4>
+      <h4>{{guide.username}}'s best places'</h4>
     </ion-row>
 
     <ion-row>
-      <ion-col size="auto" *ngFor="let nom of data.ListOfbestplace ">
+      <ion-col size="auto" *ngFor="let nom of guide.ListOfbestplace ">
         <div class="items">
           <p><ion-icon name="location-outline"></ion-icon>{{" "}} {{nom}}</p>
         </div>
       </ion-col>
     </ion-row>
 
-    
-
     <ion-row>
       <h4>list of categories</h4>
     </ion-row>
     <ion-row>
       <swiper [slidesPerView]="2.7" [centeredSlides]="true" [loop]="true">
-        <ng-template swiperSlide *ngFor="let listCat of data.listCategory ">
+        <ng-template swiperSlide *ngFor="let listCat of guide.listCategory ">
           <div class="activite_card">
             <h6 class="h6">
               <ion-icon
@@ -99,11 +100,11 @@
         [centeredSlides]="true"
         [loop]="true"
       >
-        <ng-template swiperSlide *ngFor="let img of data.galerie ">
+        <ng-template swiperSlide *ngFor="let img of guide.galerie ">
           <img
             class="image"
             style="height: 100px; width: 150px"
-            src="../../../assets/images/lastChance/{{img}}"
+            src="../../../assets/GalleryGuide/{{img}}"
           />
         </ng-template>
       </swiper>
@@ -117,10 +118,10 @@
     </ion-row>
     <ion-row class="typeREs ion-justify-content-center">
       <ion-col>
-        <p>At least <samp>{{data.reservationType[0][0] }}</samp></p>
+        <p>At least <samp>{{guide.reservationType[0] }}</samp></p>
       </ion-col>
       <ion-col>
-        <p>Maximum <samp>{{data.reservationType[1][1]}}</samp></p>
+        <p>Maximum <samp>{{guide.reservationType[1]}}</samp></p>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -2,13 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-import { ModalComponent } from './modal/modal.component';
-import { CodeModalComponent } from './code-modal/code-modal.component';
-import { HttpClient } from '@angular/common/http';
 import { VerificationService } from 'src/app/services/verification.service';
 import { NavigationExtras, Router } from '@angular/router';
-const ip = 'localhost';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.page.html',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
   selector: 'app-notification',
@@ -6,35 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
-  notification: any[];
+ 
+  trip:any[]=[];
+  tripsub:any;
+  constructor(private guide:GuideService) {
+   this.guide.getPropTrip().subscribe(async res=>{
+    this.tripsub=res;
+   await this.VerifEtatTrip(this.tripsub);
+  },err=>console.log(err));}
 
-  constructor() {
-    this.notification = [{
-      name : "Trip to Bizerte" ,
-      dateCircuit : "11/12/2022"   ,
-      localization: "Bizerte",
-
-      totalplaceNumber: "5",
-      imgGroup:["img1.jpg","Sidi-Bou-Said-1.jpg"],
-      activit : ["beach" , "camping"] ,
-      typeCircuit :"Privet",
-    },
-    {
-      name : "Trip to Tunis" ,
-      dateCircuit : "11/12/2022"   ,
-      localization: "Bizerte",
-
-      totalplaceNumber: "5",
-      imgGroup:["stay-in-tunis-e1555423387390.jpg","img1.jpg"],
-      activit : ["fishing" , "forest","mountain"] ,
-      typeCircuit :"public",
-    }
-
-    ]
-
-   }
-
-  ngOnInit() {
+  ngOnInit() {}
+async  VerifEtatTrip(guideTab:any){
+ for( let element of guideTab)
+ {
+  for(let elm of element.guideIdProposed)
+if(elm._id==this.guide.GuideId)
+{
+  if(elm.etat==false)
+  {   
+   this.trip.push(element);  
   }
+}
+ }}
 
 }
