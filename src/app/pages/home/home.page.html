@@ -25,7 +25,7 @@
         <!--*********** fonction de recherche *************
         ***************************************************
     ******************************************************-->
-        <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended for you</h5>
+        <h5 class="h1_card" [hidden]="!verifGuide()">Rcommended Guides</h5>
 
         <!--************ recommanded section ***********-->
         <div class="recommended-section" [hidden]="!verifGuide()">
@@ -73,7 +73,7 @@
         <!--************ recommanded section***********-->
 
         <div [hidden]="!verifGuide()">
-            <h5>Last Chance</h5>
+            <h5>Current Trip</h5>
 
             <div class="lastChance">
                 <ion-card *ngFor="let item of LastChance">
