@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
             this.func.dismissSplash();
           }, 1000);
           this.route.navigate(['/tabs']);
-          console.log('auth guard  yes');
+          // console.log('auth guard  yes');
         }
       })
     );

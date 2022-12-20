@@ -141,8 +141,8 @@ export class HomePage implements OnInit {
           }
         });
       });
-      console.log(this.allGuideCollection);
-
+      // console.log(this.allGuideCollection);
+      
     });
   }
 
@@ -172,9 +172,9 @@ export class HomePage implements OnInit {
   }
   favoris(id: any) {
     for (let i = 0; i <= this.LastChance.length - 1; i++) {
-      console.log(this.LastChance[i].id);
+      // console.log(this.LastChance[i].id);
       if (id === this.LastChance[i].id) {
-        console.log(this.LastChance[i].fev);
+        // console.log(this.LastChance[i].fev);
         if ('checked' === this.LastChance[i].fev) {
           this.LastChance[i].fev = 'not_checked';
         } else {
@@ -231,9 +231,9 @@ export class HomePage implements OnInit {
 
   favorisrec(id: any) {
     for (let i = 0; i <= this.testData.length - 1; i++) {
-      console.log(this.testData[i].id);
+      // console.log(this.testData[i].id);
       if (id === this.testData[i].id) {
-        console.log(this.testData[i].fev);
+        // console.log(this.testData[i].fev);
         if ('checked' === this.testData[i].fev) {
           this.testData[i].fev = 'not_checked';
         } else {

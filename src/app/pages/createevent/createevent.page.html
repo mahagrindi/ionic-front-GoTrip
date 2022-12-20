@@ -1,216 +1,312 @@
 <ion-header>
-    <ion-toolbar class="navb">
-        <ion-row class="ion-align-items-center ion-justify-content-between">
-            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-        </ion-row>
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="tabs"></ion-back-button>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar class="navb">
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+    </ion-row>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="card-background-page ion-margin-horizontal">
-    <div class="ion-margin-horizontal">
-        <h3>create your personelle trip</h3>
-        <form [formGroup]="create" (ngSubmit)="onSubmitcreate()" novalidate>
-            <div class="form-group">
-                <ion-grid>
-                    <ion-row>
-                        <h5>Please enter the location</h5>
-                    </ion-row>
-                    <ion-row>
-                        <ion-input formControlName="Location" [(ngModel)]="Location" class="" type="text" placeholder="Location" required>
-                        </ion-input>
-                    </ion-row>
-                    <ion-row>
-                        <div *ngFor="let er of errors">
-                            <ng-container *ngIf="create.get('Location').hasError(er.type) && (create.get('Location').touched || create.get('Location').dirty)">
-                                <ion-note color="danger"> {{er.message}} </ion-note>
-                            </ng-container>
-                        </div>
-                    </ion-row>
-
-                    <ion-row>
-                        <h5>Please enter the Name of trip</h5>
-                    </ion-row>
-                    <ion-row>
-                        <ion-input formControlName="Name" [(ngModel)]="Name" class="" type="text" placeholder="Name" required>
-                        </ion-input>
-                    </ion-row>
-                    <ion-row>
-                        <div *ngFor="let er of errors">
-                            <ng-container *ngIf="create.get('Name').hasError(er.type) && (create.get('Name').touched || create.get('Name').dirty)">
-                                <ion-note color="danger"> {{er.message}} </ion-note>
-                            </ng-container>
-                        </div>
-                    </ion-row>
-
-                    <ion-row>
-                        <ion-list>
-                            <h5>Select the activite you wanted to be include</h5>
-
-                            <ion-select (ionChange)="handleChange($event)" placeholder="Select Caste" multiple="true">
-                                <ion-select-option *ngFor="let activit of categorie">{{activit.name }}</ion-select-option>
-                            </ion-select>
-                        </ion-list>
-                    </ion-row>
-                    <ion-row>
-                        <h5>Please enter number of places</h5>
-                    </ion-row>
-                    <div class="ion-margin-top">
-                        <ion-text> Nombre de place : </ion-text>
-                        <ion-range color="secondary" formControlName="nbrplace" [(ngModel)]="nbrplace" [ticks]="true" [pin]="true" [snaps]="true" [min]="0" [max]="10" (ionChange)="onIonChangeNbrPlace($event)"></ion-range>
-                        <ion-chip color="primary">Min : {{this.nbrplaceValue}}</ion-chip>
-                    </div>
-
-                    <ion-row class="chek">
-                        <h5>You agree to let other members to join you ?</h5>
-
-                        <ion-toggle color="warning" (ionChange)="notify()" [enableOnOffLabels]="true">
-                        </ion-toggle>
-                    </ion-row>
-
-                    <br />
-                    <br />
-                    <br />
-                    <ion-row>
-                        <ion-col>
-                            <ion-button lass="ion-margin-top" type="submit" expand="block" color="warning">Next</ion-button>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
+  <div class="ion-margin-horizontal">
+    <h3>create your personelle trip</h3>
+    <form [formGroup]="create" (ngSubmit)="onSubmitcreate()" novalidate>
+      <div class="form-group">
+        <ion-grid>
+          <ion-row>
+            <h5>Please enter the location</h5>
+          </ion-row>
+          <ion-row>
+            <ion-input
+              formControlName="Location"
+              [(ngModel)]="Location"
+              class=""
+              type="text"
+              placeholder="Location"
+              required
+            >
+            </ion-input>
+          </ion-row>
+          <ion-row>
+            <div *ngFor="let er of errors">
+              <ng-container
+                *ngIf="create.get('Location').hasError(er.type) && (create.get('Location').touched || create.get('Location').dirty)"
+              >
+                <ion-note color="danger"> {{er.message}} </ion-note>
+              </ng-container>
             </div>
-        </form>
-        <ion-modal [isOpen]="isModalOpen">
-            <ng-template>
-                <ion-header>
-                    <ion-toolbar>
-                        <ion-title>Reservation</ion-title>
-                        <ion-buttons slot="end">
-                            <ion-button (click)="setOpen(false)">Close</ion-button>
-                        </ion-buttons>
-                    </ion-toolbar>
-                </ion-header>
-                <ion-content class="ion-padding">
-                    <ion-grid>
-                        <ion-row>
-                            <h5>schoose the date</h5>
-                        </ion-row>
-                        <ion-row>
-                            <ion-datetime [(ngModel)]="mydate" display-format="MMM DD, YYYY" [min]="minDate" [(ngModel)]="startDate" (ionChange)="showdate()"></ion-datetime>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <ion-button lass="ion-margin-top" type="button" expand="block" (click)="sub()" color="warning">Next</ion-button>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-content>
-            </ng-template>
-        </ion-modal>
+          </ion-row>
 
-        <ion-modal [isOpen]="isModalOpen2">
-            <ng-template>
-                <ion-header>
-                    <ion-toolbar>
-                        <ion-title>Choose a guide </ion-title>
-                        <ion-buttons slot="end">
-                            <ion-button (click)="setOpen2()">Close</ion-button>
-                        </ion-buttons>
-                    </ion-toolbar>
-                </ion-header>
-                <ion-content class="ion-padding">
-                    <ion-grid>
-                        <ion-row class="ion-align-items-center ion-justify-content-center">
-                            <ion-input [debounce]="500" (ionChange)="search($event)" placeholder="ex: Tunis, Marsa, ..."></ion-input>
+          <ion-row>
+            <h5>Please enter the Name of trip</h5>
+          </ion-row>
+          <ion-row>
+            <ion-input
+              formControlName="Name"
+              [(ngModel)]="Name"
+              class=""
+              type="text"
+              placeholder="Name"
+              required
+            >
+            </ion-input>
+          </ion-row>
+          <ion-row>
+            <div *ngFor="let er of errors">
+              <ng-container
+                *ngIf="create.get('Name').hasError(er.type) && (create.get('Name').touched || create.get('Name').dirty)"
+              >
+                <ion-note color="danger"> {{er.message}} </ion-note>
+              </ng-container>
+            </div>
+          </ion-row>
 
-                            <!-- <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
+          <ion-row>
+            <ion-list>
+              <h5>Select the activite you wanted to be include</h5>
+
+              <ion-select
+                (ionChange)="handleChange($event)"
+                placeholder="Select Caste"
+                multiple="true"
+              >
+                <ion-select-option *ngFor="let activit of categorie"
+                  >{{activit.name }}</ion-select-option
+                >
+              </ion-select>
+            </ion-list>
+          </ion-row>
+          <ion-row>
+            <h5>Please enter number of places</h5>
+          </ion-row>
+          <div class="ion-margin-top">
+            <ion-text> Nombre de place : </ion-text>
+            <ion-range
+              color="secondary"
+              formControlName="nbrplace"
+              [(ngModel)]="nbrplace"
+              [ticks]="true"
+              [pin]="true"
+              [snaps]="true"
+              [min]="0"
+              [max]="10"
+              (ionChange)="onIonChangeNbrPlace($event)"
+            ></ion-range>
+            <ion-chip color="primary">Min : {{this.nbrplaceValue}}</ion-chip>
+          </div>
+
+          <ion-row class="chek">
+            <h5>You agree to let other members to join you ?</h5>
+
+            <ion-toggle
+              color="warning"
+              (ionChange)="notify()"
+              [enableOnOffLabels]="true"
+            >
+            </ion-toggle>
+          </ion-row>
+
+          <br />
+          <br />
+          <br />
+          <ion-row>
+            <ion-col>
+              <ion-button
+                lass="ion-margin-top"
+                type="submit"
+                expand="block"
+                color="warning"
+                >Next</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </form>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Reservation</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-grid>
+            <ion-row>
+              <h5>schoose the date</h5>
+            </ion-row>
+            <ion-row>
+              <ion-datetime
+                [(ngModel)]="mydate"
+                display-format="MMM DD, YYYY"
+                [min]="minDate"
+                [(ngModel)]="startDate"
+                (ionChange)="showdate()"
+              ></ion-datetime>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button
+                  lass="ion-margin-top"
+                  type="button"
+                  expand="block"
+                  (click)="sub()"
+                  color="warning"
+                  >Next</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal [isOpen]="isModalOpen2">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Choose a guide </ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen2()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-grid>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-input
+                [debounce]="500"
+                (ionChange)="search($event)"
+                placeholder="ex: Tunis, Marsa, ..."
+              ></ion-input>
+
+              <!-- <ion-button style="margin-top: 0px; margin-bottom: 0px" color="warning" class="ion-margin-start">
                   <ion-icon slot="icon-only" src="../../../assets/icon/search-normal.svg"></ion-icon>
               </ion-button> -->
-                        </ion-row>
+            </ion-row>
 
-                        <ion-list>
-                            <ion-card *ngFor="let result of results" class="chekbox-press" [ngClass]="{'chekbox-press':result.entry === true}" (click)="interpress(result._id)">
-                                <div class="review_card">
-                                    <ion-grid>
-                                        <div class="checkbox-wrapper-12">
-                                            <ion-row>
-                                                <div class="cbx" style="margin-top: 10px">
-                                                    <input id="cbx-12" type="checkbox" [(ngModel)]="result.entry" />
-                                                    <label for="cbx-12"></label>
-                                                    <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+            <ion-list>
+              <ion-card
+                *ngFor="let result of results"
+                class="chekbox-press"
+                [ngClass]="{'chekbox-press':result.entry === true}"
+                (click)="interpress(result._id)"
+              >
+                <div class="review_card">
+                  <ion-grid>
+                    <div class="checkbox-wrapper-12">
+                      <ion-row>
+                        <div class="cbx" style="margin-top: 10px">
+                          <input
+                            id="cbx-12"
+                            type="checkbox"
+                            [(ngModel)]="result.entry"
+                          />
+                          <label for="cbx-12"></label>
+                          <svg
+                            width="15"
+                            height="14"
+                            viewbox="0 0 15 14"
+                            fill="none"
+                          >
                             <path d="M2 8.36364L6.23077 12L13 2"></path>
                           </svg>
-                                                </div>
-                                                <!-- Gooey-->
-                                            </ion-row>
-                                            <ion-row>
-                                                <ion-col size="auto">
-                                                    <img style="
+                        </div>
+                        <!-- Gooey-->
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="auto">
+                          <img
+                            style="
                               height: 100px;
                               width: 100px;
                               margin-right: 10px;
-                            " src="../../../assets/images/reviwe/{{result.profilePicture}}" />
-                                                </ion-col>
-                                                <ion-col>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <h6 style="margin: 0; margin-bottom: 5px">
-                                                                {{result.username}}
-                                                            </h6>
-                                                        </ion-col>
-                                                    </ion-row>
+                            "
+                            src="../../../assets/ImageProfile/{{result.profilePicture}}"
+                          />
+                        </ion-col>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col>
+                              <h6 style="margin: 0; margin-bottom: 5px">
+                                {{result.username}}
+                              </h6>
+                            </ion-col>
+                          </ion-row>
 
-                                                    <ion-row>
-                                                        <p style="margin: 0">Work area :</p>
-                                                        <p style="margin: 0" *ngFor="let area of result.workArea ">
-                                                            {{ area ? area.nom+",":null}}
-                                                        </p>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <p style="margin: 0">
-                                                            price :{{result.dayPrice}}/Day
-                                                        </p>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <div>
-                                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
-                                                        </div>
-                                                    </ion-row>
-                                                </ion-col>
-                                            </ion-row>
-                                        </div>
-                                    </ion-grid>
-                                </div>
-                            </ion-card>
-
-                            <div *ngIf="(results | json) == '[]'">
-                                <ion-row class="ion-justify-content-center">
-                                    <img style="width: 60%" alt="404 not found" src="../../../assets/images/intro/Bad-news.png" />
-                                </ion-row>
-                                <ion-row class="ion-justify-content-center">
-                                    <h3 color="primary">We are Sorry 😔</h3>
-                                </ion-row>
-                                <ion-row class="ion-justify-content-center">
-                                    <ion-text class="ion-text-center">We didn't finde your guied.
-                                    </ion-text>
-                                </ion-row>
+                          <ion-row>
+                            <p style="margin: 0">Work area :</p>
+                            <p
+                              style="margin: 0"
+                              *ngFor="let area of result.workArea "
+                            >
+                              {{ area ? area.nom+",":null}}
+                            </p>
+                          </ion-row>
+                          <ion-row>
+                            <p style="margin: 0">
+                              price :{{result.dayPrice}}/Day
+                            </p>
+                          </ion-row>
+                          <ion-row>
+                            <div>
+                              <ion-icon
+                                name="arrow-forward-outline"
+                                color="secondary"
+                                class="start-icon"
+                              ></ion-icon>
                             </div>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-grid>
+                </div>
+              </ion-card>
 
-                            <!--
+              <div *ngIf="(results | json) == '[]'">
+                <ion-row class="ion-justify-content-center">
+                  <img
+                    style="width: 60%"
+                    alt="404 not found"
+                    src="../../../assets/images/intro/Bad-news.png"
+                  />
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                  <h3 color="primary">We are Sorry 😔</h3>
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                  <ion-text class="ion-text-center"
+                    >We didn't finde your guied.
+                  </ion-text>
+                </ion-row>
+              </div>
+
+              <!--
                 <ion-label>{{ result }}</ion-label> -->
-                        </ion-list>
+            </ion-list>
 
-                        <form [formGroup]="create" (ngSubmit)="submitfinle()" novalidate>
-                            <ion-row>
-                                <ion-col>
-                                    <ion-button lass="ion-margin-top" type="submit" expand="block" color="warning">Submit</ion-button>
-                                </ion-col>
-                            </ion-row>
-                        </form>
-                    </ion-grid>
-                </ion-content>
-            </ng-template>
-        </ion-modal>
-    </div>
+            <form [formGroup]="create" (ngSubmit)="submitfinle()" novalidate>
+              <ion-row>
+                <ion-col>
+                  <ion-button
+                    lass="ion-margin-top"
+                    type="submit"
+                    expand="block"
+                    color="warning"
+                    >Submit</ion-button
+                  >
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </div>
 </ion-content>

@@ -33,7 +33,7 @@ export class AuthService {
         return from(this.storage.get(TOKEN_KEY));
       }),
       map((token) => {
-        console.log('token ach', token);
+        // console.log('token ach', token);
 
         if (token) {
           let decoded = helper.decodeToken(token);
