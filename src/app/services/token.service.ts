@@ -60,7 +60,7 @@ export class TokenService {
          value=!value
        // Save the entire data again
        this.storage.set(MODE_KEY, value);
-      console.log("Mode value",value);
+      // console.log("Mode value",value);
       
   });
   }
