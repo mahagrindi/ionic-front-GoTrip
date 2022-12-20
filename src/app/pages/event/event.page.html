@@ -1,276 +1,343 @@
 <ion-header>
-    <ion-toolbar class="navb">
-        <ion-row class="ion-align-items-center ion-justify-content-between">
-            <div>
-                <ion-buttons slot="start">
-                    <ion-menu-button></ion-menu-button>
-                </ion-buttons>
-            </div>
-            <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
-            <div class="">
-                <ion-icon class="ion-margin-end" src="../../../assets/icon/add-square.svg"></ion-icon>
-                <ion-icon class="ion-margin-end" src="../../../assets/icon/search-normal.svg"></ion-icon>
-            </div>
-        </ion-row>
-    </ion-toolbar>
+  <ion-toolbar class="navb">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <img src="../../../assets/logo/logo.svg" alt="" srcset="" />
+    </ion-row>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content *ngFor="let item of testData, let i=index">
-    <ion-grid>
-        <div>
-            <ion-row>
-                <img class="image" src="../../../assets/images/home/stay-in-tunis-e1555423387390.jpg" />
-            </ion-row>
-            <ion-row class="ion-align-items-center">
-                <ion-col>
-                    <ion-row>
-                        <h3 style="margin-left: 10px">{{item.name}}</h3>
-                    </ion-row>
-                    <ion-row>
-                        <div class="starts" style="margin-left: 10px">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star-outline"></ion-icon>
-                        </div>
-                    </ion-row>
-                </ion-col>
+<ion-content *ngFor="let item of trip, let i=index">
+  <ion-grid>
+    <div>
+      <ion-row>
+        <img
+          class="image"
+          src="../../../assets/images/home/stay-in-tunis-e1555423387390.jpg"
+        />
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-col>
+          <ion-row>
+            <h3 style="margin-left: 10px">{{item.name}}</h3>
+          </ion-row>
+          <ion-row>
+            <div class="starts" style="margin-left: 10px">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+          </ion-row>
+        </ion-col>
 
-                <ion-col>
-                    <div class="review_card" style="margin-top: 30px">
-                        <img style="height: 30px; width: 30px; margin: 0; margin-right: -10px" src="../../../assets/images/reviwe//profile2.jpg" />
-                        <img style="height: 30px; width: 30px; margin: 0; margin-right: -10px" src="../../../assets/images/reviwe//profile1.jpg" />
-                        <img style="height: 30px; width: 30px; margin: 0; margin-right: -10px" src="../../../assets/images/reviwe//profile2.jpg" />
-                        <img style="height: 30px; width: 30px; margin: 0; margin-right: -10px" src="../../../assets/images/reviwe//profile1.jpg" />
-                    </div>
-                </ion-col>
-            </ion-row>
+        <ion-col>
+          <div class="review_card" style="margin-top: 30px">
+            <img
+              style="height: 30px; width: 30px; margin: 0; margin-right: -10px"
+              src="../../../assets/images/reviwe//profile2.jpg"
+            />
+            <img
+              style="height: 30px; width: 30px; margin: 0; margin-right: -10px"
+              src="../../../assets/images/reviwe//profile1.jpg"
+            />
+            <img
+              style="height: 30px; width: 30px; margin: 0; margin-right: -10px"
+              src="../../../assets/images/reviwe//profile2.jpg"
+            />
+            <img
+              style="height: 30px; width: 30px; margin: 0; margin-right: -10px"
+              src="../../../assets/images/reviwe//profile1.jpg"
+            />
+          </div>
+        </ion-col>
+      </ion-row>
 
-            <ion-row>
-                <h4 style="margin-left: 10px">what's included ?</h4>
-            </ion-row>
-            <ion-row>
-                <swiper [slidesPerView]="2.5" [spaceBetween]="8" [centeredSlides]="true" [loop]="true">
-                    <ng-template swiperSlide *ngFor="let catg of item.catgrs ">
-                        <div class="activite_card">
-                            <h6 class="h6">
-                                <ion-icon src="../../../assets/icon/{{catg}}.svg" side="right">
-                                </ion-icon>{{catg}}
-                            </h6>
-                        </div>
-                    </ng-template>
-                </swiper>
-            </ion-row>
-            <ion-row>
-                <h4 style="margin-left: 10px">About Trip</h4>
-            </ion-row>
-            <ion-row>
-                <p style="margin-left: 10px; margin-right: 10px" class="p">
-                    Yield farming, Elon-led fearless Martian Pioneer. SPAC leading Testflight user. Alexis Ohanian-tweeted overhyped ed-Tech series D. Tech-loving Tradwife.
-                </p>
-            </ion-row>
-            <ion-row>
-                <h4 style="margin-left: 10px">About Guide</h4>
-            </ion-row>
-            <ion-row>
-                <div class="review_card">
-                    <ion-card>
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="auto">
-                                    <img style="height: 100px; width: 100px; margin-right: 10px" src="../../../assets/images/reviwe/profile2.jpg" />
-                                </ion-col>
-                                <ion-col>
-                                    <ion-row>
-                                        <ion-col>
-                                            <h6 style="margin: 0; margin-bottom: 5px">Med ali</h6>
-                                        </ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <div class="starts" style="margin-top: 0">
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star-outline"></ion-icon>
-                                        </div>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <p style="margin: 0; margin-top: 5px">Age : 26</p>
-                                    </ion-row>
-                                    <ion-row>
-                                        <p style="margin: 0">Dictionary : tunis</p>
-                                    </ion-row>
-                                    <ion-row>
-                                        <div>
-                                            <ion-icon name="arrow-forward-outline" color="secondary" class="start-icon"></ion-icon>
-                                        </div>
-                                    </ion-row>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card>
-                </div>
-            </ion-row>
-            <ion-row>
-                <h4 style="margin-left: 10px">Gallery Photo</h4>
-            </ion-row>
-            <ion-row>
-                <swiper [slidesPerView]="2.5" [spaceBetween]="10" [centeredSlides]="true" [loop]="true">
-                    <ng-template swiperSlide *ngFor="let img of item.imgs ">
-                        <img class="image" style="height: 100px; width: 150px" src="../../../assets/GalleryGuide/{{img}}" />
-                    </ng-template>
-                </swiper>
-            </ion-row>
-            <ion-row>
-                <h4 class="h4" style="margin-left: 10px">Location</h4>
-            </ion-row>
-            <ion-row>
-                <img class="map" src="../../../assets/images/map.png" />
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <h4 style="margin-left: 10px">Review</h4>
-                </ion-col>
-                <ion-col>
-                    <h4 class="note">
-                        {{item.note}}
-                        <ion-icon name="star" color="warning"></ion-icon>
-                    </h4>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <div class="review_card">
-                    <ion-card *ngFor="let item of review">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col size="auto">
-                                    <img height="100" width="100" src="../../../assets/ImageProfile/{{item.img}}" />
-                                </ion-col>
-                                <ion-col>
-                                    <ion-row>
-                                        <ion-col>
-                                            <h6>{{item.name}}</h6>
-                                        </ion-col>
-                                        <ion-col>
-                                            <h6>{{item.date}}</h6>
-                                        </ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <div class="starts">
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star-outline"></ion-icon>
-                                        </div>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <p>{{item.comnt}}</p>
-                                    </ion-row>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card>
-                </div>
-            </ion-row>
-        </div>
-
-        <ion-grid>
-            <ion-row>
+      <ion-row>
+        <h4 style="margin-left: 10px">what's included ?</h4>
+      </ion-row>
+      <ion-row>
+        <swiper
+          [slidesPerView]="2.5"
+          [spaceBetween]="8"
+          [centeredSlides]="true"
+          [loop]="true"
+        >
+          <ng-template swiperSlide *ngFor="let catg of item.catgrs ">
+            <div class="activite_card">
+              <h6 class="h6">
+                <ion-icon src="../../../assets/icon/{{catg}}.svg" side="right">
+                </ion-icon
+                >{{catg}}
+              </h6>
+            </div>
+          </ng-template>
+        </swiper>
+      </ion-row>
+      <ion-row>
+        <h4 style="margin-left: 10px">About Trip</h4>
+      </ion-row>
+      <ion-row>
+        <p style="margin-left: 10px; margin-right: 10px" class="p">
+          Yield farming, Elon-led fearless Martian Pioneer. SPAC leading
+          Testflight user. Alexis Ohanian-tweeted overhyped ed-Tech series D.
+          Tech-loving Tradwife.
+        </p>
+      </ion-row>
+      <ion-row>
+        <h4 style="margin-left: 10px">About Guide</h4>
+      </ion-row>
+      <ion-row>
+        <div class="review_card">
+          <ion-card>
+            <ion-grid>
+              <ion-row>
                 <ion-col size="auto">
-                    <div class="PRIX">
-                        <p>35 DT <samp> /person</samp></p>
-                    </div>
+                  <img
+                    style="height: 100px; width: 100px; margin-right: 10px"
+                    src="../../../assets/images/reviwe/profile2.jpg"
+                  />
                 </ion-col>
                 <ion-col>
-                    <ion-button lass="ion-margin-top" type="submit" expand="block" color="warning" (click)="setOpen(true)">Booking</ion-button>
+                  <ion-row>
+                    <ion-col>
+                      <h6 style="margin: 0; margin-bottom: 5px">Med ali</h6>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <div class="starts" style="margin-top: 0">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                  </ion-row>
+
+                  <ion-row>
+                    <p style="margin: 0; margin-top: 5px">Age : 26</p>
+                  </ion-row>
+                  <ion-row>
+                    <p style="margin: 0">Dictionary : tunis</p>
+                  </ion-row>
+                  <ion-row>
+                    <div>
+                      <ion-icon
+                        name="arrow-forward-outline"
+                        color="secondary"
+                        class="start-icon"
+                      ></ion-icon>
+                    </div>
+                  </ion-row>
                 </ion-col>
-            </ion-row>
-        </ion-grid>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </div>
+      </ion-row>
+      <ion-row>
+        <h4 style="margin-left: 10px">Gallery Photo</h4>
+      </ion-row>
+      <ion-row>
+        <swiper
+          [slidesPerView]="2.5"
+          [spaceBetween]="10"
+          [centeredSlides]="true"
+          [loop]="true"
+        >
+          <ng-template swiperSlide *ngFor="let img of item.imgs ">
+            <img
+              class="image"
+              style="height: 100px; width: 150px"
+              src="../../../assets/GalleryGuide/{{img}}"
+            />
+          </ng-template>
+        </swiper>
+      </ion-row>
+      <ion-row>
+        <h4 class="h4" style="margin-left: 10px">Location</h4>
+      </ion-row>
+      <ion-row>
+        <img class="map" src="../../../assets/images/map.png" />
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h4 style="margin-left: 10px">Review</h4>
+        </ion-col>
+        <ion-col>
+          <h4 class="note">
+            {{item.note}}
+            <ion-icon name="star" color="warning"></ion-icon>
+          </h4>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <div class="review_card">
+          <ion-card *ngFor="let item of review">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="auto">
+                  <img
+                    height="100"
+                    width="100"
+                    src="../../../assets/ImageProfile/{{item.img}}"
+                  />
+                </ion-col>
+                <ion-col>
+                  <ion-row>
+                    <ion-col>
+                      <h6>{{item.name}}</h6>
+                    </ion-col>
+                    <ion-col>
+                      <h6>{{item.date}}</h6>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <div class="starts">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                  </ion-row>
+
+                  <ion-row>
+                    <p>{{item.comnt}}</p>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </div>
+      </ion-row>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto">
+          <div class="PRIX">
+            <p>35 DT <samp> /person</samp></p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-button
+            lass="ion-margin-top"
+            type="submit"
+            expand="block"
+            color="warning"
+            (click)="setOpen(true)"
+            >Booking</ion-button
+          >
+        </ion-col>
+      </ion-row>
     </ion-grid>
+  </ion-grid>
 
-    <ion-modal [isOpen]="isModalOpen">
-        <ng-template>
-            <ion-header>
-                <ion-toolbar>
-                    <ion-title>Reservation</ion-title>
-                    <ion-buttons slot="end">
-                        <ion-button (click)="setOpen(false)">Close</ion-button>
-                    </ion-buttons>
-                </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-                <form [formGroup]="res" (ngSubmit)="onSubmitresv()" novalidate>
-                    <ion-grid>
-                        <ion-row>
-                            <h1>Choose the date for the reservation</h1>
-                        </ion-row>
-                        <ion-row>
-                            <ion-datetime [(ngModel)]="mydate" display-format="MMM DD, YYYY" [min]="minDate" [(ngModel)]="startDate" (ionChange)="showdate()"></ion-datetime>
-                        </ion-row>
-                        <ion-row>
-                            <h1>Select the number of people</h1>
-                        </ion-row>
-                        <ion-row>
-                            <div class="counter__section">
-                                <ion-button color="warning" (click)="decrement()">-</ion-button>
-                                <p>{{count }}</p>
-                                <ion-button color="warning" (click)="increment()">+</ion-button>
-                            </div>
-                        </ion-row>
-                    </ion-grid>
-                    <ion-grid class="ion-justify-content-center facteur">
-                        <ion-row>
-                            <ion-col>
-                                <h4>price of person</h4>
-                            </ion-col>
-                            <ion-col class="ion-text-end">
-                                <h4>{{this.testData[0].price}}</h4>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <h4>nomber of popele</h4>
-                            </ion-col>
-                            <ion-col class="ion-text-end">
-                                <h4>{{count }}</h4>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <h4>Total price</h4>
-                            </ion-col>
-                            <ion-col class="ion-text-end">
-                                <h4>{{total_price}}</h4>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                    <ion-grid>
-                        <div class="form-group">
-                            <ion-label position="">Please enter your ssn or passport number</ion-label>
-                            <ion-input formControlName="identity" [(ngModel)]="identity" class="" type="text" required placeholder="CIN / Passport number" required>
-                            </ion-input>
-                            <div *ngFor="let er of errors">
-                                <ng-container *ngIf="res.get('identity').hasError(er.type) && (res.get('identity').touched || res.get('identity').dirty)">
-                                    <ion-note color="danger"> {{er.message}} </ion-note>
-                                </ng-container>
-                            </div>
-                        </div>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Reservation</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="res" (ngSubmit)="onSubmitresv()" novalidate>
+          <ion-grid>
+            <ion-row>
+              <h1>Choose the date for the reservation</h1>
+            </ion-row>
+            <ion-row>
+              <ion-datetime
+                [(ngModel)]="mydate"
+                display-format="MMM DD, YYYY"
+                [min]="minDate"
+                [(ngModel)]="startDate"
+                (ionChange)="showdate()"
+              ></ion-datetime>
+            </ion-row>
+            <ion-row>
+              <h1>Select the number of people</h1>
+            </ion-row>
+            <ion-row>
+              <div class="counter__section">
+                <ion-button color="warning" (click)="decrement()">-</ion-button>
+                <p>{{count }}</p>
+                <ion-button color="warning" (click)="increment()">+</ion-button>
+              </div>
+            </ion-row>
+          </ion-grid>
+          <ion-grid class="ion-justify-content-center facteur">
+            <ion-row>
+              <ion-col>
+                <h4>price of person</h4>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <h4>{{this.testData[0].price}}</h4>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h4>nomber of popele</h4>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <h4>{{count }}</h4>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h4>Total price</h4>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <h4>{{total_price}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid>
+            <div class="form-group">
+              <ion-label position=""
+                >Please enter your ssn or passport number</ion-label
+              >
+              <ion-input
+                formControlName="identity"
+                [(ngModel)]="identity"
+                class=""
+                type="text"
+                required
+                placeholder="CIN / Passport number"
+                required
+              >
+              </ion-input>
+              <div *ngFor="let er of errors">
+                <ng-container
+                  *ngIf="res.get('identity').hasError(er.type) && (res.get('identity').touched || res.get('identity').dirty)"
+                >
+                  <ion-note color="danger"> {{er.message}} </ion-note>
+                </ng-container>
+              </div>
+            </div>
 
-                        <ion-button class="ion-margin-top" type="submit" expand="block" color="warning">
-                            Book
-                        </ion-button>
-                    </ion-grid>
-                </form>
-            </ion-content>
-        </ng-template>
-    </ion-modal>
-    <!-----<div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div> --->
+            <ion-button
+              class="ion-margin-top"
+              type="submit"
+              expand="block"
+              color="warning"
+            >
+              Book
+            </ion-button>
+          </ion-grid>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!-----<div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div> --->
 </ion-content>

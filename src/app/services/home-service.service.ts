@@ -8,5 +8,6 @@ import { IpService } from './ip.service';
 export class HomeServiceService {
   constructor(private tokenService:TokenService,private http: HttpClient,private ipservice:IpService) {}
 getUser(){return this.http.get(`http://${this.ipservice.ip}:3001/users/${this.tokenService.userData.value.userId}`);}
+getAllPublicTrip(){return this.http.get(`http://${this.ipservice.ip}:3001/publicCircuits/getAllPubliccCircuit`);}
 }
 

@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
   LastChance: any;
   user: any;
   allGuideCollection = [];
+  AllPublicTrip:any;
 
   constructor(
     private route: Router,
@@ -112,9 +113,15 @@ export class HomePage implements OnInit {
     ];
     this.getUser();
     this.getAllGuide();
+    this.getAllPublicTrip();
   }
 
   ngOnInit() {}
+  getAllPublicTrip()
+  {
+    this.home.getAllPublicTrip().subscribe(res=>{this.AllPublicTrip=res; console.log(res);},err=>console.log(err));
+  }
+
   getAllGuide() {
     let AllGuide: any = [];
     let guideName: any = [];
@@ -185,6 +192,16 @@ export class HomePage implements OnInit {
   }
   showDetails() {
     this.route.navigate(['/event']);
+  }
+  showDetailsTrip(trip:any) {
+    // console.log(trip);
+    
+    const navigationExtras: NavigationExtras = {
+      state: {
+        trip:trip,
+      },
+    };
+    this.route.navigate(['/event'],navigationExtras);
   }
   showDetailsGuide(guide: any) {
     const navigationExtras: NavigationExtras = {

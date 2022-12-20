@@ -75,7 +75,8 @@ async  VerifEtatTrip(guideTab:any){
       totalplaceNumber:trip.totalplaceNumber,
       imgGroup:trip.imgGroup,
       category:trip.category,
-      ListMembreReserver:[trip.idUser]
+      ListMembreReserver:[trip.idUser],
+      Price:35,
     }
     // console.log(publicTrip);
     this.guide.PostPublicTrip(publicTrip).subscribe(res=>console.log(res),err=>console.log(err));
@@ -93,7 +94,8 @@ async  VerifEtatTrip(guideTab:any){
       totalplaceNumber:trip.totalplaceNumber,
       imgGroup:trip.imgGroup,
       category:trip.category,
-      MembreReserver:trip.idUser
+      MembreReserver:trip.idUser,
+      Price:35,
     }
     // console.log(privateTrip);
     this.guide.PostPrivateTrip(privateTrip).subscribe(res=>console.log(res),err=>console.log(err));
