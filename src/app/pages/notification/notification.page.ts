@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FunctionsService } from 'src/app/services/functions.service';
 import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class NotificationPage implements OnInit {
  
   trip:any[]=[];
   tripsub:any;
-  constructor(private guide:GuideService) {
+  constructor(private guide:GuideService,private func: FunctionsService) {
    this.guide.getPropTrip().subscribe(async res=>{
     this.tripsub=res;
    await this.VerifEtatTrip(this.tripsub);
@@ -43,6 +44,11 @@ if(elm._id==this.guide.GuideId)
     
    }
    this.guide.updateStatusTrip(trip).subscribe(res=>console.log(res),err=>console.log(err));
+   window.location.reload();
+   this.func.presentSplash();
+   setTimeout(() => {
+   this.func.dismissSplash();
+  }, 200);
    
  }
  async acceptTrip(trip:any)
