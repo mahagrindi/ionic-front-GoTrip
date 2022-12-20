@@ -37,7 +37,7 @@ export class CreateeventPage implements OnInit {
   categorie: any;
   allGuideCollection = [];
 
-  constructor(
+   constructor(
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private modalController: ModalController,
@@ -229,7 +229,8 @@ export class CreateeventPage implements OnInit {
   // ------------ pour sech guide
   public results = [...this.allGuideCollection];
 
-  search(event: any) {
+
+  search(event) {
     const query = event.target.value.toLowerCase();
     this.results = this.allGuideCollection.filter(
       (d) => d.username.toLowerCase().indexOf(query) > -1
@@ -264,7 +265,7 @@ export class CreateeventPage implements OnInit {
       localization: this.Location,
       guideIdProposed: this.createTableCategorie(),
       totalplaceNumber: this.nbrplace,
-      imgGroup: ['img1', 'img2'],
+      imgGroup: [ 'circuit7_img1.jpg','circuit7_img2.jpg' ,'circuit7_img3.jpg','circuit7_img4.jpg'],
       category: this.activitselect,
       typeCircuit: this.myValue,
       idUser: this.tokenService.userData.value.userId,

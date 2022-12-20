@@ -45,6 +45,8 @@
                                     <ion-card-title color="dark" class="card-title" (click)="showDetailsGuide(item)">
                                         {{item.username.length >9 ? item.username.substring(0 , 9) +'...' : item.username.substring(0, 9) }}
                                     </ion-card-title>
+                                </ion-row>
+                                <ion-row>
                                     <div class="ion-align-items-center note">
                                         {{item.ratingNumber}}
                                         <ion-icon name="star" color="warning"></ion-icon>
