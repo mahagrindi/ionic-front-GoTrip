@@ -119,7 +119,7 @@ export class HomePage implements OnInit {
   ngOnInit() {}
   getAllPublicTrip()
   {
-    this.home.getAllPublicTrip().subscribe(res=>{this.AllPublicTrip=res; console.log(res);},err=>console.log(err));
+    this.home.getAllPublicTrip().subscribe(res=>{this.AllPublicTrip=res;},err=>console.log(err));
   }
 
   getAllGuide() {
