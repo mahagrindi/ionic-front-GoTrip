@@ -36,7 +36,7 @@
                 height="100"
                 width="100"
                 style="object-fit: cover"
-                src="../../../assets/Circuit/{{result.img}}"
+                src="../../../assets/Circuit/{{result.imgGroup[0]}}"
               />
             </ion-col>
             <ion-col>
@@ -46,7 +46,7 @@
                 </ion-col>
               </ion-row>
               <ion-row>
-                <div><span class="price">{{result.price}}</span>/person</div>
+                <div><span class="price">{{result.Price}}</span>/person</div>
               </ion-row>
               <ion-row>
                 <div class="starts">
@@ -61,13 +61,13 @@
                 <ion-col size="auto">
                   <div class="location">
                     <ion-icon name="location-outline"></ion-icon>
-                    {{result.locations}}
+                    {{result.localization}}
                   </div>
                 </ion-col>
                 <ion-col>
                   <div class="place">
                     <ion-icon name="person-circle-outline"></ion-icon>
-                    {{result.nbPlace}} Spots left
+                    {{result.totalplaceNumber}} Spots left
                   </div>
                 </ion-col>
               </ion-row>
@@ -86,17 +86,17 @@
                 height="100"
                 width="100"
                 style="object-fit: cover"
-                src="../../../assets/ImageProfile/{{result.img}}"
+                src="../../../assets/ImageProfile/{{result.profilePicture}}"
               />
             </ion-col>
             <ion-col>
               <ion-row>
                 <ion-col>
-                  <div class="name">{{result.name}}</div>
+                  <div class="name">{{result.username}}</div>
                 </ion-col>
               </ion-row>
               <ion-row>
-                <div><span class="price">{{result.price}}</span>/hour</div>
+                <div><span class="price">{{result.hourPrice}}</span>/hour</div>
               </ion-row>
               <ion-row>
                 <div class="starts">
@@ -111,7 +111,7 @@
                 <ion-col size="auto">
                   <div class="location">
                     <ion-icon name="location-outline"></ion-icon>
-                    {{result.locations}}
+                    {{result.workArea[0].nom}}
                   </div>
                 </ion-col>
                 <!--  <ion-col>

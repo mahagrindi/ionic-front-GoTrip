@@ -102,8 +102,8 @@
         <div class="recommended-section" [hidden]="verifGuide()">
             <swiper [config]="{ slidesPerView: 2.5}">
                 <ng-template swiperSlide *ngFor="let item of AllPublicTripForGuide ">
-                    <ion-card class="cardH">
-                        <img class="card-img image" (click)="showDetails()" style="height: 100px; object-fit: cover" src="../../../assets/Circuit/{{item.imgGroup[0]}}" />
+                    <ion-card class="cardH" (click)="showDetailsTrip(item)">
+                        <img class="card-img image" style="height: 100px; object-fit: cover" src="../../../assets/Circuit/{{item.imgGroup[0]}}" />
 
                         <div class="card-icon-{{'checked'}}" (click)="favorisrec(item._id)"></div>
 

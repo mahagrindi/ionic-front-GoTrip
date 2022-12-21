@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { GuideService } from 'src/app/services/guide.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { GuideService } from 'src/app/services/guide.service';
 export class HistoriquePage implements OnInit {
   AllPrivateTrip:any;
   AllPrivateTripForGuide:any[]=[];
-  constructor(private guideService: GuideService)
+  constructor(private guideService: GuideService,private route: Router )
    {
     this.guideService.getAllPrivateTrip().subscribe(res=>{
       this.AllPrivateTrip=res;
@@ -25,7 +26,16 @@ export class HistoriquePage implements OnInit {
      
     },err=>console.log(err));
    }
-
+   showDetailsTrip(trip:any) {
+    // console.log(trip);
+    
+    const navigationExtras: NavigationExtras = {
+      state: {
+        trip:trip,
+      },
+    };
+    this.route.navigate(['/event'],navigationExtras);
+  }
   ngOnInit() {}
 
 }
