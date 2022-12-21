@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { GuideService } from 'src/app/services/guide.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-historique',
@@ -10,7 +11,8 @@ import { GuideService } from 'src/app/services/guide.service';
 export class HistoriquePage implements OnInit {
   AllPrivateTrip:any;
   AllPrivateTripForGuide:any[]=[];
-  constructor(private guideService: GuideService,private route: Router )
+  AllPrivateTripForUser:any[]=[];
+  constructor(private guideService: GuideService,private route: Router , private token: TokenService)
    {
     this.guideService.getAllPrivateTrip().subscribe(res=>{
       this.AllPrivateTrip=res;
@@ -20,21 +22,27 @@ export class HistoriquePage implements OnInit {
         {
           this.AllPrivateTripForGuide.push(element);
         }
+        if(element.MembreReserver==this.token.userData.value.userId)
+        {
+          this.AllPrivateTripForUser.push(element);
+        }
       }
-      console.log(this.AllPrivateTripForGuide);
-      
-     
     },err=>console.log(err));
    }
-   showDetailsTrip(trip:any) {
-    // console.log(trip);
-    
+   showDetailsTrip(trip:any) { 
     const navigationExtras: NavigationExtras = {
       state: {
         trip:trip,
       },
     };
     this.route.navigate(['/event'],navigationExtras);
+  }
+  verifGuide() {
+    if (this.token.modeData) {
+      return false;
+    } else {
+      return true;
+    }
   }
   ngOnInit() {}
 

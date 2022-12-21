@@ -55,8 +55,7 @@ export class SearchPage implements OnInit {
     this.results = this.allTrip.filter(
       (d) => d.localization.toLowerCase().indexOf(query) > -1);
    this.resultsGuide = this.allGuideCollection.filter(
-          (dg) => dg.workArea[0].nom.toLowerCase().indexOf(query) > -1
-        );
+          (dg) => dg.workArea[0].nom.toLowerCase().indexOf(query) > -1);
   }
   ngOnInit() {}
 }
