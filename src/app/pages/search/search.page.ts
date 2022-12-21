@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GuideService } from 'src/app/services/guide.service';
+import { HomeServiceService } from 'src/app/services/home-service.service';
 
 @Component({
   selector: 'app-search',
@@ -6,104 +8,61 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
-  constructor() {}
+  
+  allTrip:any=[];
+  allGuideCollection = [];
+  results =[];
+  resultsGuide = [];
+  constructor(private guide:GuideService,private home:HomeServiceService)
+   {
+    this.getAllGuide();
+    this.home.getAllPublicTrip().subscribe(res=>{this.allTrip=res;  this.results = [...this.allTrip];},err=>console.log(err));
+  
+   
+   }
 
-  data = [
-    {
-      id: 1,
-      nbPlace: 5,
-      fev: 'checked',
-      price: '35 DT ',
-      img: 'circuit5_img1.jpg',
-      nbreStarts: 4,
-      locations: 'Mahdia',
-      name: 'The Great Mosque of Mahdia',
-      note: 3,
-      guide: 'yosra',
-    },
-    {
-      id: 3,
-      nbPlace: 5,
-      fev: 'not_checked',
-      price: '35 DT ',
-      img: 'circuit1_img1.jpg',
-      nbreStarts: 5,
-      locations: 'tunis',
-      name: 'Toure au El madina',
-      note: 4.8,
-      guide: 'yosra',
-    },
-    {
-      id: 4,
-      nbPlace: 5,
-      fev: 'checked',
-      price: '35 DT ',
-      img: 'circuit2_img1.jpg',
-      nbreStarts: 2,
-      locations: 'El Kef',
-      name: 'Toure a El kef',
-      note: 4.8,
-      guide: 'yosra',
-    },
-  ];
-
-  public guides = [
-    {
-      id: 1,
-      age: '26',
-      fev: 'checked',
-      price: '35 DT ',
-      img: 'profile6.jpg',
-      locations: 'Bizerte',
-      name: 'Monia',
-      workArea: [
-        { id: 1, nom: 'Prithivi' },
-        { id: 2, nom: 'malliga' },
-      ],
-      note: 3,
-      entry: false,
-    },
-    {
-      id: 2,
-      age: '26',
-      fev: 'not_checked',
-      price: '15 DT ',
-      img: 'profile8.jpg',
-      locations: 'Hammamt',
-      name: 'Moaaz',
-      workArea: [{ id: 1, nom: 'malliga' }],
-      note: 4.8,
-      entry: false,
-    },
-    {
-      id: 3,
-      age: '26',
-      fev: 'checked',
-      price: '25 DT ',
-      img: 'profile7.jpg',
-      locations: 'Sousses',
-      workArea: [
-        { id: 1, nom: 'Gowdaman' },
-        { id: 2, nom: 'Prithivi' },
-      ],
-      name: 'Taha',
-      note: 4.8,
-      entry: false,
-    },
-  ];
-
-  public results = [...this.data];
-  public resultsGuide = [...this.guides];
-
+   getAllGuide() {
+    let AllGuide: any = [];
+    let guideName: any = [];
+    this.guide.getNameGuide().subscribe((res) => (guideName = res));
+    this.guide.getAllGuide().subscribe(async (res) => {
+      AllGuide = res;
+      await AllGuide.forEach(async (element) => {
+        await guideName.forEach((elm) => {
+          if (elm._id == element.idUser) {
+            this.allGuideCollection.push({
+              _id: element._id,
+              username: elm.username,
+              profilePicture: element.profilePicture,
+              workArea: element.workArea,
+              dayPrice: element.dayPrice,
+              fev: 'not_checked',
+              ratingNumber: element.ratingNumber,
+              galerie:element.galerie,
+              reservationType:element.reservationType,
+              hourPrice:element.hourPrice,
+              ListOfbestplace:element.ListOfbestplace,
+              listCategory:element.listCategory
+            });
+          }
+        });
+      });
+      this.resultsGuide = [...this.allGuideCollection];
+      console.log(this.allGuideCollection);
+     
+      
+      
+    });
+  }
   search(event) {
     const query = event.target.value.toLowerCase();
-    this.results = this.data.filter(
+    this.results = this.allTrip.filter(
       (d) => d.name.toLowerCase().indexOf(query) > -1
     );
 
-    for (let j = 0; j < this.guides.length; j++) {
-      for (let i = 0; i < this.guides[j].workArea.length; i++) {
-        this.resultsGuide = this.guides.filter(
+    for (let j = 0; j < this.allGuideCollection.length; j++) {
+      for (let i = 0; i < this.allGuideCollection[j].workArea.length; i++) {
+        this.resultsGuide = this.allGuideCollection.filter(
           (dg) => dg.workArea[i].nom.toLowerCase().indexOf(query) > -1
         );
       }
@@ -114,16 +73,16 @@ export class SearchPage implements OnInit {
 
   search2(event: any) {
     const query = event.target.value.toLowerCase();
-    this.resultsGuide = this.guides.filter(
+    this.resultsGuide = this.allGuideCollection.filter(
       (d) => d.name.toLowerCase().indexOf(query) > -1
     );
     console.log(this.results);
   }
 
   interpress(id) {
-    for (let i = 0; i <= this.guides.length - 1; i++) {
-      if (id === this.guides[i].id) {
-        this.guides[i].entry = !this.guides[i].entry;
+    for (let i = 0; i <= this.allGuideCollection.length - 1; i++) {
+      if (id === this.allGuideCollection[i].id) {
+        this.allGuideCollection[i].entry = !this.allGuideCollection[i].entry;
       }
     }
   }
