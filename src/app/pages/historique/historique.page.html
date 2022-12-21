@@ -8,7 +8,10 @@
   <h5>Your private trip :</h5>
 
   <div class="lastChance">
-    <ion-card *ngFor="let item of AllPrivateTripForGuide">
+    <ion-card
+      *ngFor="let item of AllPrivateTripForGuide"
+      (click)="showDetailsTrip(item)"
+    >
       <ion-grid>
         <ion-row>
           <ion-col size="auto">

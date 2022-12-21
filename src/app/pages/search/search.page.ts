@@ -47,45 +47,16 @@ export class SearchPage implements OnInit {
           }
         });
       });
-      this.resultsGuide = [...this.allGuideCollection];
-      console.log(this.allGuideCollection);
-     
-      
-      
+      this.resultsGuide = [...this.allGuideCollection]; 
     });
   }
   search(event) {
-    const query = event.target.value.toLowerCase();
+    const query = event.target.value.toLowerCase();  
     this.results = this.allTrip.filter(
-      (d) => d.name.toLowerCase().indexOf(query) > -1
-    );
-
-    for (let j = 0; j < this.allGuideCollection.length; j++) {
-      for (let i = 0; i < this.allGuideCollection[j].workArea.length; i++) {
-        this.resultsGuide = this.allGuideCollection.filter(
-          (dg) => dg.workArea[i].nom.toLowerCase().indexOf(query) > -1
+      (d) => d.localization.toLowerCase().indexOf(query) > -1);
+   this.resultsGuide = this.allGuideCollection.filter(
+          (dg) => dg.workArea[0].nom.toLowerCase().indexOf(query) > -1
         );
-      }
-    }
-    console.log(this.resultsGuide);
-    console.log(this.results);
   }
-
-  search2(event: any) {
-    const query = event.target.value.toLowerCase();
-    this.resultsGuide = this.allGuideCollection.filter(
-      (d) => d.name.toLowerCase().indexOf(query) > -1
-    );
-    console.log(this.results);
-  }
-
-  interpress(id) {
-    for (let i = 0; i <= this.allGuideCollection.length - 1; i++) {
-      if (id === this.allGuideCollection[i].id) {
-        this.allGuideCollection[i].entry = !this.allGuideCollection[i].entry;
-      }
-    }
-  }
-
   ngOnInit() {}
 }

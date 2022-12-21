@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertModalComponent } from './../../alert-modal/alert-modal.component';
 @Component({
@@ -79,7 +78,9 @@ export class EventPage implements OnInit {
    ngOnInit(): void {
     this.trip=history.state.trip;
     console.log(this.trip);
-    
+ 
+
+
     this.res = this.formBuilder.group({
       identity: [
         '',
